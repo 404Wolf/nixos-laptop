@@ -1,0 +1,41 @@
+let
+  nameservers = ["1.1.1.1" "8.8.4.4" "8.8.8.8"];
+in {
+  boot.kernel.sysctl = {
+    "net.ipv4.tcp_adv_win_scale" = "4";
+    "net.ipv4.tcp_congestion_control" = "bbr";
+    "net.core.wmem_max" = 16777216;
+    "net.core.rmem_max" = 16777216;
+    "net.ipv4.tcp_wmem" = "4096 87380 16777216"; # min, default, max
+    "net.ipv4.tcp_rmem" = "4096 87380 16777216"; # min, default, max
+    "net.ipv4.tcp_slow_start_after_idle" = 0;
+    "net.ipv4.tcp_window_scaling" = 1;
+    "net.core.netdev_max_backlog" = 250000;
+    "net.ipv4.tcp_initial_cwnd" = 10;
+    "net.ipv4.tcp_max_syn_backlog" = 8192;
+    "net.ipv4.tcp_max_tw_buckets" = 2000000;
+    "fs.file-max" = 2097152;
+  };
+
+  networking = {
+    inherit nameservers;
+
+    networkmanager = {
+      enable = true;
+      appendNameservers = ["1.1.1.1" "8.8.4.4" "8.8.8.8"];
+    };
+
+    hosts = {
+      "127.0.0.1" = ["localdomain"];
+    };
+  };
+
+  services.dnsmasq = {
+    enable = true;
+    settings = {
+      address = ["/nameserver/127.0.0.1"];
+    };
+  };
+
+  services.tailscale.enable = true;
+}

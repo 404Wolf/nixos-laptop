@@ -1,0 +1,59 @@
+window#waybar.main {
+  border: none;
+  border-radius: 0px;
+  font-family: "monospace";
+  font-size: 13px;
+  color: #ffffff;
+  min-height: 0;
+  background-color: black;
+}
+
+window#waybar.peek {
+  padding: 8px;
+  font-family: "monospace";
+  font-size: 13px;
+  border-radius: 3px;
+  color: white;
+  background-color: transparent;
+  background: transparent;
+}
+
+#battery,
+#cpu,
+#memory,
+#temperature,
+#backlight,
+#network,
+#pulseaudio,
+#custom-media,
+#tray,
+#mode,
+#idle_inhibitor {
+  padding: 0 8px;
+}
+
+#workspaces button {
+  padding: 0 5px;
+  color: #7f7f7f;
+  border-top: 2px solid transparent;
+}
+
+#workspaces button.active {
+  color: #e4e4e4;
+  border-top: 2px solid black;
+}
+
+#mode {
+  border-bottom: 3px solid black;
+}
+
+#clock {
+  font-weight: bold;
+  background-color: black;
+  color: white;
+}
+
+#battery {
+  background-color: black;
+  color: white;
+}

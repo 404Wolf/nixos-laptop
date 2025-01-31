@@ -1,0 +1,143 @@
+{
+  pkgs,
+  config,
+  options,
+  inputs,
+  ...
+}: {
+  imports = [
+    ./battery
+    ./fonts
+    ./hardware
+    ./misc
+    ./network.nix
+    ./virt.nix
+    ./remotes.nix
+    (inputs.nix-index-database.nixosModules.nix-index)
+  ];
+
+  # Networking visibility
+  networking = {
+    hostName = "wolf-laptop";
+    timeServers = options.networking.timeServers.default ++ ["time.google.com"];
+  };
+
+  # Hardware configuration
+  hardware.bluetooth.enable = true;
+  services.thermald.enable = true;
+  boot = {
+    extraModulePackages = [config.boot.kernelPackages.acpi_call];
+    kernelModules = ["acpi_call"];
+  };
+
+  # User account
+  users = {
+    defaultUserShell = pkgs.zsh;
+    users = {
+      wolf = {
+        password = "password";
+        description = "Wolf Mermelstein";
+        extraGroups = ["wheel"];
+        isNormalUser = true;
+      };
+      tester = {
+        password = "password";
+        extraGroups = ["wheel"];
+        isNormalUser = true;
+      };
+    };
+  };
+
+  # System configuration
+  zramSwap.enable = true;
+  time.timeZone = "America/New_York";
+
+  # Nix configuration
+  nix.settings = {
+    auto-optimise-store = true;
+    substituters = ["https://hyprland.cachix.org"];
+    trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
+    trusted-users = ["root" "wolf"];
+    experimental-features = ["nix-command" "flakes"];
+  };
+
+  # Localization
+  i18n = {
+    defaultLocale = "en_US.UTF-8";
+    extraLocaleSettings = {
+      LC_ADDRESS = "en_US.UTF-8";
+      LC_IDENTIFICATION = "en_US.UTF-8";
+      LC_MEASUREMENT = "en_US.UTF-8";
+      LC_MONETARY = "en_US.UTF-8";
+      LC_NAME = "en_US.UTF-8";
+      LC_NUMERIC = "en_US.UTF-8";
+      LC_PAPER = "en_US.UTF-8";
+      LC_TELEPHONE = "en_US.UTF-8";
+      LC_TIME = "en_US.UTF-8";
+    };
+  };
+
+  # Environment variables
+  environment = {
+    variables = {
+      PKG_CONFIG_PATH = "/run/current-system/sw/lib/pkgconfig";
+      FZF_BASE = "${pkgs.fzf}/bin/fzf";
+      EDITOR = "nvim";
+    };
+    sessionVariables = {
+      NIXOS_OZONE_WL = "1";
+      TERM = "xterm-256color";
+    };
+  };
+
+  # Services
+  services = {
+    gvfs.enable = true;
+    udisks2.enable = true;
+    pipewire = {
+      enable = true;
+      alsa = {
+        enable = true;
+        support32Bit = true;
+      };
+      pulse.enable = true;
+      jack.enable = false;
+    };
+  };
+
+  # Programs
+  programs = {
+    nix-index-database.comma.enable = true;
+    dconf.enable = true;
+    hyprland.enable = true;
+    zsh.enable = true;
+    mtr.enable = true;
+    gnupg.agent = {
+      enable = true;
+      enableSSHSupport = true;
+    };
+  };
+
+  # XDG portal
+  xdg.portal = {
+    enable = true;
+    extraPortals = [
+      pkgs.xdg-desktop-portal-hyprland
+    ];
+  };
+
+  # Security
+  security.rtkit.enable = true;
+
+  # Documentation
+  documentation = {
+    enable = true;
+    man = {
+      enable = true;
+      generateCaches = true;
+    };
+    dev.enable = true;
+  };
+
+  system.stateVersion = "23.11";
+}

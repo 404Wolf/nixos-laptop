@@ -1,0 +1,11 @@
+@-moz-document url-prefix(chrome://messenger/content/messenger.xhtml)
+{
+  .cards-container .card {
+    max-height: 70px !important;
+  }
+
+  .cards-container .card .card-content {
+    max-height: 70px !important;
+    overflow: hidden;
+  }
+}

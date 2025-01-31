@@ -1,0 +1,37 @@
+{
+  "browser.download.alwaysOpenPanel" = false; # Open the downloads panel automatically
+  "browser.newtabpage.pinned" = "";
+  "browser.newtabpage.activity-stream.improvesearch.topSiteSearchShortcuts.searchEngines" = "";
+  "browser.newtabpage.activity-stream.showSponsored" = false;
+  "browser.newtabpage.activity-stream.system.showSponsored" = false;
+  "browser.newtabpage.activity-stream.improvesearch.topSiteSearchShortcuts.havePinned" = "";
+  "browser.newtabpage.activity-stream.improvesearch.topSiteSearchShortcuts" = false;
+  "browser.newtabpage.activity-stream.discoverystream.personalization.enabled" = false;
+  "browser.newtabpage.activity-stream.discoverystream.spocs.personalized" = false;
+  "extensions.pocket.showHome" = false;
+  "browser.bookmarks.addedImportButton" = false;
+  "browser.disableResetPrompt" = true;
+  "browser.toolbars.bookmarks.visibility" = "newtab";
+  "browser.download.panel.shown" = true;
+  "browser.download.useDownloadDir" = false;
+  "browser.newtabpage.activity-stream.showSponsoredTopSites" = false;
+  "browser.shell.checkDefaultBrowser" = false;
+  "browser.shell.defaultBrowserCheckCount" = 1;
+  "identity.fxaccounts.enabled" = false;
+  "privacy.trackingprotection.enabled" = true;
+  "signon.rememberSignons" = false;
+  "extensions.pocket.enabled" = false;
+  "browser.preferences.moreFromMozilla" = false;
+  "services.sync.engine.passwords" = false;
+  "browser.newtabpage.activity-stream.default.sites" = "";
+  "browser.newtabpage.activity-stream.discoverystream.hideDescriptions.enabled" = true;
+  "browser.newtabpage.activity-stream.feeds.section.topstories" = false;
+  "services.sync.prefs.sync.browser.newtabpage.activity-stream.feeds.section.highlights" = false;
+  "services.sync.prefs.sync.browser.newtabpage.activity-stream.feeds.section.topstories" = false;
+  "services.sync.prefs.sync.browser.newtabpage.activity-stream.section.topstories.rows" = false;
+  "services.sync.prefs.sync.browser.newtabpage.activity-stream.showSponsoredTopSites" = false;
+  "services.sync.prefs.sync.browser.newtabpage.activity-stream.showSponsored" = false;
+  "browser.urlbar.suggest.quicksuggest.sponsored" = false;
+  "browser.startup.firstrunSkipsHomepage" = true;
+  "webgl.force-enabled" = true;
+}
