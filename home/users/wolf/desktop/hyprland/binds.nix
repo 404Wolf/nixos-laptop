@@ -2,13 +2,14 @@
   pkgs,
   dashToDock,
   system,
+  osConfig,
   ...
 }: let
   workspace2d = "${pkgs.hyprland-workspace2d}/bin/workspace2d";
   toggle = args: (import ./scripts/toggle.nix (args // {inherit pkgs;}));
 
   dunst-toggle = (import ../../scripts/pause-dunst.nix) {inherit pkgs;};
-  remmina-connect = import ../apps/remmina/connect.nix {inherit pkgs;};
+  remmina-connect = import ../apps/remmina/connect.nix {inherit pkgs osConfig;};
   remmina-toggle = toggle rec {
     program = "remmina";
     launch = "${remmina-connect}/bin/remmina-connect-default.sh";

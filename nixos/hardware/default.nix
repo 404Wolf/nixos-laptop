@@ -7,6 +7,7 @@
   imports = [
     ./mounts.nix
     ./nvidia.nix
+    ./boot.nix
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
@@ -22,7 +23,7 @@
       enable = true;
       useOSProber = true;
       efiSupport = true;
-      device = "nodev";
+      # device = "nodev";
       configurationLimit = 10;
     };
     efi = {

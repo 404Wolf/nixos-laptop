@@ -65,9 +65,9 @@
     baseModules = [
       home-manager.nixosModules.home-manager
       {home-manager.users.wolf = ./home/users/wolf;}
-      nixos-hardware.nixosModules.lenovo-legion-16irx8h
-      inputs.sops-nix.homeManagerModules.sops
+      inputs.sops-nix.nixosModules.sops
       ./nixos
+      ./sops.nix
     ];
   in
     {
@@ -82,11 +82,10 @@
           baseModules
           ++ [
             inputs.disko.nixosModules.disko
+            nixos-hardware.nixosModules.lenovo-legion-16irx8h
             ./disko.nix
             {
-              _module.args.disks = ["/dev/vda"];
-            }
-            {
+              _module.args.disks = ["/dev/nvme0n1"];
               nixpkgs.system = system;
               home-manager.extraSpecialArgs = {inherit pkgs system;} // specialArgs;
             }

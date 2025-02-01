@@ -1,6 +1,6 @@
 {
   pkgs,
-  config,
+  osConfig,
   ...
 }: let
   fzf = "${pkgs.fzf}/bin/fzf";
@@ -11,6 +11,11 @@
   delta = "${pkgs.delta}/bin/delta";
   tmux = "${pkgs.tmux}/bin/tmux";
   wallpaper-utils = import ../../scripts/wallpapers.nix {inherit pkgs;};
+
+  passwordFiles = {
+    anthropic = osConfig.sops.secrets."api-keys/anthropic".path;
+    openai = osConfig.sops.secrets."api-keys/openai".path;
+  };
 in {
   # Programs
   waybar = "${pkgs.waybar}/bin/waybar";
@@ -19,8 +24,8 @@ in {
   hypr-wakeup = "hyprctl dispatch dpms on eDP-1 && hyprctl dispatch dpms on DP-6 && hyprctl dispatch dpms on DP-8";
 
   # Utilities
-  gpt = "ANTHROPIC_API_KEY=${config.sops.placeholder.anthropic} OPENAI_API_KEY=${config.sops.placeholder.api-keys.openai} ${pkgs.nixGpt}/bin/gptcli";
-  dalle = "OPENAI_API_KEY=${config.sops.placeholder.openai} ${pkgs.dalleCLI}/bin/dallecli";
+  gpt = "ANTHROPIC_API_KEY=$(cat ${passwordFiles.anthropic}) OPENAI_API_KEY=$(cat ${passwordFiles.openai}) ${pkgs.nixGpt}/bin/gptcli";
+  dalle = "OPENAI_API_KEY=$(cat ${passwordFiles.openai}) ${pkgs.dalleCLI}/bin/dallecli";
 
   # File navigation
   ".." = "../..";

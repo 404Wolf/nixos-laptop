@@ -2,6 +2,7 @@
   pkgs,
   system,
   config,
+  osConfig,
   inputs,
   ...
 }: let
@@ -74,7 +75,7 @@ in
       ];
       extraConfig =
         (import ./binds.nix {
-          inherit pkgs system;
+          inherit pkgs system osConfig;
           dashToDock = inputs.dashToDock;
         })
         + (import ./chords.nix {inherit pkgs;});

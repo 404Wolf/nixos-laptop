@@ -2,14 +2,19 @@
   disko.devices = {
     disk = {
       main = {
-        device = "/dev/sda";
+        device = "/dev/nvme0n1";
         content = {
           type = "gpt";
 
           partitions = {
+            biosboot = {
+              size = "1M";
+              type = "EF02"; # BIOS Boot Partition for GRUB (for BIOS mode)
+            };
+
             ESP = {
               size = "768M";
-              type = "EF00";
+              type = "EF00"; # EFI System Partition (for UEFI mode)
               content = {
                 type = "filesystem";
                 format = "vfat";
