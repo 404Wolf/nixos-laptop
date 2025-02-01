@@ -94,7 +94,13 @@
     }
     // flake-utils.lib.eachDefaultSystem (system: {
       devShells.default = pkgs.mkShell {
-        packages = with pkgs; [inputs.nix-neovim.packages.${system}.default git nix];
+        packages = with pkgs; [
+          inputs.nix-neovim.packages.${system}.default
+          git
+          nix
+          sops
+          gitleaks
+        ];
       };
 
       formatter = let
@@ -114,11 +120,11 @@
       };
 
       packages.default =
-        nixpkgs.lib.nixosSystem
-        {
-          inherit system pkgs;
-          modules = [(nixpkgs + "/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix")];
-        }
+        (nixpkgs.lib.nixosSystem
+          {
+            inherit system pkgs;
+            modules = [(nixpkgs + "/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix")];
+          })
         .config
         .system
         .build

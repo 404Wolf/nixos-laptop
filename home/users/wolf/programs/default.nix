@@ -9,7 +9,6 @@
     ./direnv
     ./rbw
     ./extras.nix
-    ./steam
   ];
 
   programs = {
