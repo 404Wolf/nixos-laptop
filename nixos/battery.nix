@@ -1,12 +1,6 @@
 {pkgs, ...}: {
-  imports = [./hibernate.nix];
-
-  # powerManagement.enable = true;
-
   services.thermald.enable = true;
-  powerManagement.resumeCommands = [
-    "${pkgs.hyprlock}/bin/hyprlock"
-  ];
+  powerManagement.resumeCommands = "${pkgs.hyprlock}/bin/hyprlock";
 
   services.tlp = {
     enable = true;

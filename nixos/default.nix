@@ -6,13 +6,14 @@
   ...
 }: {
   imports = [
-    ./battery
     ./hardware
     ./misc
     ./fonts.nix
     ./network.nix
     ./virt.nix
     ./remotes.nix
+    ./battery.nix
+    ./users.nix
     (inputs.nix-index-database.nixosModules.nix-index)
   ];
 

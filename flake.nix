@@ -29,7 +29,7 @@
     remarkable-obsidian.url = "github:404Wolf/remarkable-obsidian";
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
-    cartographcf = "github.com:404Wolf/CartographCF";
+    cartographcf.url = "github:404Wolf/CartographCF";
   };
 
   outputs = {

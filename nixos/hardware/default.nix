@@ -7,7 +7,6 @@
   imports = [
     ./mounts.nix
     ./nvidia.nix
-    ./boot.nix
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
