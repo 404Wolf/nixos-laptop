@@ -2,7 +2,7 @@
 builtins.toJSON {
   default_assistant = "main";
   markdown = true;
-  log_file = ".share/gpt.log";
+  log_file = "/home/wolf/.local/share/gpt.log";
   log_level = "INFO";
   assistants = {
     claude = {

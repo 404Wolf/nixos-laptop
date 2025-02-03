@@ -67,6 +67,7 @@
     zotero
     anki
     evince
+    rcu # remarkable connection utility
 
     # Graphics & Media
     gimp
