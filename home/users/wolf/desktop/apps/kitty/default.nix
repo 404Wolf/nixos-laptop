@@ -17,6 +17,7 @@
     extraConfig =
       ''
         map alt+t no_op
+        clear_all_shortcuts
       ''
       + (helpers.template ./template.mustache {
         inherit
