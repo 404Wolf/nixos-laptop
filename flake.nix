@@ -1,5 +1,6 @@
 {
   description = "Collection of Wolf's NixOS and Home Manager Config";
+
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager.url = "github:nix-community/home-manager";
@@ -15,22 +16,12 @@
     hyprland-plugins.url = "github:hyprwm/hyprland-plugins";
     hyprland-plugins.inputs.hyprland.follows = "hyprland";
     hyprland-plugins.inputs.nixpkgs.follows = "nixpkgs";
-    hyprland-workspace2d.url = "github:404wolf/Hyprland-Workspace-2D";
-    hyprland-workspace2d.inputs.nixpkgs.follows = "nixpkgs";
-    hyprpaper.url = "github:hyprwm/hyprpaper";
-    hyprpaper.inputs.nixpkgs.follows = "nixpkgs";
-    nixGpt.url = "github:404Wolf/nixified-gpt-cli";
-    dalleCLI.url = "github:404Wolf/DALLE-CLI";
-    dashToDock.url = "github:404wolf/HyprDash";
-    capture-utils.url = "github:404Wolf/Screen-Capture";
-    nix-neovim.url = "github:404Wolf/nix-neovim";
     nix-colors.url = "github:misterio77/nix-colors";
-    remarkable-connection-utility.url = "github:/404wolf/remarkable-connection-utility";
-    remarkable-obsidian.url = "github:404Wolf/remarkable-obsidian";
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
-    cartographcf.url = "github:404Wolf/CartographCF";
+    wolf-overlay.url = "github:404wolf/wolf-nixos-overlay";
   };
+  dashToDock.url = "github:404wolf/HyprDash";
 
   outputs = {
     self,
@@ -47,17 +38,7 @@
       config.allowUnfree = true;
       permittedInsecurePackages = ["electron-25.9.0"];
       overlays = [
-        (final: prev: {
-          hyprpaper = inputs.hyprpaper.packages.${system}.default;
-          hyprland-workspace2d = inputs.hyprland-workspace2d.packages.${system}.workspace2d;
-          wrappedNvim = inputs.nix-neovim.packages.${system}.default;
-          capture-utils = inputs.capture-utils.packages.${system}.default;
-          dalleCLI = inputs.dalleCLI.packages.${system}.default;
-          nixGpt = inputs.nixGpt.packages.${system}.default;
-          rcu = inputs.remarkable-connection-utility.packages.${system}.default;
-          obsidian = inputs.remarkable-obsidian.packages.${system}.obsidian;
-          cartographcf = inputs.cartographcf.packages.${system}.default;
-        })
+        inputs.wolf-overlay.overlays.${system}.default
         inputs.nur.overlays.default
       ];
     };

@@ -76,7 +76,7 @@ in
       extraConfig =
         (import ./binds.nix {
           inherit pkgs system osConfig;
-          dashToDock = inputs.dashToDock;
+          dashToDock = pkgs.dashToDock;
         })
         + (import ./chords.nix {inherit pkgs;});
     };
