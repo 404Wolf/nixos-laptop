@@ -1,3 +1,4 @@
+# No nvidia! Ensure it's disabled.
 {
   boot.extraModprobeConfig = ''
     blacklist nouveau

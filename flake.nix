@@ -29,6 +29,7 @@
     remarkable-obsidian.url = "github:404Wolf/remarkable-obsidian";
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
+    cartographcf = "github.com:404Wolf/CartographCF";
   };
 
   outputs = {
@@ -55,6 +56,7 @@
           nixGpt = inputs.nixGpt.packages.${system}.default;
           rcu = inputs.remarkable-connection-utility.packages.${system}.default;
           obsidian = inputs.remarkable-obsidian.packages.${system}.obsidian;
+          cartographcf = inputs.cartographcf.packages.${system}.default;
         })
         inputs.nur.overlays.default
       ];

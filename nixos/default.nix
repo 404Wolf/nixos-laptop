@@ -7,9 +7,9 @@
 }: {
   imports = [
     ./battery
-    ./fonts
     ./hardware
     ./misc
+    ./fonts.nix
     ./network.nix
     ./virt.nix
     ./remotes.nix
@@ -23,29 +23,10 @@
   };
 
   # Hardware configuration
-  hardware.bluetooth.enable = true;
   services.thermald.enable = true;
   boot = {
     extraModulePackages = [config.boot.kernelPackages.acpi_call];
     kernelModules = ["acpi_call"];
-  };
-
-  # User account
-  users = {
-    defaultUserShell = pkgs.zsh;
-    users = {
-      wolf = {
-        password = "password";
-        description = "Wolf Mermelstein";
-        extraGroups = ["wheel"];
-        isNormalUser = true;
-      };
-      tester = {
-        password = "password";
-        extraGroups = ["wheel"];
-        isNormalUser = true;
-      };
-    };
   };
 
   # System configuration

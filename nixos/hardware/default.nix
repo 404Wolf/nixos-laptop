@@ -23,7 +23,6 @@
       enable = true;
       useOSProber = true;
       efiSupport = true;
-      # device = "nodev";
       configurationLimit = 10;
     };
     efi = {
@@ -41,4 +40,7 @@
 
   # Allow yubikey-agent for using yubikey for ssh keys
   services.yubikey-agent.enable = true;
+
+  # Enable bluetooth
+  hardware.bluetooth.enable = true;
 }

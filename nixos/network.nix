@@ -1,6 +1,5 @@
-let
-  nameservers = ["1.1.1.1" "8.8.4.4" "8.8.8.8"];
-in {
+{
+  # Max out our networking options, like using super large window sizes, etc
   boot.kernel.sysctl = {
     "net.ipv4.tcp_adv_win_scale" = "4";
     "net.ipv4.tcp_congestion_control" = "bbr";
@@ -17,25 +16,18 @@ in {
     "fs.file-max" = 2097152;
   };
 
+  # Configure general network settings, like nameservers, etc
   networking = {
-    inherit nameservers;
-
+    nameservers = ["1.1.1.1" "8.8.4.4" "8.8.8.8"];
     networkmanager = {
       enable = true;
       appendNameservers = ["1.1.1.1" "8.8.4.4" "8.8.8.8"];
     };
-
     hosts = {
       "127.0.0.1" = ["localdomain"];
     };
   };
 
-  services.dnsmasq = {
-    enable = true;
-    settings = {
-      address = ["/nameserver/127.0.0.1"];
-    };
-  };
-
+  # Enable tailscale
   services.tailscale.enable = true;
 }
