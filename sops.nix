@@ -2,7 +2,7 @@
   sops.defaultSopsFile = ./secrets.yaml;
 
   # This is using an age key that is expected to already be in the filesystem
-  sops.age.keyFile = "/home/wolf/.config/sops/age/keys.txt";
+  sops.age.keyFile = "/nix/persist/var/lib/sops-nix/key.txt";
 
   # This will generate a new key if the key specified above does not exist
   sops.age.generateKey = true;

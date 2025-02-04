@@ -19,12 +19,4 @@
   services.udev.extraRules = ''
     ACTION=="add", SUBSYSTEM=="block", ENV{ID_FS_UUID}=="065f9566-c638-4517-97ed-978e38b54477", TAG+="systemd", ENV{SYSTEMD_WANTS}="mnt-vault.automount"
   '';
-
-  # Set up valfs file system mount folder
-  system.activationScripts = {
-    createValfsMount = ''
-      mkdir -p /mnt/valfs
-      chown wolf:users /mnt/valfs
-    '';
-  };
 }
