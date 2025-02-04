@@ -18,6 +18,7 @@
     speedtest-cli
     bluez
     wl-clipboard
+    powertop
 
     # Networking & File Management
     rclone
