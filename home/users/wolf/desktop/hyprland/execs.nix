@@ -17,13 +17,6 @@ in [
   "${pkgs.blueman}/bin/blueman-applet"
   "${pkgs.networkmanagerapplet}/bin/nm-applet"
 
-  # Communication Apps
-  "${pkgs.discord}/bin/discord"
-  "${pkgs.signal-desktop}/bin/signal-desktop"
-  "${pkgs.zulip}/bin/zulip"
-  "${pkgs.whatsapp-for-linux}/bin/whatsapp-for-linux"
-  "${pkgs.thunderbird}/bin/thunderbird"
-
   # Productivity
   "${pkgs.obsidian}/bin/obsidian"
 ]
