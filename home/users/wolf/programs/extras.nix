@@ -44,6 +44,7 @@
       ]))
     typst
     lazygit
+    valfs
 
     # Text Processing & File Manipulation
     ripgrep
