@@ -10,7 +10,6 @@
   git = "${pkgs.git}/bin/git";
   delta = "${pkgs.delta}/bin/delta";
   tmux = "${pkgs.tmux}/bin/tmux";
-  wallpaper-utils = import ../../scripts/wallpapers.nix {inherit pkgs;};
 
   passwordFiles = {
     anthropic = osConfig.sops.secrets."api-keys/anthropic".path;
@@ -92,10 +91,6 @@ in {
   tma = "${tmux} attach-session -t ";
   tmls = "${tmux} list-sessions";
   tmks = "${tmux} kill-session -t ";
-
-  # Random shell scripts
-  script-wallpaper-fetch = "${wallpaper-utils.fetch-wallpaper}/bin/fetch-wallpaper.sh";
-  script-wallpaper-choose = "${wallpaper-utils.choose-wallpaper}/bin/choose-wallpaper.sh";
 
   # Choose colors
   colorpick = "${pkgs.wl-color-picker}/bin/wl-color-picker";

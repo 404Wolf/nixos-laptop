@@ -3,7 +3,6 @@
   system,
   config,
   osConfig,
-  inputs,
   ...
 }: let
   mkColor = hash: "rgb(${hash})";
@@ -15,7 +14,7 @@ in
       xwayland.enable = true;
       settings = {
         source = "~/.config/hypr/monitors.conf";
-        exec-once = import ./execs.nix {inherit pkgs;};
+        exec-once = import ./execs.nix {inherit pkgs config;};
         animation = [
           "workspaces,1,1,default"
           "windows,1,1,default"
