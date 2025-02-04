@@ -2,13 +2,15 @@
   imports = [
     ./git
     ./tmux
-    ./neomutt
     ./yazi
     ./zsh
-    ./zoxide
-    ./direnv
-    ./rbw
     ./extras.nix
+    ./gpt.nix
+    ./neomutt.nix
+    ./rbw.nix
+    ./go.nix
+    ./direnv.nix
+    ./zoxide.nix
   ];
 
   programs = {

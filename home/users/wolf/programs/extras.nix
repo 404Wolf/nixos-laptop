@@ -13,6 +13,7 @@
     yubikey-agent
     yubikey-manager
     dnsmasq
+    htop
     cloudflared
     speedtest-cli
     bluez
@@ -25,7 +26,6 @@
     # Development & Programming Tools
     gcc
     cargo
-    go
     delve
     gdb
     pkg-config

@@ -20,5 +20,6 @@
       "remotes/windows/password" = {};
       "api-keys/openai" = {};
       "api-keys/anthropic" = {};
+      "api-keys/valtown" = {};
     };
 }

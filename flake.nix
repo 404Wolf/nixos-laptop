@@ -21,7 +21,6 @@
     disko.inputs.nixpkgs.follows = "nixpkgs";
     wolf-overlay.url = "github:404wolf/wolf-nixos-overlay";
   };
-  dashToDock.url = "github:404wolf/HyprDash";
 
   outputs = {
     self,
@@ -78,7 +77,7 @@
     // flake-utils.lib.eachDefaultSystem (system: {
       devShells.default = pkgs.mkShell {
         packages = with pkgs; [
-          inputs.nix-neovim.packages.${system}.default
+          pkgs.wrappedNvim
           git
           nix
           sops

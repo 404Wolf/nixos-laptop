@@ -23,12 +23,8 @@
     conditional = "ps aux | grep ${program}";
   };
   dash-to-dock = {
-    kitty = "${
-      dashToDock.packages.${system}.executable
-    }/bin/hyprland-dash-to-dock -appID=kitty -launchCommand=kitty";
-    chromium = "${
-      dashToDock.packages.${system}.executable
-    }/bin/hyprland-dash-to-dock -appID=chromium -launchCommand=${pkgs.chromium}/bin/chromium";
+    kitty = "${pkgs.dashToDock}/bin/hyprland-dash-to-dock -appID=kitty -launchCommand=kitty";
+    chromium = "${pkgs.dashToDock}/bin/hyprland-dash-to-dock -appID=chromium -launchCommand=${pkgs.chromium}/bin/chromium";
   };
 in
   ''

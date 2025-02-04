@@ -30,4 +30,12 @@
 
   # Enable tailscale
   services.tailscale.enable = true;
+
+  # Setup dnsmasq to use the local nameserver
+  services.dnsmasq = {
+    enable = true;
+    settings = {
+      address = ["/nameserver/127.0.0.1"];
+    };
+  };
 }

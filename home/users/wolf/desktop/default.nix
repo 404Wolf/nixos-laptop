@@ -1,12 +1,12 @@
 {
   imports = [
-    ./fuzzel
-    ./dunst
+    ./fuzzel.nix
+    ./dunst.nix
     ./hyprland
     ./waybar
     ./tofi
     ./apps
-    ./gtk
-    ./xdg
+    ./gtk.nix
+    ./xdg.nix
   ];
 }

@@ -9,11 +9,6 @@
         extraGroups = ["wheel"];
         isNormalUser = true;
       };
-      tester = {
-        password = "password";
-        extraGroups = ["wheel"];
-        isNormalUser = true;
-      };
     };
   };
 }

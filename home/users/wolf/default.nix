@@ -1,25 +1,16 @@
-{
-  pkgs,
-  config,
-  osConfig,
-  ...
-}: {
+{config, ...}: {
   imports = [
     ./desktop
     ./programs
     ./themeing.nix
     ./accounts.nix
-    ./system
+    ./scripts
     ../../modules
   ];
 
-  home = rec {
+  home = {
     stateVersion = "23.11";
     username = "wolf";
-    file = import ./system/files.nix {
-      inherit pkgs osConfig config;
-      homeDirectory = "/home/${username}";
-    };
     sessionVariables = {
       NIX_PATH = "$HOME/.nix-defexpr/channels:$NIX_PATH";
     };
