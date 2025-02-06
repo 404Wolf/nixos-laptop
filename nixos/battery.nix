@@ -27,4 +27,26 @@
       IdleActionSec=30min
     '';
   };
+
+  systemd.services.battery-hibernate = {
+    description = "Hibernate on low battery";
+    serviceConfig = {
+      Type = "simple";
+      ExecStart = "${pkgs.writeShellApplication {
+        name = "battery-hibernate";
+        runtimeInputs = with pkgs; [acpi systemd];
+        text = ''
+          while true; do
+            battery_level=$(acpi -b | grep -P -o '[0-9]+(?=%)')
+            ac_powered=$(acpi -a | grep -c "on-line")
+            if [ "$battery_level" -le 2 ] && [ "$ac_powered" -eq 0 ]; then
+              systemctl hibernate
+            fi
+            sleep 60
+          done
+        '';
+      }}/bin/battery-hibernate";
+    };
+    wantedBy = ["multi-user.target"];
+  };
 }

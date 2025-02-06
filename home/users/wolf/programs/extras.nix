@@ -18,6 +18,7 @@
     speedtest-cli
     bluez
     wl-clipboard
+    acpi
     powertop
 
     # Networking & File Management

@@ -16,8 +16,7 @@
     };
     extraConfig =
       ''
-        map alt+t no_op
-        clear_all_shortcuts
+        clear_all_shortcuts yes
       ''
       + (helpers.template ./template.mustache {
         inherit
