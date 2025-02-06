@@ -23,7 +23,7 @@ in {
   hypr-wakeup = "hyprctl dispatch dpms on eDP-1 && hyprctl dispatch dpms on DP-6 && hyprctl dispatch dpms on DP-8";
 
   # Utilities
-  gpt = "ANTHROPIC_API_KEY=$(cat ${passwordFiles.anthropic}) OPENAI_API_KEY=$(cat ${passwordFiles.openai}) ${pkgs.nixGpt}/bin/gptcli";
+  gpt = "ANTHROPIC_API_KEY=$(cat ${passwordFiles.anthropic}) OPENAI_API_KEY=$(cat ${passwordFiles.openai}) ${pkgs.nixGpt}/bin/gpt";
   dalle = "OPENAI_API_KEY=$(cat ${passwordFiles.openai}) ${pkgs.dalleCLI}/bin/dallecli";
 
   # File navigation
