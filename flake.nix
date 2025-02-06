@@ -64,7 +64,7 @@
           baseModules
           ++ [
             inputs.disko.nixosModules.disko
-            nixos-hardware.nixosModules.lenovo-legion-16irx8h
+            nixos-hardware.nixosModules.framework-13-7040-amd
             ./disko.nix
             {
               _module.args.disks = ["/dev/nvme0n1"];
