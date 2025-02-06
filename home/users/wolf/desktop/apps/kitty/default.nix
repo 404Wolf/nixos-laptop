@@ -16,30 +16,34 @@
     };
     extraConfig =
       ''
-        map ctrl+shift+enter no_op
-        map ctrl+shift+w no_op
-        map ctrl+shift+] no_op
-        map ctrl+shift+[ no_op
-        map ctrl+shift+f no_op
-        map ctrl+shift+b no_op
-        map ctrl+shift+` no_op
-        map ctrl+shift+1 no_op
-        map ctrl+shift+2 no_op
-        map ctrl+shift+3 no_op
-        map ctrl+shift+4 no_op
-        map ctrl+shift+5 no_op
-        map ctrl+shift+6 no_op
-        map ctrl+shift+7 no_op
-        map ctrl+shift+8 no_op
-        map ctrl+shift+9 no_op
-        map ctrl+shift+0 no_op
-        map ctrl+shift+l no_op
-        map ctrl+shift+h no_op
-        map ctrl+shift+k no_op
-        map ctrl+shift+j no_op
-        map ctrl+shift+q no_op
-        map ctrl+shift+t no_op
-        map ctrl+shift+alt+t no_op
+        <<<<<<< HEAD
+                map ctrl+shift+enter no_op
+                map ctrl+shift+w no_op
+                map ctrl+shift+] no_op
+                map ctrl+shift+[ no_op
+                map ctrl+shift+f no_op
+                map ctrl+shift+b no_op
+                map ctrl+shift+` no_op
+                map ctrl+shift+1 no_op
+                map ctrl+shift+2 no_op
+                map ctrl+shift+3 no_op
+                map ctrl+shift+4 no_op
+                map ctrl+shift+5 no_op
+                map ctrl+shift+6 no_op
+                map ctrl+shift+7 no_op
+                map ctrl+shift+8 no_op
+                map ctrl+shift+9 no_op
+                map ctrl+shift+0 no_op
+                map ctrl+shift+l no_op
+                map ctrl+shift+h no_op
+                map ctrl+shift+k no_op
+                map ctrl+shift+j no_op
+                map ctrl+shift+q no_op
+                map ctrl+shift+t no_op
+                map ctrl+shift+alt+t no_op
+        =======
+                clear_all_shortcuts yes
+        >>>>>>> ff0214d89cac02969c6cf0f15024828f5d5a6fd8
       ''
       + (helpers.template ./template.mustache {
         inherit
