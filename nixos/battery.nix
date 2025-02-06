@@ -28,7 +28,7 @@
     '';
   };
 
-  systemd.services.battery-hibernate = {
+  systemd.services.low-battery-hibernate = {
     description = "Hibernate on low battery";
     serviceConfig = {
       Type = "simple";
