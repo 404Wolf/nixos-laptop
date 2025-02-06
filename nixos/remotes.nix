@@ -22,15 +22,15 @@ in {
 
   # Remote builder is desktop
   nix.buildMachines = [
-    {
-      hostName = "nixremote@${remote-builder-name}";
-      system = "x86_64-linux";
-      protocol = "ssh";
-      maxJobs = 3;
-      speedFactor = 3;
-      supportedFeatures = ["nixos-test" "benchmark" "big-parallel" "kvm"];
-      mandatoryFeatures = [];
-    }
+    # {
+    #   hostName = "nixremote@${remote-builder-name}";
+    #   system = "x86_64-linux";
+    #   protocol = "ssh";
+    #   maxJobs = 3;
+    #   speedFactor = 3;
+    #   supportedFeatures = ["nixos-test" "benchmark" "big-parallel" "kvm"];
+    #   mandatoryFeatures = [];
+    # }
   ];
   nix.distributedBuilds = true;
 
