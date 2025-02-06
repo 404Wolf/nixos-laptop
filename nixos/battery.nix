@@ -51,7 +51,7 @@
             fi
           done
         '';
-      }}/bin/battery-hibernate";
+      }}/bin/low-battery-hibernate";
     };
     wantedBy = ["multi-user.target"];
   };
