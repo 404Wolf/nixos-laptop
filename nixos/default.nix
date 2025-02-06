@@ -33,7 +33,10 @@
   };
 
   # System configuration
-  zramSwap.enable = true;
+  zramSwap = {
+    enable = true;
+    memoryPercent = 20;
+  };
   time.timeZone = "America/New_York";
 
   # Nix configuration
