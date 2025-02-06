@@ -15,7 +15,7 @@
   boot.initrd.availableKernelModules = ["xhci_pci" "thunderbolt" "nvme" "usbhid"];
 
   # Kernel modules to be loaded by the kernel
-  boot.kernelModules = ["kvm-intel" "usbserial" "ftdi_sio"];
+  boot.kernelModules = ["usbserial" "ftdi_sio"];
 
   # Boot loader configuration
   boot.loader = {
