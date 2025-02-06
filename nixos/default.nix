@@ -35,7 +35,7 @@
   # System configuration
   zramSwap = {
     enable = true;
-    memoryPercent = 20;
+    memoryPercent = 10;
   };
   time.timeZone = "America/New_York";
 

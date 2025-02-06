@@ -33,7 +33,7 @@
     serviceConfig = {
       Type = "simple";
       ExecStart = "${pkgs.writeShellApplication {
-        name = "battery-hibernate";
+        name = "low-battery-hibernate";
         runtimeInputs = with pkgs; [acpi systemd];
         text = ''
           echo "Waiting for low battery to hibernate..."
