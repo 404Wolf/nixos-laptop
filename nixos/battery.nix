@@ -4,26 +4,7 @@
 
   # Set hyprlock as the resume command after sleep/suspend
   powerManagement.resumeCommands = "${pkgs.hyprlock}/bin/hyprlock";
-
-  # Configure TLP for power management
-  services.tlp = {
-    enable = true;
-    settings = {
-      # Set CPU governor based on power source
-      CPU_SCALING_GOVERNOR_ON_AC = "performance";
-      CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
-
-      # Set CPU energy performance policy
-      CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
-      CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
-
-      # Set CPU performance limits
-      CPU_MIN_PERF_ON_AC = 0;
-      CPU_MAX_PERF_ON_AC = 100;
-      CPU_MIN_PERF_ON_BAT = 0;
-      CPU_MAX_PERF_ON_BAT = 60;
-    };
-  };
+  powerManagement.enable = true;
 
   # Configure power button and lid switch actions
   services = {

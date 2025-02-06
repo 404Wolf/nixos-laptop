@@ -24,7 +24,6 @@
   };
 
   # Hardware configuration
-  services.thermald.enable = true;
   boot = {
     extraModulePackages = [config.boot.kernelPackages.acpi_call];
     kernelModules = ["acpi_call"];
