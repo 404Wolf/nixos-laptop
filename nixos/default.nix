@@ -17,6 +17,9 @@
     (inputs.nix-index-database.nixosModules.nix-index)
   ];
 
+  # Add brightness key support
+  services.illum.enable = true;
+
   # Networking visibility
   networking = {
     hostName = "wolf-laptop";
