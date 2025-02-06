@@ -18,8 +18,6 @@
     speedtest-cli
     bluez
     wl-clipboard
-    acpi
-    powertop
 
     # Networking & File Management
     rclone
@@ -62,6 +60,9 @@
     cloc
     nix-tree
     entr
+    acpi
+    powertop
+    nmap
 
     # Productivity & Documentation
     tldr
@@ -81,6 +82,7 @@
     feh
     grim
     slurp
+    nwg-displays
 
     # Browsers & Communication
     google-chrome
