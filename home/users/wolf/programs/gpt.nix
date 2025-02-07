@@ -1,7 +1,7 @@
 {config, ...}: let
   basePrompt = {
     role = "system";
-    content = "Be concise. Use code examples when helpful. Only elaborate if asked.";
+    content = "Be concise. Only elaborate if asked, try to provide simple examples. When asked to update/change/add to code, provide the full code with the changes, and make no changes to comments, docstrings, or anything other than was asked.";
   };
 in {
   home.file."${config.xdg.configHome}/gpt-cli/gpt.yml".text = builtins.toJSON {
