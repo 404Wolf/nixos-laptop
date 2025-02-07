@@ -1,9 +1,5 @@
-{
-  config,
-  pkgs,
-  ...
-}: let
-  wallpaper = "${config.xdg.dataHome}/wallpapers";
+{config, ...}: let
+  wallpaper = "${config.xdg.dataHome}/wallpapers/wallpaper.jpg";
 in {
   programs.hyprlock = {
     enable = true;
@@ -11,8 +7,11 @@ in {
       auth = {
         "fingerprint:enabled" = true;
       };
+      animation = [
+        "global:fadeOut, 1, 0.5, linear"
+      ];
       general = {
-        grace = 0;
+        grace = 5;
         hide_cursor = true;
         no_fade_in = false;
       };
@@ -28,14 +27,14 @@ in {
           monitor = "";
           size = "250, 50";
           outline_thickness = 3;
-          dots_size = 0.2; # Scale of input-field height, 0.2 - 0.8
-          dots_spacing = 0.64; # Scale of dots' absolute size, 0.0 - 1.0
+          dots_size = 0.2;
+          dots_spacing = 0.64;
           dots_center = true;
           outer_color = "rgb(${config.colorscheme.palette.base02})";
           inner_color = "rgb(${config.colorScheme.palette.base00})";
           font_color = "rgb(${config.colorScheme.palette.base01})";
           fade_on_empty = true;
-          placeholder_text = "Password"; # Text rendered in the input box when it's empty.
+          placeholder_text = "Password";
           position = "0, 80";
           halign = "center";
           valign = "bottom";
@@ -44,7 +43,7 @@ in {
       label = [
         {
           "monitor" = "";
-          "text" = ''cmd[update:1000] echo "$(date +"%-I:%M%p")"'';
+          "text" = ''cmd[update:1000] echo "$(date +"%H:%M")"'';
           "color" = "$foreground";
           "#color" = "rgba(255, 255, 255, 0.6)";
           "font_size" = 110;
@@ -63,22 +62,17 @@ in {
           "halign" = "center";
           "valign" = "center";
         }
+        {
+          "monitor" = "";
+          "text" = "$FPRINTPROMPT";
+          "color" = "$foreground";
+          "font_size" = 16;
+          "font_family" = "monospace";
+          "position" = "0, 20";
+          "halign" = "center";
+          "valign" = "bottom";
+        }
       ];
-    };
-  };
-
-  systemd.user.services.hyprlock-on-sleep = {
-    Unit = {
-      Description = "Lock screen on suspend";
-      Before = ["sleep.target" "suspend.target"];
-    };
-    Install = {
-      WantedBy = ["sleep.target" "suspend.target"];
-    };
-    Service = {
-      Type = "oneshot";
-      Environment = "WAYLAND_DISPLAY=wayland-1 DISPLAY=:1";
-      ExecStart = "${pkgs.hyprlock}/bin/hyprlock";
     };
   };
 }

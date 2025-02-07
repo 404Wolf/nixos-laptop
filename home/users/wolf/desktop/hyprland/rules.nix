@@ -31,6 +31,7 @@ in
   # Chat app rules
   ++ mkRule presets.chat "class" "discord"
   ++ mkRule presets.chat "class" "signal"
+  ++ mkRule presets.chat "class" "Beeper"
   ++ mkRule presets.chat "title" "[zZ]ulip"
   ++ mkRule presets.chat "title" "Voice -"
   ++ mkRule presets.chat "class" "whatsapp-for-linux"

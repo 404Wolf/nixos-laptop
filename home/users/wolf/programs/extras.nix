@@ -94,6 +94,7 @@
     signal-desktop
     whatsapp-for-linux
     hoppscotch
+    beeper
 
     # Security & Password Management
     bitwarden-desktop
