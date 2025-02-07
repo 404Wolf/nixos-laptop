@@ -1,4 +1,9 @@
-{config, ...}: {
+{config, ...}: let
+  basePrompt = {
+    role = "system";
+    content = "Be concise. Use code examples when helpful. Only elaborate if asked.";
+  };
+in {
   home.file."${config.xdg.configHome}/gpt-cli/gpt.yml".text = builtins.toJSON {
     default_assistant = "main";
     markdown = true;
@@ -7,42 +12,15 @@
     assistants = {
       claude = {
         model = "claude-3-opus-20240229";
+        messages = [basePrompt];
       };
       cheap-claude = {
         model = "claude-3-5-sonnet-20241022";
+        messages = [basePrompt];
       };
       main = {
         model = "gpt-4o";
-        messages = [
-          {
-            role = "system";
-            content = "You are Wolf's personal assistant. He is a developer has very limited time and needs pithy but super helpful responses. You always respond down to the point and in a useful way, explaining things only when asked. You are short and concise, and provide code examples in either python or typescript unless otherwise specified, when it helps.";
-          }
-          {
-            role = "system";
-            content = "Only respond with TLDRs";
-          }
-          {
-            role = "assistant";
-            content = "Understood";
-          }
-          {
-            role = "user";
-            content = "Can you help me with something?";
-          }
-          {
-            role = "assistant";
-            content = "Yes.";
-          }
-          {
-            role = "user";
-            content = "Give me an example json";
-          }
-          {
-            role = "assistant";
-            content = ''{"foo": "bar"}'';
-          }
-        ];
+        messages = [basePrompt];
       };
     };
   };

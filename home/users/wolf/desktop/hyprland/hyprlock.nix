@@ -1,9 +1,16 @@
-{config, ...}: let
-  wallpaper-dir = "${config.xdg.dataHome}/wallpapers";
+{
+  config,
+  pkgs,
+  ...
+}: let
+  wallpaper = "${config.xdg.dataHome}/wallpapers";
 in {
   programs.hyprlock = {
     enable = true;
     settings = {
+      auth = {
+        "fingerprint:enabled" = true;
+      };
       general = {
         grace = 0;
         hide_cursor = true;
@@ -11,7 +18,7 @@ in {
       };
       background = [
         {
-          path = "${wallpaper-dir}/wallpaper.jpg";
+          path = "${wallpaper}/wallpaper.jpg";
           blur_passes = 0;
           blur_size = 3;
         }
@@ -57,6 +64,21 @@ in {
           "valign" = "center";
         }
       ];
+    };
+  };
+
+  systemd.user.services.hyprlock-on-sleep = {
+    Unit = {
+      Description = "Lock screen on suspend";
+      Before = ["sleep.target" "suspend.target"];
+    };
+    Install = {
+      WantedBy = ["sleep.target" "suspend.target"];
+    };
+    Service = {
+      Type = "oneshot";
+      Environment = "WAYLAND_DISPLAY=wayland-1 DISPLAY=:1";
+      ExecStart = "${pkgs.hyprlock}/bin/hyprlock";
     };
   };
 }

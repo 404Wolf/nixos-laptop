@@ -1,11 +1,11 @@
 {config, ...}: let
-  path = "${config.xdg.dataHome}/wallpapers/wallpaper.jpg";
+  wallpaper = "${config.xdg.dataHome}/wallpapers/wallpaper.jpg";
 in {
   services.hyprpaper = {
     enable = true;
     settings = {
-      preload = path;
-      wallpaper = ",${path}";
+      preload = wallpaper;
+      wallpaper = ",${wallpaper}";
     };
   };
 }

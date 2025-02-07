@@ -17,6 +17,9 @@
     (inputs.nix-index-database.nixosModules.nix-index)
   ];
 
+  # Clock time
+  time.timeZone = "America/New_York";
+
   # Hardware configuration
   boot = {
     extraModulePackages = [config.boot.kernelPackages.acpi_call];
