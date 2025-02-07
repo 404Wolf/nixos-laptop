@@ -19,7 +19,7 @@ in {
     xwayland.enable = true;
     settings = {
       source = "~/.config/hypr/monitors.conf";
-      exec-once = import ./execs.nix {inherit pkgs config;};
+      exec-once = import ./execs.nix {inherit pkgs config osConfig;};
       animation = [
         "workspaces,1,1,default"
         "windows,1,1,default"
