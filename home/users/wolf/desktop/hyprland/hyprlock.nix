@@ -8,7 +8,7 @@ in {
         "fingerprint:enabled" = true;
       };
       animation = [
-        "global:fadeOut, 1, 0.5, linear"
+        "global:fadeOut, 0.2, 0.5, linear"
       ];
       general = {
         grace = 5;
@@ -17,7 +17,7 @@ in {
       };
       background = [
         {
-          path = "${wallpaper}/wallpaper.jpg";
+          path = wallpaper;
           blur_passes = 0;
           blur_size = 3;
         }
