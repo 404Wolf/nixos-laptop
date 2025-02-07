@@ -16,18 +16,6 @@
   # Disable kernel image protection to fix hibernation resume
   security.protectKernelImage = false;
 
-  # Additional logind configuration
-  services.logind = {
-    extraConfig = ''
-      # Set power button to suspend then hibernate
-      HandlePowerKey=suspend-then-hibernate
-      # Set idle action to suspend then hibernate
-      IdleAction=suspend-then-hibernate
-      # Set idle timeout to 30 minutes
-      IdleActionSec=30min
-    '';
-  };
-
   # Change power profile when on ac/battery
   services.udev.extraRules = ''
     SUBSYSTEM=="power_supply", ATTR{online}=="0", RUN+="${pkgs.power-profiles-daemon}/bin/powerprofilesctl set power-saver"
