@@ -17,9 +17,18 @@
   security.protectKernelImage = false;
 
   # Change power profile when on ac/battery
-  services.udev.extraRules = ''
-    SUBSYSTEM=="power_supply", ATTR{online}=="0", RUN+="${pkgs.power-profiles-daemon}/bin/powerprofilesctl set power-saver"
-    SUBSYSTEM=="power_supply", ATTR{online}=="1", RUN+="${pkgs.power-profiles-daemon}/bin/powerprofilesctl set performance"
+  services.udev.extraRules = let
+    plugged = pkgs.writeShellScript "power-plugged" ''
+      ${pkgs.power-profiles-daemon}/bin/powerprofilesctl set performance
+      ${pkgs.brightnessctl}/bin/brightnessctl set 100%
+    '';
+    unplugged = pkgs.writeShellScript "power-unplugged" ''
+      ${pkgs.power-profiles-daemon}/bin/powerprofilesctl set power-saver
+      ${pkgs.brightnessctl}/bin/brightnessctl set 65%
+    '';
+  in ''
+    SUBSYSTEM=="power_supply", ATTR{online}=="0", RUN+="${unplugged}"
+    SUBSYSTEM=="power_supply", ATTR{online}=="1", RUN+="${plugged}"
   '';
 
   # Various actions based on battery state
