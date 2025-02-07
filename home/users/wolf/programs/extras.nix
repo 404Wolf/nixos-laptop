@@ -18,6 +18,8 @@
     speedtest-cli
     bluez
     wl-clipboard
+    brightnessctl
+    playerctl
 
     # Networking & File Management
     rclone

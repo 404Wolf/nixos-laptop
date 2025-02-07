@@ -1,7 +1,6 @@
 {
   pkgs,
   config,
-  options,
   inputs,
   ...
 }: {
@@ -14,17 +13,9 @@
     ./remotes.nix
     ./battery.nix
     ./users.nix
+    ./pam.nix
     (inputs.nix-index-database.nixosModules.nix-index)
   ];
-
-  # Add brightness key support
-  services.illum.enable = true;
-
-  # Networking visibility
-  networking = {
-    hostName = "wolf-laptop";
-    timeServers = options.networking.timeServers.default ++ ["time.google.com"];
-  };
 
   # Hardware configuration
   boot = {
@@ -37,7 +28,6 @@
     enable = true;
     memoryPercent = 10;
   };
-  time.timeZone = "America/New_York";
 
   # Nix configuration
   nix.settings = {

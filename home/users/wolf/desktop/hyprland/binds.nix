@@ -1,30 +1,31 @@
 {
   pkgs,
-  dashToDock,
   system,
   osConfig,
   ...
 }: let
   workspace2d = "${pkgs.hyprland-workspace2d}/bin/workspace2d";
-  toggle = args: (import ./scripts/toggle.nix (args // {inherit pkgs;}));
 
-  dunst-toggle = (import ../../scripts/pause-dunst.nix) {inherit pkgs;};
-  remmina-connect = import ../apps/remmina/connect.nix {inherit pkgs osConfig;};
-  remmina-toggle = toggle rec {
-    program = "remmina";
-    launch = "${remmina-connect}/bin/remmina-connect-default.sh";
-    kill = "pkill ${program}";
-    conditional = "pgrep ${program}";
-  };
-  spotify-toggle = toggle rec {
-    program = "spotify";
-    launch = "${pkgs.spotify}/bin/spotify";
-    kill = "pkill ${program}";
-    conditional = "ps aux | grep ${program}";
-  };
-  dash-to-dock = {
-    kitty = "${pkgs.dashToDock}/bin/hyprland-dash-to-dock -appID=kitty -launchCommand=kitty";
-    chromium = "${pkgs.dashToDock}/bin/hyprland-dash-to-dock -appID=chromium -launchCommand=${pkgs.chromium}/bin/chromium";
+  toggles = let
+    toggle = args: (import ./scripts/toggle.nix (args // {inherit pkgs;}));
+  in {
+    dunst = (import ../../scripts/pause-dunst.nix) {inherit pkgs;};
+
+    remmina = toggle rec {
+      program = "remmina";
+      launch = let
+        remmina-connect = import ../apps/remmina/connect.nix {inherit pkgs osConfig;};
+      in "${remmina-connect}/bin/remmina-connect-default.sh";
+      kill = "pkill ${program}";
+      conditional = "pgrep ${program}";
+    };
+
+    spotify = toggle rec {
+      program = "spotify";
+      launch = "${pkgs.spotify}/bin/spotify";
+      kill = "pkill ${program}";
+      conditional = "ps aux | grep ${program}";
+    };
   };
 in
   ''
@@ -49,8 +50,13 @@ in
     bindl=, XF86AudioPrev, exec, ${pkgs.playerctl}/bin/playerctl previous           # Previous song
   ''
   + ''
+    # Brightness keybinds
+    binde=, XF86MonBrightnessUp, exec, ${pkgs.brightnessctl}/bin/brightnessctl set 10+    # Increase brightness
+    binde=, XF86MonBrightnessDown, exec, ${pkgs.brightnessctl}/bin/brightnessctl set 10-  # Decrease brightness
+  ''
+  + ''
     # Dunst notification toggle
-    bind=$CAP ALT SHIFT, D, exec, ${dunst-toggle}/bin/toggle-dunst
+    bind=$CAP ALT SHIFT, D, exec, ${toggles.dunst}/bin/toggle-dunst
   ''
   + ''
     # Waybar keybind
@@ -79,20 +85,21 @@ in
   ''
   + ''
     # Quick launch keybinds
+
+    # Browsers
     bind=$MOD, F, exec, ${pkgs.google-chrome}/bin/google-chrome-stable --profile-directory='Profile 1' --new-window=about:newtab
     bind=$MOD SHIFT, F, exec, ${pkgs.google-chrome}/bin/google-chrome-stable --profile-directory='Default' --new-window=about:newtab
-
     bind=$MOD ALT, F, exec, ${pkgs.firefox-devedition}/bin/firefox-devedition -profile ~/.mozilla/firefox/default --new-window
     bind=$MOD SHIFT ALT, F, exec, ${pkgs.firefox-devedition}/bin/firefox-devedition -profile ~/.mozilla/firefox/school --new-window
-
     bind=$MOD CONTROL, F, exec, ${pkgs.qutebrowser}/bin/qutebrowser --target window
 
+    # Apps
     bind=$MOD, T, exec, ${pkgs.kitty}/bin/kitty
     bind=$MOD, C, exec, ${pkgs.qalculate-qt}/bin/qalculate-qt
-    bind=$MOD, D, exec, sh ${remmina-toggle}/bin/toggle-remmina.sh
-    bind=$MOD, M, exec, sh ${spotify-toggle}/bin/toggle-spotify.sh
-    bind=$MOD SHIFT, T, exec, ${dash-to-dock.kitty}
-    bind=$MOD SHIFT, C, exec, ${dash-to-dock.chromium}
+
+    # Toggles
+    bind=$MOD, D, exec, sh ${toggles.remmina}/bin/toggle-remmina.sh
+    bind=$MOD, M, exec, sh ${toggles.spotify}/bin/toggle-spotify.sh
   ''
   + ''
     # App launcher

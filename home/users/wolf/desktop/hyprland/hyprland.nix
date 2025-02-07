@@ -73,10 +73,7 @@ in
         # pkgs.hyprland-plugins.hyprexpo
       ];
       extraConfig =
-        (import ./binds.nix {
-          inherit pkgs system osConfig;
-          dashToDock = pkgs.dashToDock;
-        })
+        (import ./binds.nix {inherit pkgs system osConfig;})
         + (import ./chords.nix {inherit pkgs;});
     };
   }

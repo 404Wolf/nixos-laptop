@@ -95,10 +95,19 @@
       in
         treefmtconfig.config.build.wrapper;
 
-      apps.vm = flake-utils.lib.mkApp {
-        drv = pkgs.writeShellScriptBin "vm" ''
-          ${self.nixosConfigurations.default.config.system.build.vm}/bin/run-*
-        '';
+      apps = {
+        rebuild = flake-utils.lib.mkApp {
+          drv = pkgs.writeShellApplication {
+            name = "rebuild";
+            text = builtins.readFile ./rebuild.sh;
+            runtimeInputs = with pkgs; [git nix];
+          };
+        };
+        vm = flake-utils.lib.mkApp {
+          drv = pkgs.writeShellScriptBin "vm" ''
+            ${self.nixosConfigurations.default.config.system.build.vm}/bin/run-*
+          '';
+        };
       };
 
       packages.default =

@@ -1,4 +1,4 @@
-{
+{options, ...}: {
   # Max out our networking options, like using super large window sizes, etc
   boot.kernel.sysctl = {
     "net.ipv4.tcp_adv_win_scale" = "4";
@@ -26,6 +26,8 @@
     hosts = {
       "127.0.0.1" = ["localdomain"];
     };
+    hostName = "wolf-laptop";
+    timeServers = options.networking.timeServers.default ++ ["time.google.com"];
   };
 
   # Enable tailscale
