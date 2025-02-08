@@ -27,8 +27,8 @@
       ${pkgs.brightnessctl}/bin/brightnessctl set 65%
     '';
   in ''
-    SUBSYSTEM=="power_supply", ATTR{online}=="0", RUN+="${unplugged}"
-    SUBSYSTEM=="power_supply", ATTR{online}=="1", RUN+="${plugged}"
+    SUBSYSTEM=="power_supply", ATTR{type}=="Mains", ATTR{online}=="0", RUN+="${unplugged}"
+    SUBSYSTEM=="power_supply", ATTR{type}=="Mains", ATTR{online}=="1", RUN+="${plugged}"
   '';
 
   # Various actions based on battery state
