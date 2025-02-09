@@ -12,16 +12,12 @@
   # Change power profile when on ac/battery
   services.udev.extraRules = let
     powerScript = pkgs.writeShellScript "power-state-changed" ''
-      sleep 1
-      if cat /sys/class/power_supply/BAT*/status | grep -q "Charging"; then
-        ${pkgs.brightnessctl}/bin/brightnessctl set 100%
-      else
+      [ $(cat /sys/class/power_supply/ACAD/online) ] && \
+        ${pkgs.brightnessctl}/bin/brightnessctl set 100% || \
         ${pkgs.brightnessctl}/bin/brightnessctl set 65%
-      fi
     '';
   in ''
-    SUBSYSTEM=="power_supply", ATTR{type}=="Mains", ATTR{online}=="0", RUN+="${powerScript}"
-    SUBSYSTEM=="power_supply", ATTR{type}=="Mains", ATTR{online}=="1", RUN+="${powerScript}"
+    SUBSYSTEM=="power_supply", ATTR{online}=="[01]", RUN+="${powerScript}"
   '';
 
   powerManagement = {

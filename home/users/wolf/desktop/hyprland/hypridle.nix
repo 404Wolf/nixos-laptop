@@ -26,16 +26,12 @@
         {
           # suspend if on battery, otherwise lock
           timeout = 300; # 5min
-          on-timeout = "if [ $(cat /sys/class/power_supply/BAT*/status) = 'Discharging' ]; then systemctl suspend; else loginctl lock-session; fi";
+          on-timeout = "if [ ! $(cat /sys/class/power_supply/ACAD/online) ]; then systemctl suspend; else loginctl lock-session; fi";
         }
         {
           timeout = 330; # 5.5min
           on-timeout = "hyprctl dispatch dpms off"; # turn off display
           on-resume = "hyprctl dispatch dpms on"; # turn on display when activity detected
-        }
-        {
-          timeout = 1800; # 30min
-          on-timeout = "systemctl suspend"; # suspend system
         }
       ];
     };
