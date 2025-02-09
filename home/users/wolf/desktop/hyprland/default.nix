@@ -11,6 +11,7 @@ in {
     ./hyprlock.nix
     ./hypridle.nix
     ./hyprpaper.nix
+    ./services.nix
   ];
 
   wayland.windowManager.hyprland = {

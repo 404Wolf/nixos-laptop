@@ -10,7 +10,7 @@
   "${pkgs.waybar}/bin/waybar"
 
   # Fetch daily Bing wallpaper and start wallpaper daemon
-  "${pkgs.curl}/bin/curl -L https://wolf-fetchbingimageoftheday.web.val.run -o ${config.xdg.dataHome}/wallpapers/wallpaper.jpg && pkill hyprpaper && ${pkgs.hyprpaper}/bin/hyprpaper"
+  "sh -c '${pkgs.writeShellScript "refresh-wallpaper" config.my.scripts.wallpaper-refresh}'"
 
   # Start idle daemon
   "${pkgs.hypridle}/bin/hypridle"

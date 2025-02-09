@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  lib,
+  ...
+}: {
   programs.firefox = {
     enable = true;
     package = pkgs.firefox;
@@ -59,4 +63,11 @@
       };
     };
   };
+
+  home.activation.firefoxReadOnly = lib.hm.dag.entryAfter ["writeBoundary"] ''
+    mkdir -p $HOME/.mozilla/firefox/default || true
+    touch $HOME/.mozilla/firefox/default/search.json || true
+    touch $HOME/.mozilla/firefox/default/search.json.mozlz4 || true
+    chmod 444 $HOME/.mozilla/firefox/default/search.json* || true
+  '';
 }

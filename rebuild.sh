@@ -1,8 +1,5 @@
 #!/bin/env/bash
 
-# Remove home manager backups from previous run that could cause issues
-rm -f ~/.mozilla/firefox/default/search.json*
-
 # Rebuild NixOS & switch
 echo "Rebuilding NixOS..."
 sudo nixos-rebuild switch --flake .#default --builders ""
