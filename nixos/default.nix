@@ -14,6 +14,7 @@
     ./battery.nix
     ./users.nix
     ./pam.nix
+    ./wayland.nix
     (inputs.nix-index-database.nixosModules.nix-index)
   ];
 
@@ -82,6 +83,7 @@
       };
       pulse.enable = true;
       jack.enable = false;
+      wireplumber.enable = true;
     };
   };
 

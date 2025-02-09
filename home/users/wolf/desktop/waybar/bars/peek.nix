@@ -20,13 +20,7 @@
     "format-full" = "{capacity}% {icon}";
     "format-charging" = "{capacity}% ⚡";
     "format-plugged" = "{capacity}% ";
-    "format-alt" = "{time} {icon}";
-    "format-icons" = [
-      ""
-      ""
-      ""
-      ""
-      ""
-    ];
+    "format-icons" = ["" "" "" "" ""];
+    "on-click" = "${pkgs.auto-cpufreq}/bin/auto-cpufreq-gtk";
   };
 }

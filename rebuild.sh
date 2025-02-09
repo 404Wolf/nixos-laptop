@@ -2,10 +2,12 @@
 
 # Rebuild NixOS & switch
 echo "Rebuilding NixOS..."
+git add --a
 sudo nixos-rebuild switch --flake .#default --builders ""
 
 # Add all changes to git
 echo "Adding all changes to git..."
+nix fmt
 git add --all
 git status
 

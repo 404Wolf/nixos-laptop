@@ -29,9 +29,6 @@
   };
 in
   ''
-
-  ''
-  + ''
     $MOD=SUPER_L
     $CAP=MOD2
   ''
@@ -246,4 +243,8 @@ in
     bind=, Return, submap, reset
     bind=,catchall,submap,reset
     submap=reset
+  ''
+  + ''
+    # Clipboard history
+    bind=$MOD, V, exec, cliphist list | fuzzel --dmenu | cliphist decode | wl-copy
   ''

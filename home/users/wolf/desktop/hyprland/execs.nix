@@ -29,4 +29,11 @@
 
   # Start Thunderbird email client
   "${pkgs.thunderbird}/bin/thunderbird"
+
+  # Clipboard managemer
+  "${pkgs.wl-clipboard}/bin/wl-paste --type text --watch cliphist store" # Stores only text data
+  "${pkgs.wl-clipboard}/bin/wl-paste --type image --watch cliphist store" # Stores only image data
+
+  # Pollkit
+  "${pkgs.hyprpolkitagent}/libexec/hyprpolkitagent"
 ]

@@ -14,6 +14,14 @@ in {
     ./services.nix
   ];
 
+  programs = {
+    zsh.initExtra = ''
+       if uwsm check may-start && uwsm select; then
+      	exec systemd-cat -t uwsm_start uwsm start default
+      fi
+    '';
+  };
+
   wayland.windowManager.hyprland = {
     enable = true;
     systemd.variables = ["--all"];

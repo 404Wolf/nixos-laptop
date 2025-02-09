@@ -124,7 +124,7 @@
       "warning" = 30;
       "critical" = 15;
     };
-    "format" = "{capacity}% {icon}";
+    "format" = "{capacity}% {icon} {time}";
     "format-full" = "{capacity}% {icon}";
     "format-charging" = "{capacity}% @ {power} ⚡";
     "format-plugged" = "{capacity}% ";

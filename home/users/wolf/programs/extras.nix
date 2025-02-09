@@ -88,6 +88,7 @@
     grim
     slurp
     nwg-displays
+    hyprpicker
 
     # Browsers & Communication
     google-chrome
