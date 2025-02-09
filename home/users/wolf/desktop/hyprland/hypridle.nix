@@ -9,16 +9,19 @@
         after_sleep_cmd = "hyprctl dispatch dpms on"; # avoid having to press key twice to turn on display
       };
 
-      listener = [
+      listener = let
+        bctl = "${pkgs.brightnessctl}/bin/brightnessctl";
+        keylight = "framework_laptop::kbd_backlight";
+      in [
         {
           timeout = 150; # 2.5min
-          on-timeout = "${pkgs.brightnessctl}/bin/brightnessctl s 10%"; # set monitor backlight to 10%
-          on-resume = "${pkgs.brightnessctl}/bin/brightnessctl -r"; # restore monitor backlight
+          on-timeout = "${bctl} --save && ${bctl} s 10%"; # set monitor backlight to 10%
+          on-resume = "${bctl} -r"; # restore monitor backlight
         }
         {
           timeout = 150; # 2.5min
-          on-timeout = "${pkgs.brightnessctl}/bin/brightnessctl -d framework_laptop::kbd_backlight s 0%"; # turn off keyboard backlight
-          on-resume = "${pkgs.brightnessctl}/bin/brightnessctl -d framework_laptop::kbd_backlight -r"; # restore keyboard backlight
+          on-timeout = "${bctl} --save -d ${keylight} && ${bctl} -d ${keylight} s 0%"; # turn off keyboard backlight
+          on-resume = "${bctl} -d ${keylight} -r"; # restore keyboard backlight
         }
         {
           # suspend if on battery, otherwise lock

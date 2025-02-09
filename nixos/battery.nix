@@ -27,7 +27,6 @@
   powerManagement = {
     enable = true;
     powertop.enable = true;
-    cpuFreqGovernor = "powersave";
   };
 
   services = {
@@ -40,13 +39,19 @@
         battery = {
           governor = "powersave";
           turbo = "auto";
-          scaling_max_freq = 3000000;
+          scaling_max_freq = 2400000;
           energy_performance_preference = "power";
         };
         charger = {
           governor = "performance";
           turbo = "auto";
           energy_performance_preference = "performance";
+        };
+        balanced = {
+          governor = "schedutil";
+          turbo = "auto";
+          scaling_max_freq = 2800000;
+          energy_performance_preference = "balance-performance";
         };
       };
     };

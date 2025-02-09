@@ -16,8 +16,8 @@ in {
 
   programs = {
     zsh.initExtra = ''
-       if uwsm check may-start && uwsm select; then
-      	exec systemd-cat -t uwsm_start uwsm start default
+      if uwsm check may-start 2>/dev/null && uwsm select 2>/dev/null; then
+        exec systemd-cat -t uwsm_start uwsm start default
       fi
     '';
   };
