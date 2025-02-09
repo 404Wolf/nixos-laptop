@@ -246,5 +246,5 @@ in
   ''
   + ''
     # Clipboard history
-    bind=$MOD, V, exec, cliphist list | fuzzel --dmenu | cliphist decode | wl-copy
+    bind=$MOD, V, exec, ${pkgs.cliphist}/bin/cliphist list | fuzzel --dmenu | ${pkgs.cliphist}/bin/cliphist decode | ${pkgs.wl-clipboard}/bin/wl-copy
   ''

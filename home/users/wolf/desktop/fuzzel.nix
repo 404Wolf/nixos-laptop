@@ -1,7 +1,5 @@
 {config, ...}: (
-  with config.colorScheme.palette; let
-    opacity = "100";
-  in {
+  with config.colorScheme.palette; {
     programs.fuzzel = {
       enable = true;
       settings = {
