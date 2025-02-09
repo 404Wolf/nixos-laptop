@@ -36,6 +36,10 @@ in {
   cpd = "cp $(\"${fzf}\") .";
   cpc = ''cp $(wl-paste | grep -o "/tmp.*")'';
 
+  # Copy paste
+  copy = "${pkgs.wl-clipboard}/bin/wl-copy";
+  paste = "${pkgs.wl-clipboard}/bin/wl-paste";
+
   # File manipulation
   cat = "${pkgs.bat}/bin/bat";
 
@@ -98,4 +102,10 @@ in {
   # Neovim aliases
   nv = neovim;
   nn = neovide;
+
+  # Gpt aliases
+  gpt-code = "gpt code --model claude-3-5-sonnet-latest";
+  gpt-chat = "gpt regular --model gpt-4o";
+  gpt-reason = "gpt regular --model o1";
+  gpt-tldr = "gpt tldr --model gpt-4o";
 }
