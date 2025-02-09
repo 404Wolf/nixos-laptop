@@ -129,13 +129,8 @@
     "format-charging" = "{capacity}% @ {power} ⚡";
     "format-plugged" = "{capacity}% ";
     "format-alt" = "{time} {icon}";
-    "format-icons" = [
-      ""
-      ""
-      ""
-      ""
-      ""
-    ];
+    "format-icons" = [ "" "" "" "" "" ];
+    "on-click" = "${pkgs.auto-cpufreq}/bin/auto-cpufreq-gtk";
   };
   "power-profiles-daemon" = {
     "format" = "{icon}";
