@@ -1,11 +1,4 @@
 {pkgs, ...}: {
-  # Enable thermald for thermal management
-  services.thermald.enable = true;
-
-  # Set hyprlock as the resume command after sleep/suspend
-  powerManagement.resumeCommands = "${pkgs.hyprlock}/bin/hyprlock";
-  powerManagement.enable = true;
-
   # Configure power button and lid switch actions
   services = {
     logind.powerKey = "lock";
@@ -21,10 +14,8 @@
     powerScript = pkgs.writeShellScript "power-state-changed" ''
       sleep 1
       if cat /sys/class/power_supply/BAT*/status | grep -q "Charging"; then
-        ${pkgs.power-profiles-daemon}/bin/powerprofilesctl set performance
         ${pkgs.brightnessctl}/bin/brightnessctl set 100%
       else
-        ${pkgs.power-profiles-daemon}/bin/powerprofilesctl set power-saver
         ${pkgs.brightnessctl}/bin/brightnessctl set 65%
       fi
     '';
@@ -32,6 +23,35 @@
     SUBSYSTEM=="power_supply", ATTR{type}=="Mains", ATTR{online}=="0", RUN+="${powerScript}"
     SUBSYSTEM=="power_supply", ATTR{type}=="Mains", ATTR{online}=="1", RUN+="${powerScript}"
   '';
+
+  powerManagement = {
+    enable = true;
+    powertop.enable = true;
+    cpuFreqGovernor = "powersave";
+  };
+
+  services = {
+    tlp.enable = false;
+    thermald.enable = true;
+    power-profiles-daemon.enable = false;
+    auto-cpufreq = {
+      enable = true;
+      settings = {
+        battery = {
+          governor = "powersave";
+          turbo = "never";
+        };
+        charger = {
+          governor = "powersave";
+          turbo = "auto";
+        };
+      };
+    };
+    system76-scheduler = {
+      enable = true;
+      useStockConfig = true;
+    };
+  };
 
   # Various actions based on battery state
   systemd.services.low-battery-actions = {

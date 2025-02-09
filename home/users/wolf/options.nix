@@ -15,8 +15,8 @@
       curl = "${pkgs.curl}/bin/curl";
     in {
       wallpaper-refresh = pkgs.writeShellScript "wallpaper-refresh" ''
-        ${curl}/bin/curl -L ${wallpaper-fetch-url} -o ${wallpaper-path}
-        pkill ${hyprpaper}/bin/hyprpaper && ${hyprpaper}/bin/hyprpaper
+        ${curl} -L ${wallpaper-fetch-url} -o ${wallpaper-path}
+        pkill ${hyprpaper} && ${hyprpaper}
       '';
     };
   };
