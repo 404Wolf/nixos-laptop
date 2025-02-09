@@ -8,12 +8,6 @@
 in {
   qt.platformTheme = "gtk2";
 
-  home.sessionVariables = {
-    XCURSOR_PATH = "${pkgs.graphite-cursors}/share/icons";
-    XCURSOR_SIZE = 14;
-    XCURSOR_THEME = "graphite-dark";
-  };
-
   gtk = {
     enable = true;
 
