@@ -3,8 +3,8 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/release-24.05";
     home-manager.url = "github:nix-community/home-manager";
-    nur.url = "github:nix-community/NUR";
     treefmt-nix.url = "github:numtide/treefmt-nix";
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
     nix-index-database.url = "github:nix-community/nix-index-database";
@@ -19,6 +19,10 @@
     nix-colors.url = "github:misterio77/nix-colors";
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
+    nur = {
+      url = "github:nix-community/NUR";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     wolf-overlay.url = "github:404wolf/wolf-nixos-overlay";
   };
 
@@ -32,15 +36,23 @@
     ...
   } @ inputs: let
     system = "x86_64-linux";
-    pkgs = import nixpkgs {
+    pkgs-options = {
       inherit system;
       config.allowUnfree = true;
       permittedInsecurePackages = ["electron-25.9.0"];
-      overlays = [
-        inputs.wolf-overlay.overlays.${system}.default
-        inputs.nur.overlays.default
-      ];
     };
+
+    pkgs-stable = import inputs.nixpkgs-stable pkgs-options;
+    pkgs = import nixpkgs (pkgs-options
+      // {
+        overlays = [
+          inputs.wolf-overlay.overlays.${system}.default
+          (oldAttrs: newAttrs: {
+            nwg-displays = pkgs-stable.nwg-displays;
+          })
+          inputs.nur.overlays.default
+        ];
+      });
 
     utils = pkgs.callPackage ./utils.nix {};
 

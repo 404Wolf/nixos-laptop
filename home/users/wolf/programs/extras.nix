@@ -20,6 +20,7 @@
     wl-clipboard
     brightnessctl
     playerctl
+    cpulimit
 
     # Networking & File Management
     rclone
@@ -65,6 +66,8 @@
     acpi
     powertop
     nmap
+    spotify
+    spotube
 
     # Productivity & Documentation
     tldr

@@ -18,17 +18,19 @@
 
   # Change power profile when on ac/battery
   services.udev.extraRules = let
-    plugged = pkgs.writeShellScript "power-plugged" ''
-      ${pkgs.power-profiles-daemon}/bin/powerprofilesctl set performance
-      ${pkgs.brightnessctl}/bin/brightnessctl set 100%
-    '';
-    unplugged = pkgs.writeShellScript "power-unplugged" ''
-      ${pkgs.power-profiles-daemon}/bin/powerprofilesctl set power-saver
-      ${pkgs.brightnessctl}/bin/brightnessctl set 65%
+    powerScript = pkgs.writeShellScript "power-state-changed" ''
+      sleep 1
+      if cat /sys/class/power_supply/BAT*/status | grep -q "Charging"; then
+        ${pkgs.power-profiles-daemon}/bin/powerprofilesctl set performance
+        ${pkgs.brightnessctl}/bin/brightnessctl set 100%
+      else
+        ${pkgs.power-profiles-daemon}/bin/powerprofilesctl set power-saver
+        ${pkgs.brightnessctl}/bin/brightnessctl set 65%
+      fi
     '';
   in ''
-    SUBSYSTEM=="power_supply", ATTR{type}=="Mains", ATTR{online}=="0", RUN+="${unplugged}"
-    SUBSYSTEM=="power_supply", ATTR{type}=="Mains", ATTR{online}=="1", RUN+="${plugged}"
+    SUBSYSTEM=="power_supply", ATTR{type}=="Mains", ATTR{online}=="0", RUN+="${powerScript}"
+    SUBSYSTEM=="power_supply", ATTR{type}=="Mains", ATTR{online}=="1", RUN+="${powerScript}"
   '';
 
   # Various actions based on battery state
