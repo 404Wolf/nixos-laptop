@@ -41,6 +41,8 @@ in {
       };
       decoration = {
         rounding = config.theme.rounding;
+        blur.enabled = false;
+        shadow.enabled = false;
       };
       group = {
         "col.border_active" = mkColor config.colorScheme.palette.base0A;
@@ -70,6 +72,7 @@ in {
         workspace_swipe_fingers = 4;
       };
       misc = {
+        vfr = true;
         disable_hyprland_logo = true;
         focus_on_activate = true;
       };
