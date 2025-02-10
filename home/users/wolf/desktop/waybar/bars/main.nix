@@ -100,7 +100,7 @@
     };
     "format" = "{capacity}% {icon}";
     "format-full" = "{capacity}% {icon}";
-    "format-charging" = "{capacity}% ⚡ {icon}";
+    "format-charging" = "{capacity}% {icon}  ⚡";
     "format-plugged" = "{capacity}% {icon}";
     "format-icons" = ["" "" "" "" ""];
     "tooltip-format" = "{time}";

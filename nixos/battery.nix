@@ -11,17 +11,17 @@
 
   # Change power profile when on ac/battery
   services.udev.extraRules = let
-    powerScript = pkgs.writeShellScript "power-state-changed" ''
-      if [ $(cat /sys/class/power_supply/ACAD/online) -eq 1 ]; then
-        ${pkgs.brightnessctl}/bin/brightnessctl set 100%
-        powerprofilesctl set performance
-      else
-        ${pkgs.brightnessctl}/bin/brightnessctl set 65%
-        powerprofilesctl set power-saver
-      fi
+    pluggedScript = pkgs.writeShellScript "power-plugged" ''
+      ${pkgs.brightnessctl}/bin/brightnessctl set 100%
+      ${pkgs.power-profiles-daemon}/bin/powerprofilesctl set performance
+    '';
+    unpluggedScript = pkgs.writeShellScript "power-unplugged" ''
+      ${pkgs.brightnessctl}/bin/brightnessctl set 65%
+      ${pkgs.power-profiles-daemon}/bin/powerprofilesctl set power-saver
     '';
   in ''
-    SUBSYSTEM=="power_supply", ATTR{online}=="[01]", RUN+="${powerScript}"
+    ACTION=="change", SUBSYSTEM=="power_supply", ENV{POWER_SUPPLY_NAME}=="ACAD", ATTR{online}=="1", RUN+="${pluggedScript}"
+    ACTION=="change", SUBSYSTEM=="power_supply", ENV{POWER_SUPPLY_NAME}=="ACAD", ATTR{online}=="0", RUN+="${unpluggedScript}"
   '';
 
   powerManagement = {
