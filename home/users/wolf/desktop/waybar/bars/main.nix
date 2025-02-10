@@ -18,7 +18,7 @@
   ];
   "modules-center" = ["clock"];
   "modules-right" = [
-    "mpris"
+    "custom/waybar-mpris"
     "pulseaudio"
     "network"
     "backlight"
@@ -38,25 +38,6 @@
     "format-disconnected" = "";
     "max-length" = 50;
     "on-click" = "${pkgs.networkmanagerapplet}/bin/nm-connection-editor";
-  };
-  "mpris" = {
-    "player" = "${pkgs.playerctl}/bin/playerctl";
-    "format" = "{player_icon} {dynamic}";
-    "format-paused" = "{status_icon} <i>{dynamic}</i>";
-    "player-icons" = {
-      "default" = "▶";
-      "mpv" = "🎵";
-    };
-    "status-icons" = {
-      "paused" = "⏸";
-    };
-  };
-  "custom/weather" = {
-    "format" = "{}°";
-    "tooltip" = true;
-    "interval" = 60;
-    "exec" = "${pkgs.wttrbar}/bin/wttrbar --fahrenheit --mph";
-    "return-type" = "json";
   };
   "tray" = {
     "icon-size" = 15;
@@ -106,6 +87,32 @@
     "format-icons" = ["" "" "" "" ""];
     "tooltip-format" = "{time}";
     "tooltip-format-charging" = "Charging\nPower: {power}W\nTime until full: {time}";
+    "interval" = 4;
+  };
+  "custom/waybar-mpris" = let
+    mpris = "${pkgs.waybar-mpris}/bin/waybar-mpris";
+  in {
+    "return-type" = "json";
+    "exec" = "${mpris} --position --autofocus";
+    "on-click" = "${mpris} --send toggle";
+    "on-click-right" = "${mpris} --send player-next";
+    "format" = "{player_icon} {dynamic}";
+    "format-paused" = "{status_icon} <i>{dynamic}</i>";
+    "player-icons" = {
+      "default" = "▶";
+      "mpv" = "🎵";
+    };
+    "status-icons" = {
+      "paused" = "⏸";
+    };
+    "escape" = true;
+  };
+  "custom/weather" = {
+    "format" = "{}°";
+    "tooltip" = true;
+    "interval" = 60;
+    "exec" = "${pkgs.wttrbar}/bin/wttrbar --fahrenheit --mph";
+    "return-type" = "json";
   };
   "custom/cpugovernor" = {
     format = "{}";

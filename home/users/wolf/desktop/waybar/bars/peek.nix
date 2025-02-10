@@ -21,5 +21,6 @@
     "format-charging" = "{capacity}% ⚡";
     "format-plugged" = "{capacity}% ";
     "format-icons" = ["" "" "" "" ""];
+    "interval" = 4;
   };
 }
