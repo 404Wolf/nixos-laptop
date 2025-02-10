@@ -15,12 +15,12 @@
       in [
         {
           timeout = 300; # 5min
-          on-timeout = "${bctl} --save && ${bctl} s 10%"; # set monitor backlight to 10%
+          on-timeout = "${bctl} --save && sleep 1 && ${bctl} s 10%"; # set monitor backlight to 10%
           on-resume = "${bctl} -r"; # restore monitor backlight
         }
         {
           timeout = 300; # 5min
-          on-timeout = "${bctl} --save -d ${keylight} && ${bctl} -d ${keylight} s 0%"; # turn off keyboard backlight
+          on-timeout = "${bctl} --save -d ${keylight} && sleep 1 && ${bctl} -d ${keylight} s 0%"; # turn off keyboard backlight
           on-resume = "${bctl} -d ${keylight} -r"; # restore keyboard backlight
         }
         {
