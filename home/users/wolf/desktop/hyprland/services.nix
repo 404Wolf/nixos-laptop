@@ -1,10 +1,19 @@
-{config, ...}: {
+{
+  config,
+  pkgs,
+  ...
+}: {
   systemd.user = {
     services.wallpaper-refresh = {
       Unit = {Description = "Refresh wallpaper";};
       Service = {
         Type = "oneshot";
-        ExecStart = config.my.scripts.wallpaper-refresh;
+        ExecStart = pkgs.writeShellScript "wallpaper-refresh-then-hyprpaper" ''
+          ${config.my.scripts.wallpaper-refresh}
+          sleep 2
+          pkill ${pkgs.hyprpaper}/bin/hyprpaper
+          ${pkgs.hyprpaper}/bin/hyprpaper
+        '';
       };
     };
 
