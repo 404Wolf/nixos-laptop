@@ -1,8 +1,4 @@
-{
-  pkgs,
-  lib,
-  ...
-}: {
+{pkgs, ...}: {
   programs.firefox = {
     enable = true;
     package = pkgs.firefox;
@@ -63,8 +59,4 @@
       };
     };
   };
-
-  home.activation.firefoxReadOnly = lib.hm.dag.entryAfter ["writeBoundary"] ''
-    rm -f /home/wolf/.mozilla/firefox/default/search.json*
-  '';
 }

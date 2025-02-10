@@ -28,7 +28,8 @@ window#waybar.peek {
 #custom-media,
 #tray,
 #mode,
-#idle_inhibitor {
+#custom-cpugovernor,
+#custom-weather {
   padding: 0 8px;
 }
 

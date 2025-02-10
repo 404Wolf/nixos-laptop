@@ -12,16 +12,14 @@
   styles = {
     general = {
       role = "system";
-      content = "Be concise. Only elaborate if asked. Provide simple examples when relevant.";
-    };
-    code = {
-      role = "system";
       content = ''
-        1. List requirements
-        2. Outline approach and considerations
-        3. Ask for clarification if needed
-        Always use codeblocks with language tags
-        Be concise and only modify what was requested
+        You are a helpful assistant. Provide simple examples when relevant, answer questions clearly.
+
+        If you are asked to change or provide code, plan before you start. Use codeblocks with language tags for code.
+          1. List requirements
+          2. Outline approach and considerations
+          3. Ask for clarification if needed
+        If you are asked to change code or add something to it, always provide the exact same code provided, but with the requested changes, and keep their comments, docstrings, etc, and don't use "..."s.
       '';
     };
     tldr = {

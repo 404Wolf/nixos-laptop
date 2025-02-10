@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  scripts,
+  ...
+}: {
   name = "main";
   "layer" = "top";
   "position" = "top";
@@ -6,20 +10,17 @@
   "exclusive" = true;
   "modules-left" = [
     "hyprland/workspaces"
-    "sway/mode"
-    "temperature"
     "cpu"
     "memory"
+    "custom/cpugovernor"
     "custom/weather"
     "tray"
   ];
   "modules-center" = ["clock"];
   "modules-right" = [
-    # "bluetooth"
     "network"
     "pulseaudio"
     "backlight"
-    "power-profiles-daemon"
     "battery"
   ];
   "hyprland/workspaces" = {
@@ -28,29 +29,7 @@
   };
   "backlight" = {
     "format" = "{percent}% {icon}";
-    "format-icons" = [
-      ""
-      ""
-      ""
-      ""
-      ""
-      ""
-      ""
-      ""
-      ""
-    ];
-  };
-  "keyboard-state" = {
-    "numlock" = true;
-    "capslock" = true;
-    "format" = "{name} {icon}";
-    "format-icons" = {
-      "locked" = "";
-      "unlocked" = "";
-    };
-  };
-  "sway/mode" = {
-    "format" = "<span style=\"italic\">{}</span>";
+    "format-icons" = ["" "" "" "" "" "" "" "" ""];
   };
   "network" = {
     "format-wifi" = "{essid} ({signalStrength}%)  ";
@@ -83,7 +62,6 @@
     "spacing" = 10;
   };
   "clock" = {
-    # "timezone" = "America/New_York";
     "tooltip-format" = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
     "format" = "{:%m/%d %a %T}";
     "interval" = 1;
@@ -103,11 +81,7 @@
       "phone" = "";
       "portable" = "";
       "car" = "";
-      "default" = [
-        ""
-        ""
-        ""
-      ];
+      "default" = ["" "" ""];
     };
     "on-click" = "pavucontrol";
   };
@@ -120,27 +94,24 @@
   };
   "battery" = {
     "states" = {
-      "good" = 95;
+      "good" = 90;
       "warning" = 30;
       "critical" = 15;
     };
-    "format" = "{capacity}% {icon} {time}";
+    "format" = "{capacity}% {icon}";
     "format-full" = "{capacity}% {icon}";
-    "format-charging" = "{capacity}% @ {power} ⚡";
-    "format-plugged" = "{capacity}% ";
-    "format-alt" = "{time} {icon}";
+    "format-charging" = "{capacity}% ⚡ {icon}";
+    "format-plugged" = "{capacity}% {icon}";
     "format-icons" = ["" "" "" "" ""];
-    "on-click" = "${pkgs.auto-cpufreq}/bin/auto-cpufreq-gtk";
+    "tooltip-format" = "{time}";
+    "tooltip-format-charging" = "Charging\nPower: {power}W\nTime until full: {time}";
   };
-  "power-profiles-daemon" = {
-    "format" = "{icon}";
-    "tooltip-format" = "Power profile = {profile}\nDriver = {driver}";
-    "tooltip" = true;
-    "format-icons" = {
-      "default" = "";
-      "performance" = "";
-      "balanced" = "";
-      "power-saver" = "";
-    };
+  "custom/cpugovernor" = {
+    format = "{}";
+    interval = 5;
+    "return-type" = "json";
+    exec = "${scripts.getCpuGovernor}";
+    tooltip = true;
+    "on-click" = "${scripts.toggleCpuGovernor}";
   };
 }

@@ -15,11 +15,15 @@ in {
   ];
 
   programs = {
-    zsh.initExtra = ''
-      if uwsm check may-start 2>/dev/null && uwsm select 2>/dev/null; then
-        exec systemd-cat -t uwsm_start uwsm start default
-      fi
-    '';
+    zsh.initExtra =
+      # bash
+      ''
+        if ! pidof Hyprland >/dev/null; then
+          if uwsm check may-start 2>/dev/null && uwsm select; then
+            exec systemd-cat -t uwsm_start uwsm start default
+          fi
+        fi
+      '';
   };
 
   wayland.windowManager.hyprland = {

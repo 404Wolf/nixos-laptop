@@ -12,9 +12,13 @@
   # Change power profile when on ac/battery
   services.udev.extraRules = let
     powerScript = pkgs.writeShellScript "power-state-changed" ''
-      [ $(cat /sys/class/power_supply/ACAD/online) ] && \
-        ${pkgs.brightnessctl}/bin/brightnessctl set 100% || \
+      if [ $(cat /sys/class/power_supply/ACAD/online) -eq 1 ]; then
+        ${pkgs.brightnessctl}/bin/brightnessctl set 100%
+        powerprofilesctl set performance
+      else
         ${pkgs.brightnessctl}/bin/brightnessctl set 65%
+        powerprofilesctl set power-saver
+      fi
     '';
   in ''
     SUBSYSTEM=="power_supply", ATTR{online}=="[01]", RUN+="${powerScript}"
@@ -28,29 +32,7 @@
   services = {
     tlp.enable = false;
     thermald.enable = true;
-    power-profiles-daemon.enable = false;
-    auto-cpufreq = {
-      enable = true;
-      settings = {
-        battery = {
-          governor = "powersave";
-          turbo = "auto";
-          scaling_max_freq = 2400000;
-          energy_performance_preference = "power";
-        };
-        charger = {
-          governor = "performance";
-          turbo = "auto";
-          energy_performance_preference = "performance";
-        };
-        balanced = {
-          governor = "schedutil";
-          turbo = "auto";
-          scaling_max_freq = 2800000;
-          energy_performance_preference = "balance-performance";
-        };
-      };
-    };
+    power-profiles-daemon.enable = true;
     system76-scheduler = {
       enable = true;
       useStockConfig = true;

@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{...}: {
   "name" = "peek";
   "layer" = "top";
   "position" = "bottom";
@@ -21,6 +21,5 @@
     "format-charging" = "{capacity}% ⚡";
     "format-plugged" = "{capacity}% ";
     "format-icons" = ["" "" "" "" ""];
-    "on-click" = "${pkgs.auto-cpufreq}/bin/auto-cpufreq-gtk";
   };
 }
