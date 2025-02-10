@@ -18,8 +18,9 @@
   ];
   "modules-center" = ["clock"];
   "modules-right" = [
-    "network"
+    "mpris"
     "pulseaudio"
+    "network"
     "backlight"
     "battery"
   ];
@@ -83,7 +84,7 @@
       "car" = "";
       "default" = ["" "" ""];
     };
-    "on-click" = "pavucontrol";
+    "on-click" = "${pkgs.pavucontrol}/bin/pavucontrol";
   };
   "bluetooth" = {
     "format" = " {status}";

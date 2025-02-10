@@ -24,6 +24,7 @@ in
     bind = "$MOD, L";
     body = ''
       bind=, B, exec, ${pkgs.blueman}/bin/blueman-manager
+      bind=, A, exec, ${pkgs.pavucontrol}/bin/pavucontrol
     '';
   }
   + mkSubmap {

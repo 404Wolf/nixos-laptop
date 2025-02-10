@@ -24,10 +24,11 @@ in
   ++ mkRule ["size 70% 60%" "float"] "class" "cheese"
   ++ mkRule ["size 60% 70%" "float"] "class" "zenity"
   ++ mkRule ["size 30% 45%" "float"] "class" "io.github.Qalculate.qalculate-qt"
-  ++ mkRule ["size 30% 60%" "float" "pin"] "class" "blueman-manager"
-  ++ mkRule ["size 30% 60%" "pin" "float"] "class" "blueman-manager"
+  ++ mkRule ["size 30% 60%" "float" "pin"] "class" ".blueman-manager-wrapped"
+  ++ mkRule ["size 30% 60%" "pin" "float"] "class" ".blueman-manager-wrapped"
   ++ mkRule ["size 60% 50%" "float" "pin"] "class" "nm-connection-editor"
   ++ mkRule ["size 60% 50%" "float"] "title" "Write: "
+  ++ mkRule ["size 60% 50%" "float"] "class" "org.pulseaudio.pavucontrol"
   # Chat app rules
   ++ mkRule presets.chat "class" "discord"
   ++ mkRule presets.chat "class" "signal"

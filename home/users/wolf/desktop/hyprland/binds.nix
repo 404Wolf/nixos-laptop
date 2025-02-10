@@ -54,6 +54,9 @@ in
   + ''
     # Dunst notification toggle
     bind=$CAP ALT SHIFT, D, exec, ${toggles.dunst}/bin/toggle-dunst
+
+    # Dunst dismiss all notifications
+    bind = ALT SHIFT, D, exec, dunstctl close-all
   ''
   + ''
     # Waybar keybind
