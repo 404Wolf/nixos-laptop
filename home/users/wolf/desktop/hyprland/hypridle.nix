@@ -30,21 +30,26 @@
       in [
         {
           timeout = 300; # 5min
-          on-timeout = "${saveBrightness backlight} && ${bctl} s 10%";
+          on-timeout = "if [ ! $(cat /sys/class/power_supply/ACAD/online) ]; then ${saveBrightness backlight} && ${bctl} s 10%; fi";
           on-resume = restoreBrightness backlight;
         }
         {
           timeout = 300; # 5min
-          on-timeout = "${saveBrightness keylight} && ${bctl} -d ${keylight} s 0%";
+          on-timeout = "if [ ! $(cat /sys/class/power_supply/ACAD/online) ]; then ${saveBrightness keylight} && ${bctl} -d ${keylight} s 0%; fi";
           on-resume = restoreBrightness keylight;
         }
         {
-          # suspend if on battery, otherwise lock
+          # suspend if on battery
           timeout = 450; # 7.5min
-          on-timeout = "if [ ! $(cat /sys/class/power_supply/ACAD/online) ]; then systemctl suspend; else loginctl lock-session; fi";
+          on-timeout = "if [ ! $(cat /sys/class/power_supply/ACAD/online) ]; then systemctl suspend; fi";
         }
         {
-          timeout = 480; # 8min
+          # lock on AC after 10 minutes
+          timeout = 600; # 10min
+          on-timeout = "if [ $(cat /sys/class/power_supply/ACAD/online) ]; then loginctl lock-session; fi";
+        }
+        {
+          timeout = 600; # 10min
           on-timeout = "hyprctl dispatch dpms off"; # turn off display
           on-resume = "hyprctl dispatch dpms on"; # turn on display when activity detected
         }

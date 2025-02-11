@@ -26,6 +26,17 @@
       kill = "pkill ${program}";
       conditional = "ps aux | grep ${program}";
     };
+
+    windows =
+      pkgs.writeShellScriptBin "hyprland-select-window"
+      #bash
+      ''
+        hyprctl clients -j | \
+          jq -r '.[] | .title + " [" + .class + "]    id:" + .address' | \
+          fuzzel --dmenu --width 100 --prompt "󱂬  " | \
+          sed 's/.*id://' | \
+          xargs -I{} hyprctl dispatch focuswindow "address:{}"
+      '';
   };
 in
   ''
@@ -104,6 +115,9 @@ in
   + ''
     # App launcher
     bind=$MOD, Space, exec, ${pkgs.fuzzel}/bin/fuzzel
+
+    # Window selector
+    bind=$MOD SHIFT, Space, exec, ${toggles.windows}/bin/hyprland-select-window
   ''
   + ''
     # Basic app manipulation commands
