@@ -35,23 +35,6 @@
       ''
         set -o vi
 
-        function explore () {
-          ARCHIVE=$1
-          MOUNTPOINT=$(mktemp -d)
-          ${pkgs.archivemount}/bin/archivemount "$ARCHIVE" "$MOUNTPOINT"
-          yy "$MOUNTPOINT"
-        }
-
-        function windows () {
-          windowsInfo='sort_by(.workspace.id) | .[] | .address + "\t" + (.workspace.id|tostring) + "\t" + .title'
-
-          hyprctl clients -j \
-            | jq "$windowsInfo" -r \
-            | fzf +m --with-nth 2,3 \
-                --delimiter '\t' \
-                --bind='enter:become:hyprctl dispatch focuswindow address:{1}'
-        }
-
         function hyprland() {
           if ! sudo -v; then
            echo "Error: Failed to obtain sudo privileges"
