@@ -30,6 +30,10 @@
     ''
     + ''
       # Disable autosuspend for USB keyboards
+      # Prevent autosuspend for all USB keyboards and specifically REALFORCE
+      ACTION=="add", SUBSYSTEM=="usb", ATTR{bInterfaceClass}=="03", ATTR{bInterfaceProtocol}=="01", {power/control}="on"
+      ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="0853", ATTR{idProduct}=="0146", ATTR{power/control}="on"
+      # Additional catch for keyboards that might identify as "Keyboard" in product string
       ACTION=="add", SUBSYSTEM=="usb", ATTR{product}=="*[Kk]eyboard*", ATTR{power/control}="on"
     '';
 
