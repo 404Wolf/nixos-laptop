@@ -1,4 +1,4 @@
-{
+{config, ...}: {
   programs.git = {
     enable = true;
     lfs.enable = true;
@@ -21,7 +21,7 @@
       global = {
         safe.directory = "*";
         core = {
-          excludesfile = ["./gitignore"];
+          excludesfile = "${config.xdg.configHome}/git/ignore";
         };
       };
     };
@@ -30,5 +30,5 @@
     enable = true;
     settings = {git_protocol = "ssh";};
   };
-  home.file.".config/git/ignore".text = builtins.readFile ./gitignore;
+  xdg.configFile."git/ignore".source = ./gitignore;
 }
