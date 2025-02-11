@@ -1,14 +1,14 @@
 {pkgs, ...}: {
-  # Configure power button and lid switch actions
-  services = {
-    logind.powerKey = "lock";
-    logind.powerKeyLongPress = "hibernate";
-    logind.lidSwitch = "suspend-then-hibernate";
-  };
   systemd.sleep.extraConfig = ''
     HibernateDelaySec=30M
     HibernateOnACPower=false
   '';
+  # Configure power button and lid switch actions
+  services = {
+    logind.powerKey = "lock";
+    logind.powerKeyLongPress = "hibernate";
+    logind.lidSwitch = "suspend";
+  };
 
   # Disable kernel image protection to fix hibernation resume
   security.protectKernelImage = false;
@@ -23,10 +23,15 @@
       ${pkgs.brightnessctl}/bin/brightnessctl set 65%
       ${pkgs.power-profiles-daemon}/bin/powerprofilesctl set power-saver
     '';
-  in ''
-    ACTION=="change", SUBSYSTEM=="power_supply", ENV{POWER_SUPPLY_NAME}=="ACAD", ATTR{online}=="1", RUN+="${pluggedScript}"
-    ACTION=="change", SUBSYSTEM=="power_supply", ENV{POWER_SUPPLY_NAME}=="ACAD", ATTR{online}=="0", RUN+="${unpluggedScript}"
-  '';
+  in
+    ''
+      ACTION=="change", SUBSYSTEM=="power_supply", ENV{POWER_SUPPLY_NAME}=="ACAD", ATTR{online}=="1", RUN+="${pluggedScript}"
+      ACTION=="change", SUBSYSTEM=="power_supply", ENV{POWER_SUPPLY_NAME}=="ACAD", ATTR{online}=="0", RUN+="${unpluggedScript}"
+    ''
+    + ''
+      # Disable autosuspend for USB keyboards
+      ACTION=="add", SUBSYSTEM=="usb", ATTR{product}=="*[Kk]eyboard*", ATTR{power/control}="on"
+    '';
 
   powerManagement = {
     enable = true;

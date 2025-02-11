@@ -23,6 +23,7 @@
       enable = true;
       useOSProber = true;
       efiSupport = true;
+      memtest86.enable = true;
       configurationLimit = 10;
     };
     efi = {
