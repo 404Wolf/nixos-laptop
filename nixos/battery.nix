@@ -1,14 +1,14 @@
 {pkgs, ...}: {
-  systemd.sleep.extraConfig = ''
-    HibernateDelaySec=30M
-    HibernateOnACPower=false
-  '';
   # Configure power button and lid switch actions
   services = {
     logind.powerKey = "lock";
     logind.powerKeyLongPress = "hibernate";
-    logind.lidSwitch = "suspend";
+    logind.lidSwitch = "suspend-then-hibernate";
   };
+  systemd.sleep.extraConfig = ''
+    HibernateDelaySec=30M
+    HibernateOnACPower=false
+  '';
 
   # Disable kernel image protection to fix hibernation resume
   security.protectKernelImage = false;
@@ -29,12 +29,8 @@
       ACTION=="change", SUBSYSTEM=="power_supply", ENV{POWER_SUPPLY_NAME}=="ACAD", ATTR{online}=="0", RUN+="${unpluggedScript}"
     ''
     + ''
-      # Disable autosuspend for USB keyboards
-      # Prevent autosuspend for all USB keyboards and specifically REALFORCE
-      ACTION=="add", SUBSYSTEM=="usb", ATTR{bInterfaceClass}=="03", ATTR{bInterfaceProtocol}=="01", {power/control}="on"
-      ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="0853", ATTR{idProduct}=="0146", ATTR{power/control}="on"
-      # Additional catch for keyboards that might identify as "Keyboard" in product string
-      ACTION=="add", SUBSYSTEM=="usb", ATTR{product}=="*[Kk]eyboard*", ATTR{power/control}="on"
+      ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="0b05", ATTR{idProduct}=="1a96", ATTR{power/autosuspend}="-1",
+      ATTR{power/control}="on"
     '';
 
   powerManagement = {

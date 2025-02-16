@@ -28,7 +28,7 @@
           ${cp} ${wallpaper-backup-path} ${wallpaper-path}
         fi
 
-        pkill ${hyprpaper} && ${hyprpaper}
+        pkill "hyprpaper" && ${hyprpaper}
       '';
     };
   };

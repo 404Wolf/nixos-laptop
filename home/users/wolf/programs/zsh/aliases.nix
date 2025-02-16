@@ -16,9 +16,6 @@
     openai = osConfig.sops.secrets."api-keys/openai".path;
   };
 in {
-  # Programs
-  waybar = "${pkgs.waybar}/bin/waybar";
-
   # Wakeup hyprland
   hypr-wakeup = "hyprctl dispatch dpms on eDP-1 && hyprctl dispatch dpms on DP-6 && hyprctl dispatch dpms on DP-8";
 
@@ -91,21 +88,11 @@ in {
       fi
     '';
   }}/bin/choose_tmux_session";
-
   tma = "${tmux} attach-session -t ";
   tmls = "${tmux} list-sessions";
   tmks = "${tmux} kill-session -t ";
 
-  # Choose colors
-  colorpick = "${pkgs.wl-color-picker}/bin/wl-color-picker";
-
   # Neovim aliases
   nv = neovim;
   nn = neovide;
-
-  # Gpt aliases
-  gpt-code = "gpt code --model claude-3-5-sonnet-latest";
-  gpt-chat = "gpt regular --model gpt-4o";
-  gpt-reason = "gpt regular --model o1";
-  gpt-tldr = "gpt tldr --model gpt-4o";
 }

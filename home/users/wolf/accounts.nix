@@ -1,4 +1,4 @@
-{
+{osConfig, ...}: {
   programs.vdirsyncer.enable = true;
 
   accounts = {
@@ -19,7 +19,7 @@
             address = "wolfmermelstein@fastmail.com";
             aliases = ["wolf@404wolf.com"];
             realName = "Wolf Mermelstein";
-            passwordCommand = "rbw get app.fastmail.com -f 'AppPass'";
+            passwordCommand = "cat ${osConfig.sops.secrets."accounts/wolfmermelstein_fastmail/app-password".path}";
             thunderbird.perIdentitySettings = id: {
               "mail.identity.id_${id}.useremail" = "wolf@404wolf.com";
             };
@@ -31,7 +31,7 @@
             flavor = "gmail.com";
             address = "wolfmermelstein@gmail.com";
             realName = "Wolf Mermelstein";
-            passwordCommand = "rbw get google-work -f 'AppPass'";
+            passwordCommand = "cat ${osConfig.sops.secrets."accounts/wolfmermelstein_gmail/app-password".path}";
           };
           case = {
             flavor = "gmail.com";
@@ -45,13 +45,13 @@
               host = "smtp.gmail.com";
               port = 465;
             };
-            passwordCommand = "rbw get 'wsm32@Case Western Reserve University' -f 'AppPass'";
+            passwordCommand = "cat ${osConfig.sops.secrets."accounts/wsm32_case/app-password".path}";
           };
           old = {
             flavor = "gmail.com";
             address = "uptothebird@gmail.com";
             realName = primary.realName;
-            passwordCommand = "rbw get 'google-home' -f 'AppPass'";
+            passwordCommand = "cat ${osConfig.sops.secrets."accounts/wolfmermelstein_gmail/app-password".path}";
           };
         };
     };

@@ -14,7 +14,7 @@
     settings = {
       global = {
         monitor = "0";
-        origin = "bottom-left";
+        origin = "bottom-right";
         offset = "10x10";
         progress_bar = true;
         separator_color = "frame";

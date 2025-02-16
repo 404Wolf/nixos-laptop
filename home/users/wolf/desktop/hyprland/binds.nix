@@ -42,6 +42,7 @@ in
   ''
     $MOD=SUPER_L
     $CAP=MOD2
+    $MONITORSKEY=code:133
   ''
   + ''
     # Mouse
