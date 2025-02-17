@@ -11,8 +11,7 @@
         ExecStart = pkgs.writeShellScript "wallpaper-refresh-then-hyprpaper" ''
           ${config.my.scripts.wallpaper-refresh}
           sleep 2
-          pkill ${pkgs.hyprpaper}/bin/hyprpaper
-          ${pkgs.hyprpaper}/bin/hyprpaper
+          pkill hyprpaper && ${pkgs.hyprpaper}/bin/hyprpaper
         '';
       };
     };
