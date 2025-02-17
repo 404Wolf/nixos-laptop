@@ -1,6 +1,4 @@
-{config, ...}: let
-  wallpaper = "${config.xdg.dataHome}/wallpapers/wallpaper.jpg";
-in {
+{config, ...}: {
   programs.hyprlock = {
     enable = true;
     settings = {
@@ -17,7 +15,7 @@ in {
       };
       background = [
         {
-          path = wallpaper;
+          path = config.my.variables.wallpaper-path;
           blur_passes = 0;
           blur_size = 3;
         }
