@@ -41,6 +41,7 @@
 
   # Allow yubikey-agent for using yubikey for ssh keys
   services.yubikey-agent.enable = true;
+  services.pcscd.enable = true;
 
   # Enable bluetooth
   hardware.bluetooth.enable = true;

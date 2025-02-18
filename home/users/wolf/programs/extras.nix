@@ -21,6 +21,8 @@
     brightnessctl
     playerctl
     cpulimit
+    cliphist
+    usbutils
 
     # Networking & File Management
     rclone
