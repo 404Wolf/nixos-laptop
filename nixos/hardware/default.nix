@@ -8,6 +8,7 @@
     ./mounts.nix
     ./nvidia.nix
     ./fprintd.nix
+    ./secure.nix
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
@@ -38,10 +39,6 @@
   # Set the system architecture
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   nixpkgs.system = "x86_64-linux";
-
-  # Allow yubikey-agent for using yubikey for ssh keys
-  services.yubikey-agent.enable = true;
-  services.pcscd.enable = true;
 
   # Enable bluetooth
   hardware.bluetooth.enable = true;

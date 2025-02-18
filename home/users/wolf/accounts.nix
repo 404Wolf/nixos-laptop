@@ -1,4 +1,8 @@
-{osConfig, ...}: {
+{
+  osConfig,
+  config,
+  ...
+}: {
   programs.vdirsyncer.enable = true;
 
   accounts = {
@@ -15,6 +19,7 @@
           })) rec {
           primary = {
             primary = true;
+            gpg.key = config.my.variables.primary-yubikey-gpg-id;
             flavor = "fastmail.com";
             address = "wolfmermelstein@fastmail.com";
             aliases = ["wolf@404wolf.com"];

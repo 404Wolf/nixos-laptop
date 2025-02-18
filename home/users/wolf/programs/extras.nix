@@ -49,6 +49,7 @@
     typst
     lazygit
     valfs
+    yubikey-personalization-gui
 
     # Text Processing & File Manipulation
     ripgrep

@@ -4,6 +4,10 @@
     lfs.enable = true;
     userName = "Wolf Mermelstein";
     userEmail = "wolf@404wolf.com";
+    signing = {
+      key = config.my.variables.primary-yubikey-gpg-id; # Primary yubikey
+      signByDefault = true;
+    };
     delta = {
       enable = true;
       options = {
