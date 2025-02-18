@@ -20,29 +20,37 @@
       ${pkgs.brightnessctl}/bin/brightnessctl -d 'framework_laptop::kbd_backlight' set 100%
       ${pkgs.power-profiles-daemon}/bin/powerprofilesctl set performance
     '';
-    unpluggedScript = pkgs.writeShellScript "power-unplugged" ''
-      # Restore previous screen brightness if saved
-      if [ -f /tmp/power-profiles/screen_brightness_plug ]; then
-        ${pkgs.brightnessctl}/bin/brightnessctl set "$(cat /tmp/power-profiles/screen_brightness_plug)"
-        rm /tmp/power-profiles/screen_brightness_plug
-      fi
-      ${pkgs.power-profiles-daemon}/bin/powerprofilesctl set power-saver
-    '';
+    unpluggedScript =
+      pkgs.writeShellScript "power-unplugged"
+      # bash
+      ''
+        # Restore previous screen brightness if saved
+        if [ -f /tmp/power-profiles/screen_brightness_plug ]; then
+          ${pkgs.brightnessctl}/bin/brightnessctl set "$(cat /tmp/power-profiles/screen_brightness_plug)"
+          rm /tmp/power-profiles/screen_brightness_plug
+        fi
+
+        # Restore previous keyboard backlight brightness if saved
+        if [ -f /tmp/power-profiles/kbd_brightness_plug ]; then
+          ${pkgs.brightnessctl}/bin/brightnessctl -d 'framework_laptop::kbd_backlight' set "$(cat /tmp/power-profiles/kbd_brightness_plug)"
+          rm /tmp/power-profiles/kbd_brightness_plug
+        fi
+
+        ${pkgs.power-profiles-daemon}/bin/powerprofilesctl set power-saver
+      '';
     saveBrightnessScript = pkgs.writeShellScript "save-brightness" ''
       ${pkgs.brightnessctl}/bin/brightnessctl get > /tmp/power-profiles/screen_brightness_plug
+      ${pkgs.brightnessctl}/bin/brightnessctl -d 'framework_laptop::kbd_backlight' get > /tmp/power-profiles/kbd_brightness_plug
     '';
   in
+    # Save brightness before plugging in
     ''
-      # Save brightness before plugging in
       ACTION=="change", SUBSYSTEM=="power_supply", ENV{POWER_SUPPLY_NAME}=="ACAD", ATTR{online}=="1", RUN+="${saveBrightnessScript}"
-      # Apply plugged in settings
       ACTION=="change", SUBSYSTEM=="power_supply", ENV{POWER_SUPPLY_NAME}=="ACAD", ATTR{online}=="1", RUN+="${pluggedScript}"
-      # Apply unplugged settings
       ACTION=="change", SUBSYSTEM=="power_supply", ENV{POWER_SUPPLY_NAME}=="ACAD", ATTR{online}=="0", RUN+="${unpluggedScript}"
     '' # fix keyboard autosuspend
     + ''
-      ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="0b05", ATTR{idProduct}=="1a96", ATTR{power/autosuspend}="-1",
-      ATTR{power/control}="on"
+      ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="0b05", ATTR{idProduct}=="1a96", ATTR{power/autosuspend}="-1", ATTR{power/control}="on"
     '';
 
   powerManagement = {

@@ -46,6 +46,12 @@ in {
       env = [
         "QT_QPA_PLATFORM,wayland;xcb"
       ];
+      ecosystem = {
+        no_donation_nag = true;
+      };
+      cursor = {
+        no_hardware_cursors = 1;
+      };
       general = {
         allow_tearing = false;
         gaps_in = 1;
