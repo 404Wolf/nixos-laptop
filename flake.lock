@@ -1539,11 +1539,11 @@
         "telescope-git-file-history": "telescope-git-file-history"
       },
       "locked": {
-        "lastModified": 1739319619,
-        "narHash": "sha256-1DAwaTfLiZYUORIeaHjK7ekSlGvPSqUNRClpGDzgeC4=",
+        "lastModified": 1739907525,
+        "narHash": "sha256-beesHxMjd3tQN6Q8iYMtzQN0gq1YWSsX6odMIbixV6Q=",
         "owner": "404Wolf",
         "repo": "nix-neovim",
-        "rev": "156a48bd82710d918bc611b65c6cd6dd7c7c6974",
+        "rev": "2d81377aaef58bd4603fd0cf6fa34952457f3edf",
         "type": "github"
       },
       "original": {
@@ -1672,11 +1672,11 @@
     },
     "nixpkgs_10": {
       "locked": {
-        "lastModified": 1739319052,
-        "narHash": "sha256-L8Tq1dnW96U70vrNpCCGCLHz4rX1GhNRCrRI/iox9wc=",
+        "lastModified": 1739905841,
+        "narHash": "sha256-qZa9bNulhMlm2NKaFhbkQjOxOQpcBR86Nf7YGD1ZdlM=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "83a2581c81ff5b06f7c1a4e7cc736a455dfcf7b4",
+        "rev": "407109eebe63e440dc4b70a64842e7ee3bf9720a",
         "type": "github"
       },
       "original": {
@@ -1985,11 +1985,11 @@
         "treefmt-nix": "treefmt-nix_3"
       },
       "locked": {
-        "lastModified": 1739121491,
-        "narHash": "sha256-BEmyAozR3Pc2qwPtC4rgUglzi3cw4nv4fXEY23NxOrQ=",
+        "lastModified": 1739902813,
+        "narHash": "sha256-BgOQcKKz7VNvSHIbBllHisv32HvF3W3ALF9sdnC++V8=",
         "owner": "nix-community",
         "repo": "nixvim",
-        "rev": "13341a4c1238b7974e7bad9c7a6d5c51ca3cf81a",
+        "rev": "0ab9947137cd034ec64eb5cd9ede94e53af21f50",
         "type": "github"
       },
       "original": {
