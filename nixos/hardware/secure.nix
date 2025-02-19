@@ -20,6 +20,14 @@
   '';
 
   services.udev.packages = [pkgs.yubikey-personalization];
+  services.openssh.enable = true;
+
+  programs.ssh = {
+    enableAskPassword = true;
+    askPassword = "QT_QPA_PLATFORM=\"wayland\" ${pkgs.kdePackages.ksshaskpass}";
+  };
+
+  environment.systemPackages = [pkgs.libfido2];
 
   # Add the FIDO2 udev rules directly from Yubico's repository
   services.udev.extraRules = builtins.readFile (builtins.fetchurl {
