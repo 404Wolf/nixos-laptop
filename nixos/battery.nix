@@ -16,6 +16,8 @@
   # Change power profile when on ac/battery
   services.udev.extraRules = let
     pluggedScript = pkgs.writeShellScript "power-plugged" ''
+      mkdir -p /tmp/power-profiles
+
       ${pkgs.brightnessctl}/bin/brightnessctl set 100%
       ${pkgs.brightnessctl}/bin/brightnessctl -d 'framework_laptop::kbd_backlight' set 100%
       ${pkgs.power-profiles-daemon}/bin/powerprofilesctl set performance
@@ -24,21 +26,39 @@
       pkgs.writeShellScript "power-unplugged"
       # bash
       ''
+        mkdir -p /tmp/power-profiles
+
         # Restore previous screen brightness if saved
         if [ -f /tmp/power-profiles/screen_brightness_plug ]; then
-          ${pkgs.brightnessctl}/bin/brightnessctl set "$(cat /tmp/power-profiles/screen_brightness_plug)"
+          saved_brightness=$(cat /tmp/power-profiles/screen_brightness_plug)
+          if [ -n "$saved_brightness" ]; then
+            ${pkgs.brightnessctl}/bin/brightnessctl set "$saved_brightness"
+          else
+            ${pkgs.brightnessctl}/bin/brightnessctl set 50%  # fallback value
+          fi
           rm /tmp/power-profiles/screen_brightness_plug
+        else
+          ${pkgs.brightnessctl}/bin/brightnessctl set 50%  # fallback value
         fi
 
         # Restore previous keyboard backlight brightness if saved
         if [ -f /tmp/power-profiles/kbd_brightness_plug ]; then
-          ${pkgs.brightnessctl}/bin/brightnessctl -d 'framework_laptop::kbd_backlight' set "$(cat /tmp/power-profiles/kbd_brightness_plug)"
+          saved_kbd_brightness=$(cat /tmp/power-profiles/kbd_brightness_plug)
+          if [ -n "$saved_kbd_brightness" ]; then
+            ${pkgs.brightnessctl}/bin/brightnessctl -d 'framework_laptop::kbd_backlight' set "$saved_kbd_brightness"
+          else
+            ${pkgs.brightnessctl}/bin/brightnessctl -d 'framework_laptop::kbd_backlight' set 0%  # fallback value
+          fi
           rm /tmp/power-profiles/kbd_brightness_plug
+        else
+          ${pkgs.brightnessctl}/bin/brightnessctl -d 'framework_laptop::kbd_backlight' set 0%  # fallback value
         fi
 
         ${pkgs.power-profiles-daemon}/bin/powerprofilesctl set power-saver
       '';
     saveBrightnessScript = pkgs.writeShellScript "save-brightness" ''
+      mkdir -p /tmp/power-profiles
+
       ${pkgs.brightnessctl}/bin/brightnessctl get > /tmp/power-profiles/screen_brightness_plug
       ${pkgs.brightnessctl}/bin/brightnessctl -d 'framework_laptop::kbd_backlight' get > /tmp/power-profiles/kbd_brightness_plug
     '';

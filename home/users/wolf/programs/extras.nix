@@ -50,6 +50,8 @@
     lazygit
     valfs
     yubikey-personalization-gui
+    texliveFull
+    pandoc
 
     # Text Processing & File Manipulation
     ripgrep

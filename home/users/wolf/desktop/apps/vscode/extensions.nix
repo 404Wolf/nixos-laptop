@@ -26,7 +26,7 @@ in
     golang.go
     github.github-vscode-theme
     vscodevim.vim
-    rust-lang.rust-analyzer
+    # rust-lang.rust-analyzer
     serayuzgur.crates
     njpwerner.autodocstring
     ms-vscode-remote.remote-ssh

@@ -12,9 +12,6 @@
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     sops-nix.url = "github:Mic92/sops-nix";
     flake-utils.url = "github:numtide/flake-utils";
-    hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
-    hyprland-plugins.url = "github:hyprwm/hyprland-plugins";
-    hyprland-plugins.inputs.hyprland.follows = "hyprland";
     nix-colors.url = "github:misterio77/nix-colors";
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
@@ -23,8 +20,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     firenvim.url = "github:404Wolf/firenvim-config";
-
-    # Additional inputs from the overlay
     hyprpaper.url = "github:hyprwm/hyprpaper";
     hyprland-workspace2d.url = "github:404wolf/Hyprland-Workspace-2D";
     nix-neovim.url = "github:404Wolf/nix-neovim";
@@ -63,13 +58,8 @@
       // {
         overlays = [
           (final: prev: {
-            # Hyprland and related packages
-            hyprland = inputs.hyprland.packages.${system}.default;
-            hyprpaper = inputs.hyprpaper.packages.${system}.default;
-            hyprland-workspace2d = inputs.hyprland-workspace2d.packages.${system}.workspace2d;
-            hyprland-plugins = inputs.hyprland-plugins.packages.${system}.default;
-
             # Other packages
+            hyprland-workspace2d = inputs.hyprland-workspace2d.packages.${system}.workspace2d;
             wrappedNvim = inputs.nix-neovim.packages.${system}.default;
             capture-utils = inputs.capture-utils.packages.${system}.default;
             dalleCLI = inputs.dalleCLI.packages.${system}.default;
@@ -124,6 +114,7 @@
       devShells.default = pkgs.mkShell {
         packages = with pkgs; [
           pkgs.wrappedNvim
+          nil
           git
           nix
           sops
