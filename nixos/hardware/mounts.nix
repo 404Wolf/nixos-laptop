@@ -1,7 +1,8 @@
-{pkgs, ...}: {
-  # Configure my Portable 1T drive
-
-  # Set up the filesystem mount
+{
+  pkgs,
+  config,
+  ...
+}: {
   fileSystems.vault = {
     device = "/dev/disk/by-uuid/065f9566-c638-4517-97ed-978e38b54477";
     mountPoint = "/mnt/vault";
@@ -16,16 +17,15 @@
   };
 
   fileSystems.wolf-usb = {
-    device = "/dev/disk/by-uuid/REPLACE-WITH-WOLF-FLASH-UUID";
+    device = "/dev/disk/by-uuid/B24A-97C3";
     mountPoint = "/mnt/wolf-usb";
     fsType = "exfat";
     options = [
       "noauto"
       "nofail"
-      "uid=1000"
-      "gid=100"
-      "dmask=022"
-      "fmask=133"
+      "rw"
+      "users"
+      "umask=000"
       "x-systemd.automount"
       "x-systemd.idle-timeout=1min"
       "x-systemd.device-timeout=5s"
