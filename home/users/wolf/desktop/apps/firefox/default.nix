@@ -21,7 +21,7 @@
         id = 0;
         userChrome = builtins.readFile ./userChrome.css;
         settings = import ./settings.nix;
-        extensions = import ./extensions.nix {inherit pkgs;};
+        extensions.packages = import ./extensions.nix {inherit pkgs;};
         search.order = [
           "Google"
           "NixOS-Wiki"

@@ -6,7 +6,6 @@
     ./zsh
     ./extras.nix
     ./gpt.nix
-    ./neomutt.nix
     ./rbw.nix
     ./go.nix
     ./direnv.nix

@@ -32,6 +32,11 @@
               "mail.identity.id_${id}.useremail" = "wolf@404wolf.com";
             };
           };
+          valtown = {
+            flavor = "gmail.com";
+            address = "wolf@val.town";
+            realName = "Wolf Mermelstein";
+          };
           gmail = {
             flavor = "gmail.com";
             address = "wolfmermelstein@gmail.com";

@@ -52,6 +52,7 @@
     yubikey-personalization-gui
     texliveFull
     pandoc
+    code-cursor
 
     # Text Processing & File Manipulation
     ripgrep

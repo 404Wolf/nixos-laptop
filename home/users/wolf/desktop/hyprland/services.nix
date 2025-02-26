@@ -1,6 +1,6 @@
 {
-  config,
   pkgs,
+  config,
   ...
 }: {
   systemd.user = {
@@ -8,10 +8,12 @@
       Unit = {Description = "Refresh wallpaper";};
       Service = {
         Type = "oneshot";
-        ExecStart = pkgs.writeShellScript "wallpaper-refresh-then-hyprpaper" ''
-          ${config.my.scripts.wallpaper-refresh}
-          sleep 2
-          pkill hyprpaper && ${pkgs.hyprpaper}/bin/hyprpaper
+        ExecStart = pkgs.writeShellScript "wallpaper-refresh" ''
+          ${pkgs.curl}/bin/curl \
+            -L ${config.my.variables.wallpaper-fetch-url} \
+            -o ${config.my.variables.wallpaper-path}
+
+          hyprctl hyprpaper reload ,"${config.my.variables.wallpaper-path}"
         '';
       };
     };
@@ -22,9 +24,7 @@
         OnBootSec = "1min";
         OnUnitActiveSec = "6h";
       };
-      Install = {
-        WantedBy = ["timers.target"];
-      };
+      Install = {WantedBy = ["timers.target"];};
     };
   };
 }
