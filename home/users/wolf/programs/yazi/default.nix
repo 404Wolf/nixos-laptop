@@ -24,13 +24,6 @@ in
                 desc = "Open";
               }
             ];
-            play = [
-              {
-                run = ''${pkgs.vlc}/bin/vlc "$@"'';
-                orphan = true;
-                for = "unix";
-              }
-            ];
           }
         ];
       };
@@ -47,39 +40,6 @@ in
         tab_active = mkBoth base00 base0D;
         tab_inactive = mkBoth base05 base01;
         border_style = mkFg base04;
-      };
-      keymap = {
-        input.prepend_keymap = [
-          {
-            run = "close";
-            on = ["<C-q>"];
-          }
-          {
-            run = "escape";
-            on = ["<Esc>"];
-          }
-        ];
-        manager.prepend_keymap = [
-          {
-            run = "escape";
-            on = ["<Esc>"];
-          }
-          {
-            run = "quit";
-            on = ["q"];
-          }
-          {
-            run = "quit --no-cwd-file";
-            on = ["<C-q>"];
-          }
-          {
-            run = [
-              "cd"
-              "quit"
-            ];
-            on = ["<C-Enter>"];
-          }
-        ];
       };
     };
   }

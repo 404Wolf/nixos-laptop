@@ -5,6 +5,7 @@
   ...
 }: {
   imports = [
+    ./audio.nix
     ./hardware
     ./misc
     ./fonts.nix
@@ -70,22 +71,6 @@
       TERM = "xterm-256color";
       XCURSOR_SIZE = 14;
       XCURSOR_THEME = "graphite-dark";
-    };
-  };
-
-  # Services
-  services = {
-    gvfs.enable = true;
-    udisks2.enable = true;
-    pipewire = {
-      enable = true;
-      alsa = {
-        enable = true;
-        support32Bit = true;
-      };
-      pulse.enable = true;
-      jack.enable = false;
-      wireplumber.enable = true;
     };
   };
 
