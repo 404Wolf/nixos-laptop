@@ -1,4 +1,5 @@
 {
+  inputs,
   config,
   osConfig,
   pkgs,
@@ -32,6 +33,10 @@ in {
       '';
   };
 
+  home.packages = [
+    inputs.rose-pine-hyprcursor.packages.${pkgs.system}.default
+  ];
+
   wayland.windowManager.hyprland = {
     enable = true;
     systemd.variables = ["--all"];
@@ -45,6 +50,8 @@ in {
       ];
       env = [
         "QT_QPA_PLATFORM,wayland;xcb"
+        "HYPRCURSOR_THEME,rose-pine-hyprcursor"
+        "HYPRCURSOR_SIZE,22"
       ];
       ecosystem = {
         no_donation_nag = true;

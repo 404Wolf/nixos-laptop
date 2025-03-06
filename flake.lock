@@ -502,7 +502,7 @@
     },
     "flake-utils_18": {
       "inputs": {
-        "systems": "systems_20"
+        "systems": "systems_21"
       },
       "locked": {
         "lastModified": 1731533236,
@@ -1392,11 +1392,11 @@
         "telescope-git-file-history": "telescope-git-file-history"
       },
       "locked": {
-        "lastModified": 1741229355,
-        "narHash": "sha256-zvhJJUU88N4PKCdRFOpd3ZSy0J3gV27n7v1G2zovVFU=",
+        "lastModified": 1741229574,
+        "narHash": "sha256-42q8T0n5ZN3e7XxHD37C443a9rvLvUlh0fQwvOHvunw=",
         "owner": "404Wolf",
         "repo": "nix-neovim",
-        "rev": "ab61cb8bc450f2671801f6fe80d67eebcf4cc2dd",
+        "rev": "7e6b9e1dcacc590b34bae0dbf7dbb22f6b69b35d",
         "type": "github"
       },
       "original": {
@@ -2042,9 +2042,35 @@
         "nur": "nur",
         "remarkable-connection-utility": "remarkable-connection-utility",
         "remarkable-obsidian": "remarkable-obsidian",
+        "rose-pine-hyprcursor": "rose-pine-hyprcursor",
         "sops-nix": "sops-nix",
         "treefmt-nix": "treefmt-nix_4",
         "valfs": "valfs"
+      }
+    },
+    "rose-pine-hyprcursor": {
+      "inputs": {
+        "hyprlang": [
+          "hyprland",
+          "hyprlang"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "utils": "utils"
+      },
+      "locked": {
+        "lastModified": 1740132177,
+        "narHash": "sha256-gNc20APKMefFdH5RONBuHhOps14aiMdgIT0I6RaSN64=",
+        "owner": "ndom91",
+        "repo": "rose-pine-hyprcursor",
+        "rev": "568067f35a85932192bd43ddf64fc05eff850f9f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ndom91",
+        "repo": "rose-pine-hyprcursor",
+        "type": "github"
       }
     },
     "sops-nix": {
@@ -2262,6 +2288,21 @@
       }
     },
     "systems_20": {
+      "locked": {
+        "lastModified": 1681028828,
+        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
+        "owner": "nix-systems",
+        "repo": "default",
+        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-systems",
+        "repo": "default",
+        "type": "github"
+      }
+    },
+    "systems_21": {
       "locked": {
         "lastModified": 1681028828,
         "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
@@ -2494,6 +2535,24 @@
       "original": {
         "owner": "numtide",
         "repo": "treefmt-nix",
+        "type": "github"
+      }
+    },
+    "utils": {
+      "inputs": {
+        "systems": "systems_20"
+      },
+      "locked": {
+        "lastModified": 1710146030,
+        "narHash": "sha256-SZ5L6eA7HJ/nmkzGG7/ISclqe6oZdOZTNoesiInkXPQ=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "b1d9ab70662946ef0850d488da1c9019f3a9752a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
         "type": "github"
       }
     },

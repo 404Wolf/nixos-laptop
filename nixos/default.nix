@@ -70,8 +70,6 @@
     sessionVariables = {
       NIXOS_OZONE_WL = "1";
       TERM = "xterm-256color";
-      XCURSOR_SIZE = 14;
-      XCURSOR_THEME = "graphite-dark";
     };
   };
 
