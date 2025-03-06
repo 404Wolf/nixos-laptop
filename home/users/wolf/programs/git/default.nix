@@ -5,7 +5,7 @@
     userName = "Wolf Mermelstein";
     userEmail = "wolf@404wolf.com";
     signing = {
-      key = config.my.variables.primary-yubikey-gpg-id; # Primary yubikey
+      key = "9EF8F7CF703D27A1230EBF96C09B8B22D90547F3"; # Primary yubikey
       signByDefault = true;
     };
     delta = {

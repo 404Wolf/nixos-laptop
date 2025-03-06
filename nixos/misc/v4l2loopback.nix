@@ -2,7 +2,7 @@
   # Load the v4l2loopback kernel module at boot
   boot.kernelModules = [
     "v4l2loopback"
-    "snd-aloop"
+    # "snd-aloop"
   ];
 
   # Ensure the v4l2loopback module is available

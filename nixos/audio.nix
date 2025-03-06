@@ -12,15 +12,4 @@
     pulse.enable = true;
     wireplumber.enable = true;
   };
-
-  # Bluetooth configuration
-  hardware.bluetooth = {
-    enable = true;
-    settings.General = {
-      Enable = "Source,Sink,Media,Socket";
-    };
-  };
-
-  # Bluetooth manager
-  services.blueman.enable = true;
 }

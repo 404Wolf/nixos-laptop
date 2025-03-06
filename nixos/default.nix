@@ -16,6 +16,7 @@
     ./users.nix
     ./pam.nix
     ./wayland.nix
+    ./printing.nix
     (inputs.nix-index-database.nixosModules.nix-index)
   ];
 

@@ -21,7 +21,6 @@
     };
     firenvim.url = "github:404Wolf/firenvim-config";
     hyprpaper.url = "github:hyprwm/hyprpaper";
-    hyprland-workspace2d.url = "github:404wolf/Hyprland-Workspace-2D";
     nix-neovim.url = "github:404Wolf/nix-neovim";
     capture-utils.url = "github:404Wolf/Screen-Capture";
     dalleCLI.url = "github:404Wolf/DALLE-CLI";
@@ -35,6 +34,13 @@
       url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
+    hyprland-plugins.url = "github:hyprwm/hyprland-plugins";
+    hyprland-plugins.inputs.hyprland.follows = "hyprland";
+    hyprland-plugins.inputs.nixpkgs.follows = "nixpkgs";
+    hyprland-workspace2d.url = "github:404wolf/Hyprland-Workspace-2D";
+    hyprland-workspace2d.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = {
@@ -58,8 +64,6 @@
       // {
         overlays = [
           (final: prev: {
-            # Other packages
-            hyprland-workspace2d = inputs.hyprland-workspace2d.packages.${system}.workspace2d;
             wrappedNvim = inputs.nix-neovim.packages.${system}.default;
             capture-utils = inputs.capture-utils.packages.${system}.default;
             dalleCLI = inputs.dalleCLI.packages.${system}.default;
@@ -70,6 +74,10 @@
             dashToDock = inputs.dashToDock.packages.${system}.default;
             valfs = inputs.valfs.packages.${system}.default;
             firefox-addons = inputs.firefox-addons.packages.${system};
+
+            hyprland-workspace2d = inputs.hyprland-workspace2d.packages.${system}.workspace2d;
+            hyprpaper = inputs.hyprpaper.packages.${system}.default;
+            hyprland = inputs.hyprland.packages.${system}.default;
           })
           (oldAttrs: newAttrs: {
             nwg-displays = pkgs-stable.nwg-displays;
@@ -119,6 +127,7 @@
           nix
           sops
           gitleaks
+          alejandra
         ];
       };
 
