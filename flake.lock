@@ -1392,11 +1392,11 @@
         "telescope-git-file-history": "telescope-git-file-history"
       },
       "locked": {
-        "lastModified": 1741228850,
-        "narHash": "sha256-0HZA2pfRJ/rF8YfycHcVwqK0Y5IYkHtCDCKTIGAZPCw=",
+        "lastModified": 1741229355,
+        "narHash": "sha256-zvhJJUU88N4PKCdRFOpd3ZSy0J3gV27n7v1G2zovVFU=",
         "owner": "404Wolf",
         "repo": "nix-neovim",
-        "rev": "3f5a2e80e670c1595863e445af06a7cd10d95e26",
+        "rev": "ab61cb8bc450f2671801f6fe80d67eebcf4cc2dd",
         "type": "github"
       },
       "original": {
