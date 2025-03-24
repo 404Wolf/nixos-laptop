@@ -20,7 +20,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     firenvim.url = "github:404Wolf/firenvim-config";
-    hyprpaper.url = "github:hyprwm/hyprpaper";
     nix-neovim.url = "github:404Wolf/nix-neovim";
     capture-utils.url = "github:404Wolf/Screen-Capture";
     dalleCLI.url = "github:404Wolf/DALLE-CLI";
@@ -35,12 +34,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
-    hyprland-plugins.url = "github:hyprwm/hyprland-plugins";
-    hyprland-plugins.inputs.hyprland.follows = "hyprland";
-    hyprland-plugins.inputs.nixpkgs.follows = "nixpkgs";
-    hyprland-workspace2d.url = "github:404wolf/Hyprland-Workspace-2D";
-    hyprland-workspace2d.inputs.nixpkgs.follows = "nixpkgs";
+    hyprland-workspace2d = {
+      url = "github:404wolf/Hyprland-Workspace-2D";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -55,8 +52,11 @@
     system = "x86_64-linux";
     pkgs-options = {
       inherit system;
-      config = {allowUnfree = true;};
-      permittedInsecurePackages = ["electron-25.9.0"];
+      config = {
+        allowUnfree = true;
+        permittedInsecurePackages = ["electron-25.9.0" "electron-32.3.3"];
+      };
+      permittedInsecurePackages = ["electron-25.9.0" "electron-32.3.3"];
     };
 
     pkgs-stable = import inputs.nixpkgs-stable pkgs-options;
@@ -74,10 +74,7 @@
             dashToDock = inputs.dashToDock.packages.${system}.default;
             valfs = inputs.valfs.packages.${system}.default;
             firefox-addons = inputs.firefox-addons.packages.${system};
-
             hyprland-workspace2d = inputs.hyprland-workspace2d.packages.${system}.workspace2d;
-            hyprpaper = inputs.hyprpaper.packages.${system}.default;
-            hyprland = inputs.hyprland.packages.${system}.default;
           })
           (oldAttrs: newAttrs: {
             nwg-displays = pkgs-stable.nwg-displays;

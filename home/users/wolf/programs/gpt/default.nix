@@ -3,6 +3,7 @@
   models = [
     "claude-3-opus-latest"
     "claude-3-5-sonnet-latest"
+    "claude-3-7-sonnet-latest"
     "gpt-4o"
     "gpt-4o-mini"
     "o1"
@@ -25,6 +26,10 @@
     tldr = {
       role = "system";
       content = "Provide extremely concise responses. Use bullet points when possible. Only give examples if asked.";
+    };
+    townie = {
+      role = "system";
+      content = builtins.readFile ./townie.md;
     };
   };
 

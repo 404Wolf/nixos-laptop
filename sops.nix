@@ -17,6 +17,7 @@
       "accounts/wolfmermelstein_gmail/password" = {};
       "accounts/wsm32_case/app-password" = {};
       "accounts/wsm32_case/password" = {};
+      "accounts/pia_vpn/auth" = {};
       "remotes/windows/password" = {};
       "api-keys/openai" = {};
       "api-keys/anthropic" = {};

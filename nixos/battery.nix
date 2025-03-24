@@ -71,6 +71,8 @@
     '' # fix keyboard autosuspend
     + ''
       ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="0b05", ATTR{idProduct}=="1a96", ATTR{power/autosuspend}="-1", ATTR{power/control}="on"
+      ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="0853", ATTR{idProduct}=="0146", ATTR{power/autosuspend}="-1", ATTR{power/control}="on"
+       ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="0853", ATTRS{idProduct}=="0146", ATTRS{manufacturer}=="Topre", ATTRS{product}=="REALFORCE 87 US", ATTR{power/autosuspend}="-1", ATTR{power/control}="on"
     '';
 
   powerManagement = {

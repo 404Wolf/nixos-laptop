@@ -1,11 +1,11 @@
-{
+{config, ...}: {
   imports = [
     ./git
     ./tmux
     ./yazi
     ./zsh
     ./extras.nix
-    ./gpt.nix
+    ./gpt
     ./rbw.nix
     ./go.nix
     ./direnv.nix
@@ -14,5 +14,9 @@
 
   programs = {
     home-manager.enable = true;
+  };
+
+  home.sessionVariables = {
+    PATH = "${config.home.homeDirectory}/.deno/bin:$PATH";
   };
 }

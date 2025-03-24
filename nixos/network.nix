@@ -1,4 +1,11 @@
 {options, ...}: {
+  programs.captive-browser = {
+    enable = true;
+    interface = "wlp1s0";
+  };
+
+  services.resolved.enable = true;
+
   # Max out our networking options, like using super large window sizes, etc
   boot.kernel.sysctl = {
     "net.ipv4.tcp_adv_win_scale" = "4";
@@ -18,10 +25,8 @@
 
   # Configure general network settings, like nameservers, etc
   networking = {
-    nameservers = ["1.1.1.1" "8.8.4.4" "8.8.8.8"];
     networkmanager = {
       enable = true;
-      appendNameservers = ["1.1.1.1" "8.8.4.4" "8.8.8.8"];
     };
     hosts = {
       "127.0.0.1" = ["localdomain"];
@@ -35,7 +40,7 @@
 
   # Setup dnsmasq to use the local nameserver
   services.dnsmasq = {
-    enable = true;
+    enable = false;
     settings = {
       address = ["/nameserver/127.0.0.1"];
     };

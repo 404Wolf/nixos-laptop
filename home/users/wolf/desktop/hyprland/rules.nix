@@ -18,9 +18,9 @@ in
   ++ mkRule ["workspace special:4"] "class" "remmina"
   ++ mkRule ["workspace special:2"] "class" "Bitwarden"
   # Set up floating apps
-  ++ mkRule ["float"] "class" "Qalculate"
+  ++ mkRule ["float" "pin"] "class" "Qalculate"
   ++ mkRule ["size 40% 33%" "float"] "class" "sxiv"
-  ++ mkRule ["size 60% 70%" "float"] "class" "nemo"
+  ++ mkRule ["size 60% 70%" "float" "pin"] "class" "nemo"
   ++ mkRule ["size 70% 60%" "float"] "class" "cheese"
   ++ mkRule ["size 60% 70%" "float"] "class" "zenity"
   ++ mkRule ["size 30% 45%" "float"] "class" "io.github.Qalculate.qalculate-qt"
@@ -28,7 +28,7 @@ in
   ++ mkRule ["size 30% 60%" "pin" "float"] "class" ".blueman-manager-wrapped"
   ++ mkRule ["size 60% 50%" "float" "pin"] "class" "nm-connection-editor"
   ++ mkRule ["size 60% 50%" "float"] "title" "Write: "
-  ++ mkRule ["size 60% 50%" "float"] "class" "org.pulseaudio.pavucontrol"
+  ++ mkRule ["size 60% 50%" "float" "pin"] "class" "org.pulseaudio.pavucontrol"
   # Chat app rules
   ++ mkRule presets.chat "class" "discord"
   ++ mkRule presets.chat "class" "signal"
