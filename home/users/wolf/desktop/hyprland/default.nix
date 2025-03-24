@@ -1,4 +1,5 @@
 {
+  inputs,
   config,
   osConfig,
   pkgs,
@@ -45,6 +46,7 @@ in {
       ];
       env = [
         "QT_QPA_PLATFORM,wayland;xcb"
+        "HYPRCURSOR_SIZE,22"
       ];
       ecosystem = {
         no_donation_nag = true;

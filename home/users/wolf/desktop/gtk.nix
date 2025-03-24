@@ -21,10 +21,10 @@ in {
       name = "Zafiro-icons-Dark";
     };
 
-    cursorTheme = {
-      package = pkgs.graphite-cursors;
-      name = "graphite-dark";
-      size = 17;
-    };
+    # cursorTheme = {
+    #   package = pkgs.graphite-cursors;
+    #   name = "graphite-dark";
+    #   size = 17;
+    # };
   };
 }
