@@ -86,14 +86,6 @@
     };
   };
 
-  # XDG portal
-  xdg.portal = {
-    enable = true;
-    extraPortals = [
-      pkgs.xdg-desktop-portal-hyprland
-    ];
-  };
-
   # Security
   security.rtkit.enable = true;
 

@@ -37,6 +37,10 @@ in {
     enable = true;
     systemd.variables = ["--all"];
     xwayland.enable = true;
+
+    package = inputs.hyprland.packages.${system}.hyprland;
+    portalPackage = inputs.hyprland.packages.${system}.xdg-desktop-portal-hyprland;
+
     settings = {
       source = "~/.config/hypr/monitors.conf";
       exec-once = import ./execs.nix {inherit pkgs config osConfig;};
@@ -46,13 +50,10 @@ in {
       ];
       env = [
         "QT_QPA_PLATFORM,wayland;xcb"
-        "HYPRCURSOR_SIZE,22"
+        "XCURSOR_SIZE,22"
       ];
       ecosystem = {
         no_donation_nag = true;
-      };
-      cursor = {
-        no_hardware_cursors = 1;
       };
       general = {
         allow_tearing = false;
@@ -85,8 +86,8 @@ in {
         };
       };
       input = {
-        repeat_rate = 25; # Repeat rate in ms between key repeats
-        repeat_delay = 170; # Delay in ms before key starts repeating
+        repeat_rate = 20; # Repeat rate in ms between key repeats
+        repeat_delay = 150; # Delay in ms before key starts repeating
         scroll_button = 274; # 274 = scroll button
         scroll_button_lock = false;
         scroll_method = "on_button_down";

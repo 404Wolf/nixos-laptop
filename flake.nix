@@ -34,6 +34,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    hyprland.url = "github:hyprwm/Hyprland";
+    hyprlock.url = "github:hyprwm/hyprlock";
     hyprland-workspace2d = {
       url = "github:404wolf/Hyprland-Workspace-2D";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -77,7 +79,7 @@
             hyprland-workspace2d = inputs.hyprland-workspace2d.packages.${system}.workspace2d;
           })
           (oldAttrs: newAttrs: {
-            nwg-displays = pkgs-stable.nwg-displays;
+            pfrintd = pkgs-stable.fprintd;
           })
           inputs.nur.overlays.default
         ];

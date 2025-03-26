@@ -1,23 +1,30 @@
-{config, ...}: {
+{
+  config,
+  inputs,
+  system,
+  ...
+}: {
   programs.hyprlock = {
-    enable = true;
+    package = inputs.hyprland.packages.${system}.hyprlock;
+    enable = false;
     settings = {
       auth = {
         "fingerprint:enabled" = true;
       };
-      animation = [
-        "global:fadeOut, 0.2,1 0.5, linear"
-      ];
       general = {
         grace = 5;
-        hide_cursor = true;
+        hide_cursor = false;
         no_fade_in = false;
+        screencopy_mode = true;
+        disable_loading_bar = true;
+        immediate_render = true;
       };
       background = [
         {
           path = config.my.variables.wallpaper-path;
           blur_passes = 0;
           blur_size = 3;
+          reload_time = 10;
         }
       ];
       input-field = [
@@ -42,7 +49,6 @@
         {
           "monitor" = "";
           "text" = ''cmd[update:1000] echo "$(date +"%H:%M")"'';
-          "color" = "$foreground";
           "#color" = "rgba(255, 255, 255, 0.6)";
           "font_size" = 110;
           "font_family" = "monospace";
@@ -53,7 +59,6 @@
         {
           "monitor" = "";
           "text" = "Salutations, $USER!";
-          "color" = "$foreground";
           "font_size" = 23;
           "font_family" = "monospace";
           "position" = "0, -40";
@@ -63,7 +68,6 @@
         {
           "monitor" = "";
           "text" = "$FPRINTPROMPT";
-          "color" = "$foreground";
           "font_size" = 16;
           "font_family" = "monospace";
           "position" = "0, 20";

@@ -9,6 +9,7 @@
     ./nvidia.nix
     ./fprintd.nix
     ./secure.nix
+    ./opengl.nix
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 

@@ -20,11 +20,12 @@ in {
       package = pkgs.zafiro-icons;
       name = "Zafiro-icons-Dark";
     };
+  };
 
-    # cursorTheme = {
-    #   package = pkgs.graphite-cursors;
-    #   name = "graphite-dark";
-    #   size = 17;
-    # };
+  home.pointerCursor = {
+    gtk.enable = true;
+    package = pkgs.graphite-cursors;
+    name = "graphite-dark";
+    size = 17;
   };
 }
