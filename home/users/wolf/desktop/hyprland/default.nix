@@ -39,7 +39,7 @@ in {
     xwayland.enable = true;
 
     package = inputs.hyprland.packages.${system}.hyprland;
-    portalPackage = inputs.hyprland.packages.${system}.xdg-desktop-portal-hyprland;
+    # portalPackage = inputs.hyprland.packages.${system}.xdg-desktop-portal-hyprland;
 
     settings = {
       source = "~/.config/hypr/monitors.conf";
@@ -52,9 +52,9 @@ in {
         "QT_QPA_PLATFORM,wayland;xcb"
         "XCURSOR_SIZE,22"
       ];
-      ecosystem = {
-        no_donation_nag = true;
-      };
+      # ecosystem = {
+      # no_donation_nag = true;
+      # };
       general = {
         allow_tearing = false;
         gaps_in = 1;

@@ -6,7 +6,7 @@
 }: {
   programs.hyprlock = {
     package = inputs.hyprlock.packages.${system}.hyprlock;
-    enable = false;
+    enable = true;
     settings = {
       auth = {
         "fingerprint:enabled" = true;
