@@ -38,6 +38,7 @@
     nodejs_20
     deno
     bun
+    sd
     mise
     (python3.withPackages (pyPkgs:
       with pyPkgs; [

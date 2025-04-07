@@ -6,7 +6,6 @@
   # Import additional configuration files
   imports = [
     ./mounts.nix
-    ./nvidia.nix
     ./fprintd.nix
     ./secure.nix
     ./opengl.nix

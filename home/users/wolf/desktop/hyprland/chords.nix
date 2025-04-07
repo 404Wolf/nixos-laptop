@@ -31,7 +31,7 @@ in
     name = "capture";
     bind = "$MOD SHIFT, S";
     body = ''
-      bind=, G, exec, env FPS=50 QUALITY=100 SAVE=1 ${pkgs.capture-utils}/bin/capture-gif
+      bind=, G, exec, ${pkgs.capture-utils}/bin/capture-gif
       bind=, D, exec, ${pkgs.capture-utils}/bin/dump-clipboard
       bind=SHIFT, D, exec, SAVE=1 ${pkgs.capture-utils}/bin/dump-clipboard
       bind=, S, exec, ${pkgs.capture-utils}/bin/partial-screenshot
