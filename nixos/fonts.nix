@@ -7,8 +7,6 @@
       pkgs.font-awesome
       pkgs.liberation_ttf
       pkgs.mplus-outline-fonts.githubRelease
-      # pkgs.nerd-fonts.lilex
-      # pkgs.nerd-fonts.hack
       pkgs.nerdfonts
       pkgs.noto-fonts
       pkgs.noto-fonts-emoji

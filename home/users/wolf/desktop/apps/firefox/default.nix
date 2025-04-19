@@ -1,6 +1,6 @@
 {pkgs, ...}: {
   programs.firefox = {
-    enable = false;
+    enable = true;
     package = pkgs.firefox;
     policies = {
       DisableTelemetry = true;
@@ -21,7 +21,7 @@
         id = 0;
         userChrome = builtins.readFile ./userChrome.css;
         settings = import ./settings.nix;
-        extensions.packages = import ./extensions.nix {inherit pkgs;};
+        extensions = import ./extensions.nix {inherit pkgs;};
         search.order = [
           "Google"
           "NixOS-Wiki"

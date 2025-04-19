@@ -5,7 +5,6 @@
   ...
 }: {
   imports = [
-    # ./kubernetes.nix
     ./audio.nix
     ./hardware
     ./misc

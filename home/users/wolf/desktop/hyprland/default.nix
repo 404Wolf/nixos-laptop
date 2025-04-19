@@ -38,9 +38,6 @@ in {
     systemd.variables = ["--all"];
     xwayland.enable = true;
 
-    package = inputs.hyprland.packages.${system}.hyprland;
-    # portalPackage = inputs.hyprland.packages.${system}.xdg-desktop-portal-hyprland;
-
     settings = {
       source = "~/.config/hypr/monitors.conf";
       exec-once = import ./execs.nix {inherit pkgs config osConfig;};

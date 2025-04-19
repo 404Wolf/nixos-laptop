@@ -1,9 +1,14 @@
-{...}: {
+{pkgs, ...}: {
+  "search.exclude" = {
+    ".*" = true;
+  };
   "files.autoSave" = "afterDelay";
   "window.titleBarStyle" = "custom"; # Necessary or VSCode crashes
+
   "workbench.colorTheme" = "Default High Contrast";
   "workbench.startupEditor" = "none";
   "workbench.sideBar.location" = "right";
+
   "editor.inlineSuggest.enabled" = true;
   "github.copilot.enable" = {
     "*" = true;
@@ -44,6 +49,7 @@
     "missin"
   ];
   "rust-analyzer.server.path" = "rust-analyzer";
+
   "[nginx]" = {
     "editor.defaultFormatter" = "raynigon.nginx-formatter";
   };
@@ -66,7 +72,6 @@
   "[typescript]" = {
     "editor.defaultFormatter" = "vscode.typescript-language-features";
   };
-  "svg.preview.mode" = "svg";
   "[svg]" = {
     "editor.defaultFormatter" = "jock.svg";
   };
@@ -85,18 +90,27 @@
   "[typst]" = {
     "editor.defaultFormatter" = "myriad-dreamin.tinymist";
   };
+
+  "svg.preview.mode" = "svg";
+
   "latex-workshop.view.outline.sections" = [
     "chapter"
     "section"
     "subsection"
     "subsubsection"
   ];
+
   "prettier.printWidth" = "98";
   "prettier.tabWidth" = "4";
-  "typst-lsp.experimentalFormatterMode" = "on";
-  "typst-lsp.serverPath" = "typst-lsp";
+
   "tinymist.formatterMode" = "typstyle";
   "git.enableSmartCommit" = true;
+
+  "typst-lsp.experimentalFormatterMode" = "on";
+  "typst-lsp.serverPath" = "typst-lsp";
+
+  "vim.enableNeovim" = true;
+  "vim.neovimPath" = "${pkgs.neovim}/bin/nvim";
   "vim.useSystemClipboard" = false;
   "vim.leader" = "<space>";
   "vim.highlightedyank.enable" = true;
@@ -106,70 +120,39 @@
   "vim.normalModeKeyBindings" = [
     {
       before = ["<C-u>"];
-      after = [
-        "<C-u>"
-        "z"
-        "z"
-      ];
+      after = ["<C-u>" "z" "z"];
     }
     {
       before = ["<C-d>"];
-      after = [
-        "<C-d>"
-        "z"
-        "z"
-      ];
+      after = ["<C-d>" "z" "z"];
     }
     {
-      before = [
-        "g"
-        "r"
-        "n"
-      ];
+      before = ["g" "n" "r"];
       commands = ["editor.action.rename"];
     }
     # Open the command palette
     {
-      before = [
-        "<leader>"
-        "f"
-        "p"
-      ];
+      before = ["<leader>" "f" "p"];
       commands = ["workbench.action.showCommands"];
     }
     # Do a search across all files
     {
-      before = [
-        "<leader>"
-        "f"
-        "g"
-      ];
+      before = ["<leader>" "f" "g"];
       commands = ["workbench.action.findInFiles"];
     }
     # Open the file finding search
     {
-      before = [
-        "<leader>"
-        "f"
-        "f"
-      ];
+      before = ["<leader>" "f" "f"];
       commands = ["workbench.action.quickOpen"];
     }
     # Code actions
     {
-      before = [
-        "g"
-        "r"
-        "a"
-      ];
+      before = ["g" "r" "a"];
       commands = ["editor.action.quickFix"];
     }
     # Go to definition
     {
-      before = [
-        "g"
-        "d"
-      ];
+      before = ["g" "d"];
       commands = ["editor.action.goToDeclaration"];
     }
 
@@ -182,23 +165,31 @@
     # Regular Navigation
     {
       before = ["o"];
-      after = [
-        "A"
-        "Enter"
-      ];
+      after = ["A" "Enter"];
     }
     {
       before = ["O"];
-      after = [
-        "I"
-        "Enter"
-        "Up"
-      ];
+      after = ["I" "Enter" "Up"];
     }
     {
       before = ["<leader>" "p" "p"];
       commands = ["editor.action.formatDocument"];
     }
+
+    # Diagnostic Navigation
+    {
+      before = ["[" "d"];
+      commands = ["editor.action.marker.prev"];
+    }
+    {
+      before = ["]" "d"];
+      commands = ["editor.action.marker.next"];
+    }
+
+    # Git commands
+    {
+      before = ["<leader>" "f" "h" "h"];
+      commands = ["gitlens.quickOpenFileHistory"];
+    }
   ];
-  "vim.enableNeovim" = true;
 }

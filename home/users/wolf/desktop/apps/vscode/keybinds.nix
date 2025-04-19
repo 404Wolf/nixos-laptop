@@ -4,6 +4,28 @@
     command = "workbench.action.closeActiveEditor";
   }
   {
+    key = "shift+alt+,";
+    command = "workbench.action.moveEditorLeftInGroup";
+    when = "editorTextFocus";
+  }
+  {
+    key = "shift+alt+.";
+    command = "workbench.action.moveEditorRightInGroup";
+    when = "editorTextFocus";
+  }
+  {
+    key = "alt+,";
+    command = "workbench.action.previousEditor";
+    when = "editorTextFocus";
+  }
+  {
+    key = "alt+.";
+    command = "workbench.action.nextEditor";
+    when = "editorTextFocus";
+  }
+]
+++ [
+  {
     key = "ctrl+n";
     command = "workbench.action.toggleSidebarVisibility";
   }

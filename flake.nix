@@ -34,8 +34,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    hyprland.url = "github:hyprwm/Hyprland";
-    hyprlock.url = "github:hyprwm/hyprlock";
     hyprland-workspace2d = {
       url = "github:404wolf/Hyprland-Workspace-2D";
       inputs.nixpkgs.follows = "nixpkgs";

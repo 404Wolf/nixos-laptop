@@ -1,10 +1,14 @@
 {options, ...}: {
+  imports = [
+    # ./dnsmasq.nix
+  ];
+
+  services.resolved.enable = true;
+
   programs.captive-browser = {
     enable = true;
     interface = "wlp1s0";
   };
-
-  services.resolved.enable = true;
 
   # Max out our networking options, like using super large window sizes, etc
   boot.kernel.sysctl = {
@@ -37,12 +41,4 @@
 
   # Enable tailscale
   services.tailscale.enable = true;
-
-  # Setup dnsmasq to use the local nameserver
-  services.dnsmasq = {
-    enable = false;
-    settings = {
-      address = ["/nameserver/127.0.0.1"];
-    };
-  };
 }

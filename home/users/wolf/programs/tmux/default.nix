@@ -46,10 +46,6 @@
         bind | split-window -h -c "#{pane_current_path}"
         bind - split-window -v -c "#{pane_current_path}"
 
-        # Be faster switching windows
-        bind C-n next-window
-        bind C-p previous-window
-
         # Force true colors
         set-option -ga terminal-overrides ",*:Tc"
 
