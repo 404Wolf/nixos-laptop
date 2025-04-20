@@ -34,6 +34,7 @@ in
       bind=, G, exec, ${pkgs.capture-utils}/bin/capture-gif
       bind=, V, exec, ${pkgs.capture-utils}/bin/capture-video
       bind=, S, exec, ${pkgs.capture-utils}/bin/capture-image
+      bind=, D, exec, SCREENSHOT_DELAY=3 ${pkgs.capture-utils}/bin/capture-image
     '';
   }
   + mkSubmap {
