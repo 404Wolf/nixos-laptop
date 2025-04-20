@@ -22,11 +22,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1745074888,
-        "narHash": "sha256-O/B80C5IVBhjn5ugVn/0blc3+NfnzXofqxvKDtsSuTk=",
+        "lastModified": 1745172433,
+        "narHash": "sha256-Ar56XosUKaXjutzlQkPgZeAsQthzmuL+Yrr3nl9tzP8=",
         "owner": "404Wolf",
         "repo": "Screen-Capture",
-        "rev": "641ea1b459bcec738b11377df549ae6c579c60fa",
+        "rev": "c0850b840948e80ba75b1268a8cf96361d7a3a10",
         "type": "github"
       },
       "original": {
