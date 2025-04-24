@@ -1,6 +1,5 @@
 /* Hide tab bar in FF Quantum */
-@-moz-document url("chrome://browser/content/browser.xul")
-{
+@-moz-document url("chrome://browser/content/browser.xul") {
   #TabsToolbar {
     visibility: collapse !important;
     margin-bottom: 21px !important;

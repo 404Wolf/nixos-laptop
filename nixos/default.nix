@@ -6,6 +6,7 @@
 }: {
   imports = [
     ./audio.nix
+    ./cloudflare.nix
     ./hardware
     ./misc
     ./fonts.nix
