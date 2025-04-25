@@ -19,6 +19,7 @@
       "accounts/wsm32_case/password" = {};
       "accounts/pia_vpn/auth" = {};
       "remotes/windows/password" = {};
+      "remotes/cloudflare/404wolf" = {};
       "api-keys/openai" = {};
       "api-keys/anthropic" = {};
       "api-keys/valtown" = {};
