@@ -19,15 +19,9 @@ in {
     zsh.initExtra =
       # bash
       ''
-        if ! pidof Hyprland >/dev/null; then
-          if uwsm check may-start 2>/dev/null && uwsm select; then
-            exec systemd-cat -t uwsm_start uwsm start default
-          fi
-        fi
-
         unlock_hyprland() {
           hyprctl --instance 0 'keyword misc:allow_session_lock_restore 1'
-          killall -9 hyprlock
+          ${pkgs.killall}/bin/killall -9 hyprlock
           hyprctl --instance 0 'dispatch exec hyprlock'
         }
       '';

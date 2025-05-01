@@ -107,4 +107,10 @@ in
       version = "1.25.0";
       sha256 = "sha256-UNMpauEPr/K8vLy/lS1Oni4EfBceM9TI6/6713tKS5Y=";
     }
+    {
+      name = "copilot";
+      publisher = "Github";
+      version = "1.311.0";
+      sha256 = "sha256-TXentIAJ9pZZeM6XbdsIMd0KJ5sFsXjKx377I9oKczQ=";
+    }
   ]

@@ -33,27 +33,16 @@
     initExtra =
       # bash
       ''
-        set -o vi
-
         function hyprland() {
           if ! sudo -v; then
            echo "Error: Failed to obtain sudo privileges"
            return 1
           fi
 
-          # Start Hyprland with max priority
           Hyprland &
-
-          # Wait for Hyprland to start
           sleep 2
-
-          # Get Hyprland PID
           HYPRLAND_PID=$(pgrep Hyprland)
-
-          # Set OOM score
           sudo echo -1000 > /proc/$HYPRLAND_PID/oom_score_adj
-
-          # Set process priority
           sudo renice -n -15 -p $HYPRLAND_PID
         }
       '';

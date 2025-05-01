@@ -22,11 +22,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1745172433,
-        "narHash": "sha256-Ar56XosUKaXjutzlQkPgZeAsQthzmuL+Yrr3nl9tzP8=",
+        "lastModified": 1746002967,
+        "narHash": "sha256-GAt8ZggW0Ot/LTzr0FMx7vBNaxidctwAnCXneXol0JA=",
         "owner": "404Wolf",
         "repo": "Screen-Capture",
-        "rev": "c0850b840948e80ba75b1268a8cf96361d7a3a10",
+        "rev": "70bb6667e0736c72c807a3b0cebf932edea3f8e9",
         "type": "github"
       },
       "original": {
@@ -987,6 +987,21 @@
         "type": "github"
       }
     },
+    "nixpkgs-dev": {
+      "locked": {
+        "lastModified": 1745731301,
+        "narHash": "sha256-2DZgcq2sylQuml+L6FOh8eWMoMGGbNHM7Ls56iBQPX0=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "1ee8b713821882c66f5ecfde5c4e5874b1cb5e2f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixpkgs-lib": {
       "locked": {
         "lastModified": 1697935651,
@@ -1015,6 +1030,22 @@
         "owner": "NixOS",
         "repo": "nixpkgs",
         "rev": "68c9ed8bbed9dfce253cc91560bf9043297ef2fe",
+        "type": "github"
+      }
+    },
+    "nixpkgs-unstable": {
+      "locked": {
+        "lastModified": 1745930157,
+        "narHash": "sha256-y3h3NLnzRSiUkYpnfvnS669zWZLoqqI6NprtLQ+5dck=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "46e634be05ce9dc6d4db8e664515ba10b78151ae",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
         "type": "github"
       }
     },
@@ -1226,11 +1257,11 @@
     },
     "nixpkgs_9": {
       "locked": {
-        "lastModified": 1743813633,
-        "narHash": "sha256-BgkBz4NpV6Kg8XF7cmHDHRVGZYnKbvG0Y4p+jElwxaM=",
+        "lastModified": 1745487689,
+        "narHash": "sha256-FQoi3R0NjQeBAsEOo49b5tbDPcJSMWc3QhhaIi9eddw=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "7819a0d29d1dd2bc331bec4b327f0776359b1fa6",
+        "rev": "5630cf13cceac06cefe9fc607e8dfa8fb342dde3",
         "type": "github"
       },
       "original": {
@@ -1460,6 +1491,8 @@
         "nixGpt": "nixGpt",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_9",
+        "nixpkgs-dev": "nixpkgs-dev",
+        "nixpkgs-unstable": "nixpkgs-unstable",
         "nur": "nur",
         "remarkable-connection-utility": "remarkable-connection-utility",
         "remarkable-obsidian": "remarkable-obsidian",

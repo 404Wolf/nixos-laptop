@@ -3,6 +3,7 @@
   buildFirefoxXpiAddon = pkgs.nur.repos.rycee.firefox-addons.buildFirefoxXpiAddon;
 in
   [
+    firefox-addons.multi-account-containers
     firefox-addons.ublock-origin
     firefox-addons.bitwarden
     firefox-addons.clearurls

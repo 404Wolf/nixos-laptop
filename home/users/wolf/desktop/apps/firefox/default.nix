@@ -56,6 +56,18 @@
           };
         };
         containersForce = true;
+        containers = {
+          Valtown = {
+            id = 1;
+            color = "turquoise";
+            icon = "circle";
+          };
+          Case = {
+            id = 2;
+            color = "red";
+            icon = "circle";
+          };
+        };
       };
     };
   };

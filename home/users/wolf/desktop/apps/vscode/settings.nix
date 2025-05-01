@@ -1,4 +1,6 @@
 {pkgs, ...}: {
+  "chat.setupFromDialog" = false;
+
   "search.exclude" = {
     ".*" = true;
   };

@@ -3,6 +3,8 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-dev.url = "github:nixos/nixpkgs";
     home-manager.url = "github:nix-community/home-manager/release-24.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     treefmt-nix.url = "github:numtide/treefmt-nix";
@@ -43,6 +45,8 @@
   outputs = {
     self,
     nixpkgs,
+    nixpkgs-dev,
+    nixpkgs-unstable,
     flake-utils,
     home-manager,
     nixos-hardware,
@@ -59,10 +63,14 @@
       permittedInsecurePackages = ["electron-25.9.0" "electron-32.3.3"];
     };
 
+    pkgs-dev = import nixpkgs-dev pkgs-options;
+    pkgs-unstable = import nixpkgs-unstable pkgs-options;
     pkgs = import nixpkgs (pkgs-options
       // {
         overlays = [
           (final: prev: {
+            beeper = pkgs-dev.beeper;
+            firefox-devedition = pkgs-dev.firefox-devedition;
             wrappedNvim = inputs.nix-neovim.packages.${system}.default;
             capture-utils = inputs.capture-utils.packages.${system}.default;
             dalleCLI = inputs.dalleCLI.packages.${system}.default;

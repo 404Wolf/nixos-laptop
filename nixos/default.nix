@@ -16,7 +16,6 @@
     ./battery.nix
     ./users.nix
     ./pam.nix
-    ./wayland.nix
     ./printing.nix
     (inputs.nix-index-database.nixosModules.nix-index)
   ];
@@ -78,7 +77,6 @@
   programs = {
     nix-index-database.comma.enable = true;
     dconf.enable = true;
-    hyprland.enable = true;
     zsh.enable = true;
     mtr.enable = true;
     gnupg.agent = {
