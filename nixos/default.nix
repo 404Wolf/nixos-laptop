@@ -23,6 +23,9 @@
   # Clock time
   time.timeZone = "America/New_York";
 
+  # Pinentry
+  programs.gnupg.agent.pinentryPackage = pkgs.pinentry-qt;
+
   # Hardware configuration
   boot = {
     extraModulePackages = [config.boot.kernelPackages.acpi_call];

@@ -38,6 +38,13 @@ in
     '';
   }
   + mkSubmap {
+    name = "power";
+    bind = "$MOD SHIFT, P";
+    body = ''
+      bind=, H, exec, systemctl hibernate
+    '';
+  }
+  + mkSubmap {
     name = "windowManipulate";
     bind = "$MOD, Return";
     body = ''

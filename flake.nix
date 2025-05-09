@@ -45,7 +45,6 @@
   outputs = {
     self,
     nixpkgs,
-    nixpkgs-dev,
     nixpkgs-unstable,
     flake-utils,
     home-manager,
@@ -63,14 +62,14 @@
       permittedInsecurePackages = ["electron-25.9.0" "electron-32.3.3"];
     };
 
-    pkgs-dev = import nixpkgs-dev pkgs-options;
     pkgs-unstable = import nixpkgs-unstable pkgs-options;
     pkgs = import nixpkgs (pkgs-options
       // {
         overlays = [
           (final: prev: {
-            beeper = pkgs-dev.beeper;
-            firefox-devedition = pkgs-dev.firefox-devedition;
+            firefox-devedition = pkgs-unstable.firefox-devedition;
+            beeper = pkgs-unstable.beeper;
+
             wrappedNvim = inputs.nix-neovim.packages.${system}.default;
             capture-utils = inputs.capture-utils.packages.${system}.default;
             dalleCLI = inputs.dalleCLI.packages.${system}.default;

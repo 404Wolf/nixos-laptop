@@ -22,6 +22,7 @@
     playerctl
     cpulimit
     cliphist
+    ungoogled-chromium
     usbutils
 
     # Networking & File Management

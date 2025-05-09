@@ -67,6 +67,11 @@
             color = "red";
             icon = "circle";
           };
+          Tinkering = {
+            id = 3;
+            color = "green";
+            icon = "circle";
+          };
         };
       };
     };
