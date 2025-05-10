@@ -6,17 +6,17 @@
 }: {
   imports = [
     ./audio.nix
+    ./battery.nix
     ./cloudflare.nix
+    ./fonts.nix
     ./hardware
     ./misc
-    ./fonts.nix
     ./network.nix
-    ./virt.nix
-    ./remotes.nix
-    ./battery.nix
-    ./users.nix
     ./pam.nix
     ./printing.nix
+    ./remotes.nix
+    ./users.nix
+    ./virt.nix
     (inputs.nix-index-database.nixosModules.nix-index)
   ];
 

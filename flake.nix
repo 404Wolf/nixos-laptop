@@ -100,7 +100,7 @@
       nixosConfigurations.default = nixpkgs.lib.nixosSystem rec {
         inherit system pkgs;
         specialArgs = {
-          inherit inputs pkgs-unstable;
+          inherit inputs pkgs-unstable system;
           helpers = utils;
           nix-colors = inputs.nix-colors;
         };

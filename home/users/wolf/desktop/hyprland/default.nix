@@ -2,6 +2,7 @@
   config,
   osConfig,
   pkgs,
+  inputs,
   system,
   ...
 }: let
@@ -43,9 +44,9 @@ in {
         "QT_QPA_PLATFORM,wayland;xcb"
         "XCURSOR_SIZE,22"
       ];
-      # ecosystem = {
-      # no_donation_nag = true;
-      # };
+      ecosystem = {
+        no_donation_nag = true;
+      };
       general = {
         allow_tearing = false;
         gaps_in = 1;

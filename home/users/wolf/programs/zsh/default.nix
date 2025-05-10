@@ -30,21 +30,5 @@
     sessionVariables = {
       TERM = "xterm-256color";
     };
-    initExtra =
-      # bash
-      ''
-        function hyprland() {
-          if ! sudo -v; then
-           echo "Error: Failed to obtain sudo privileges"
-           return 1
-          fi
-
-          Hyprland &
-          sleep 2
-          HYPRLAND_PID=$(pgrep Hyprland)
-          sudo echo -1000 > /proc/$HYPRLAND_PID/oom_score_adj
-          sudo renice -n -15 -p $HYPRLAND_PID
-        }
-      '';
   };
 }
