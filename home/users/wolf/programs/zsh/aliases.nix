@@ -27,6 +27,7 @@ in {
     + "ANTHROPIC_API_KEY=$(cat ${passwordFiles.anthropic}) "
     + "OPENAI_API_KEY=$(cat ${passwordFiles.openai}) "
     + "${pkgs-unstable.gpt-cli}/bin/gpt";
+  gpt-tmux = "${pkgs.writeShellScriptBin "gpt-tmux" (builtins.readFile ./scripts/gpt-tmux.sh)}/bin/gpt-tmux";
   dalle =
     "OPENAI_API_KEY=$(cat ${passwordFiles.openai}) "
     + "${pkgs.dalleCLI}/bin/dallecli";

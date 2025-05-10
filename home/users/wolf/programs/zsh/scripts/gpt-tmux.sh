@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 tmux rename-window -t :0 'gemini-flash'
 tmux send-keys -t :0 "gpt general-gemini-2.0-flash" C-m
