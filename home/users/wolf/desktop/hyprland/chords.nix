@@ -31,10 +31,10 @@ in
     name = "capture";
     bind = "$MOD SHIFT, S";
     body = ''
-      bind=, G, exec, ${pkgs.capture-utils}/bin/capture-gif
-      bind=, V, exec, ${pkgs.capture-utils}/bin/capture-video
-      bind=, S, exec, ${pkgs.capture-utils}/bin/capture-image
-      bind=, D, exec, SCREENSHOT_DELAY=3 ${pkgs.capture-utils}/bin/capture-image
+      bind=, G, exec, sh -c '${pkgs.capture-utils}/bin/screen-capture gif'
+      bind=, V, exec, sh -c '${pkgs.capture-utils}/bin/screen-capture video'
+      bind=, S, exec, sh -c '${pkgs.capture-utils}/bin/screen-capture image'
+      bind=, D, exec, SCREENSHOT_DELAY=3 ${pkgs.capture-utils}/bin/screen-capture image
     '';
   }
   + mkSubmap {

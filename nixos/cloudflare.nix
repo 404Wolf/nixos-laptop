@@ -20,8 +20,8 @@
         runtimeInputs = [pkgs.cloudflared];
       }}/bin/cloudflared-tunnel";
       Restart = "always";
-      User = "cloudflared";
-      Group = "cloudflared";
+      User = "wolf";
+      Group = "users";
     };
   };
 }

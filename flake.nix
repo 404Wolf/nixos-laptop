@@ -25,7 +25,6 @@
     nix-neovim.url = "github:404Wolf/nix-neovim";
     capture-utils.url = "github:404Wolf/Screen-Capture";
     dalleCLI.url = "github:404Wolf/DALLE-CLI";
-    nixGpt.url = "github:404Wolf/nixified-gpt-cli";
     remarkable-connection-utility.url = "github:/404wolf/remarkable-connection-utility";
     remarkable-obsidian.url = "github:404Wolf/remarkable-obsidian";
     cartographcf.url = "github:404Wolf/CartographCF";
@@ -80,6 +79,7 @@
             dashToDock = inputs.dashToDock.packages.${system}.default;
             valfs = inputs.valfs.packages.${system}.default;
             firefox-addons = inputs.firefox-addons.packages.${system};
+
             hyprland-workspace2d = inputs.hyprland-workspace2d.packages.${system}.workspace2d;
           })
           inputs.nur.overlays.default
@@ -100,7 +100,7 @@
       nixosConfigurations.default = nixpkgs.lib.nixosSystem rec {
         inherit system pkgs;
         specialArgs = {
-          inherit inputs;
+          inherit inputs pkgs-unstable;
           helpers = utils;
           nix-colors = inputs.nix-colors;
         };

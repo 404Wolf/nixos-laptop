@@ -1,8 +1,8 @@
 {
-  inputs,
   config,
   osConfig,
   pkgs,
+  pkgs-unstable,
   system,
   ...
 }: let
@@ -29,6 +29,8 @@ in {
 
   wayland.windowManager.hyprland = {
     enable = true;
+    package = pkgs-unstable.hyprland;
+
     systemd.variables = ["--all"];
     xwayland.enable = true;
 

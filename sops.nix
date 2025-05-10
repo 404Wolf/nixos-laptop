@@ -20,6 +20,7 @@
       "accounts/pia_vpn/auth" = {};
       "remotes/windows/password" = {};
       "remotes/cloudflare/404wolf" = {};
+      "api-keys/google" = {};
       "api-keys/openai" = {};
       "api-keys/anthropic" = {};
       "api-keys/valtown" = {};

@@ -28,6 +28,7 @@
     # Networking & File Management
     rclone
     xdg-utils
+    magic-wormhole
 
     # Development & Programming Tools
     gcc

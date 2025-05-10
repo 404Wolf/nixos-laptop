@@ -58,6 +58,11 @@
         # Control a, control c, to change the working directory
         bind C-c command-prompt -p "New working directory:" "attach -c '%%'"
       ''
+      + ''
+        # Custom layouts
+
+        bind-key l g run-shell ${pkgs.writeShellScript "gpt-layout" ./scripts/gpt-layout.sh}
+      ''
       + (helpers.template ./template.mustache config.colorScheme.palette);
   };
 }

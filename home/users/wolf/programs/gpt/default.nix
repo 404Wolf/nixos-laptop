@@ -1,5 +1,8 @@
-{config, ...}: let
-  # Available models
+{
+  pkgs,
+  config,
+  ...
+}: let
   models = [
     "claude-3-opus-latest"
     "claude-3-5-sonnet-latest"
@@ -7,33 +10,35 @@
     "gpt-4o"
     "gpt-4o-mini"
     "o1"
+    "gemini-2.0-flash"
+    "gemini-2.5-pro"
   ];
 
-  # System prompts for different response styles
   styles = {
     general = {
       role = "system";
       content = ''
         You are a helpful assistant. Provide simple examples when relevant, answer questions clearly.
 
-        If you are asked to change or provide code, plan before you start. Use codeblocks with language tags for code.
+        When asked to change or provide code, plan before you start. Use codeblocks with language tags for code.
           1. List requirements
           2. Outline approach and considerations
           3. Ask for clarification if needed
-        If you are asked to change code or add something to it, always provide the exact same code provided, but with the requested changes, and keep their comments, docstrings, etc, and don't use "..."s.
       '';
     };
     tldr = {
       role = "system";
-      content = "Provide extremely concise responses. Use bullet points when possible. Only give examples if asked.";
+      content = "You are a helpful assistant. Answer questions with concise bullet points. Dive right into the point without leader.";
     };
     townie = {
       role = "system";
-      content = builtins.readFile ./townie.md;
+      content = pkgs.fetchurl {
+        url = "https://esm.town/v/std/vtEditorFiles/.cursorrules";
+        hash = "sha256-t0BWARHt5/b2g5pHOpvYdFjOS144vObskzRzncwMmaU=";
+      };
     };
   };
 
-  # Generate assistant configurations
   makeAssistants = builtins.listToAttrs (
     builtins.concatLists (
       builtins.map (
