@@ -1,11 +1,6 @@
-{
-  pkgs,
-  pkgs-unstable,
-  ...
-}: {
+{pkgs, ...}: {
   services.hypridle = {
     enable = true;
-    package = pkgs-unstable.hypridle;
 
     settings = {
       general = {

@@ -1,11 +1,6 @@
-{
-  config,
-  pkgs-unstable,
-  ...
-}: {
+{config, ...}: {
   services.hyprpaper = {
     enable = true;
-    package = pkgs-unstable.hyprpaper;
 
     settings = {
       preload = config.my.variables.wallpaper-path;
