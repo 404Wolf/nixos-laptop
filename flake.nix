@@ -114,6 +114,7 @@
               _module.args.disks = ["/dev/nvme0n1"];
               nixpkgs.system = system;
               home-manager.extraSpecialArgs = {inherit pkgs system;} // specialArgs;
+              home-manager.backupFileExtension = ".bak";
             }
           ];
       };

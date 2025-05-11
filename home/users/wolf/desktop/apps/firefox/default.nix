@@ -21,9 +21,9 @@
       SearchBar = "seperate"; # alternative: "separate"
     };
     profiles = {
-      default = {
+      primary = {
         isDefault = true;
-        name = "default";
+        name = "Primary";
         id = 0;
         userChrome = builtins.readFile ./userChrome.css;
         settings = import ./settings.nix;
