@@ -1,7 +1,8 @@
 {pkgs, ...}: {
   programs.firefox = {
     enable = true;
-    package = pkgs.firefox;
+    package = pkgs.firefox-devedition;
+
     policies = {
       DisableTelemetry = true;
       DisableFirefoxStudies = true;

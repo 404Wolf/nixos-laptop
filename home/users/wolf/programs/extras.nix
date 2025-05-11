@@ -24,6 +24,7 @@
     cliphist
     ungoogled-chromium
     usbutils
+    restic
 
     # Networking & File Management
     rclone
