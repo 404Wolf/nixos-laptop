@@ -1,8 +1,13 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  pkgs-unstable,
+  ...
+}: rec {
+  my.variables.firefox-package = "firefox-devedition";
+
   programs.firefox = {
     enable = true;
-    package = pkgs.firefox-devedition;
-
+    package = pkgs-unstable.${my.variables.firefox-package};
     policies = {
       DisableTelemetry = true;
       DisableFirefoxStudies = true;

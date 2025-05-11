@@ -2,7 +2,6 @@
   config,
   osConfig,
   pkgs,
-  inputs,
   system,
   ...
 }: let
@@ -45,7 +44,7 @@ in {
         "XCURSOR_SIZE,22"
       ];
       # ecosystem = {
-      # no_donation_nag = true;
+      #   no_donation_nag = true;
       # };
       general = {
         allow_tearing = false;
@@ -101,7 +100,7 @@ in {
       # pkgs.hyprland-plugins.hyprexpo
     ];
     extraConfig =
-      (import ./binds.nix {inherit pkgs system osConfig;})
+      (import ./binds.nix {inherit pkgs system osConfig config;})
       + (import ./chords.nix {inherit pkgs;});
   };
 }

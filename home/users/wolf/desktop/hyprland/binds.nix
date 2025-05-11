@@ -2,6 +2,7 @@
   pkgs,
   system,
   osConfig,
+  config,
   ...
 }: let
   workspace2d = "${pkgs.hyprland-workspace2d}/bin/workspace2d";
@@ -101,7 +102,7 @@ in
     # Browsers
     bind=$MOD, F, exec, ${pkgs.google-chrome}/bin/google-chrome-stable --profile-directory='Profile 1' --new-window=about:newtab
     bind=$MOD SHIFT, F, exec, ${pkgs.google-chrome}/bin/google-chrome-stable --profile-directory='Default' --new-window=about:newtab
-    bind=$MOD ALT, F, exec, firefox -profile ~/.mozilla/firefox/default --new-window
+    bind=$MOD ALT, F, exec, ${config.my.variables.firefox-package} -profile ~/.mozilla/firefox/default --new-window
     bind=$MOD CONTROL, F, exec, ${pkgs.qutebrowser}/bin/qutebrowser --target window
 
     # Apps

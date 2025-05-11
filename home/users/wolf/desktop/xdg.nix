@@ -10,9 +10,9 @@
         "application/pdf" = ["org.gnome.Evince.desktop"];
         "image/jpeg" = ["feh.desktop"];
         "hoppscotch" = ["hoppscotch-handler.desktop"];
-        "x-scheme-handler/http" = ["firefox.desktop"];
-        "x-scheme-handler/https" = ["firefox.desktop"];
-        "text/html" = ["firefox.desktop"];
+        "x-scheme-handler/http" = ["firefox-devedition.desktop"];
+        "x-scheme-handler/https" = ["firefox-devedition.desktop"];
+        "text/html" = ["chromium-browser.desktop"];
       };
     };
     desktopEntries = {
