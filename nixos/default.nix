@@ -22,6 +22,7 @@
 
   # Clock time
   time.timeZone = "America/New_York";
+  programs.npm.enable = true;
 
   # Pinentry
   programs.gnupg.agent.pinentryPackage = pkgs.pinentry-qt;

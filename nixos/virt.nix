@@ -4,7 +4,14 @@
     # Enable Podman container engine
     podman.enable = true;
     # Enable Docker container engine
-    docker.enable = true;
+    docker = {
+      enable = true;
+      storageDriver = "btrfs";
+      rootless = {
+        enable = true;
+        setSocketVariable = true;
+      };
+    };
 
     # libvirt configuration for managing virtual machines
     libvirtd = {
@@ -21,6 +28,7 @@
     # Enable USB redirection for SPICE
     spiceUSBRedirection.enable = true;
   };
+  users.users.wolf.extraGroups = ["docker"];
 
   # Enable SPICE agent for better integration with VMs
   services.spice-vdagentd.enable = true;

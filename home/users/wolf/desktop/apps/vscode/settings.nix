@@ -4,7 +4,7 @@
   "search.exclude" = {
     ".*" = true;
   };
-  "files.autoSave" = "afterDelay";
+  # "files.autoSave" = "afterDelay";
   "window.titleBarStyle" = "custom"; # Necessary or VSCode crashes
 
   "workbench.colorTheme" = "Default High Contrast";
