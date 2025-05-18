@@ -8,6 +8,7 @@
     ./gpt
     ./rbw.nix
     ./go.nix
+    ./restic
     ./direnv.nix
     ./zoxide.nix
   ];

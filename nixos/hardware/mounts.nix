@@ -27,12 +27,7 @@
     ];
   };
 
-  # Add a udev rule to trigger automount when the device is connected
-  services.udev.extraRules = ''
-    ACTION=="add", SUBSYSTEM=="block", ENV{ID_FS_UUID}=="065f9566-c638-4517-97ed-978e38b54477", TAG+="systemd", ENV{SYSTEMD_WANTS}="mnt-vault.automount"
-    ACTION=="add", SUBSYSTEM=="block", ENV{ID_FS_UUID}=="67BF-E0B4", TAG+="systemd", ENV{SYSTEMD_WANTS}="mnt-wolf-usb.automount"
-  '';
+  services.udisks2.enable = true;
 
-  # Ensure exfat support is available
   environment.systemPackages = [pkgs.exfat];
 }

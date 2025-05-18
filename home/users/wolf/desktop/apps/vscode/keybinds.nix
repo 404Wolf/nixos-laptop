@@ -30,6 +30,10 @@
     command = "workbench.action.toggleSidebarVisibility";
   }
   {
+    key = "ctrl+alt+n";
+    command = "workbench.action.focusActivityBar";
+  }
+  {
     key = "ctrl+shift+i";
     command = "inlineChat.start";
     when = "editorFocus && inlineChatHasProvider && !editorReadonly";

@@ -31,6 +31,7 @@ in {
   dalle =
     "OPENAI_API_KEY=$(cat ${passwordFiles.openai}) "
     + "${pkgs.dalleCLI}/bin/dallecli";
+  website-dump = "${pkgs.writeShellScriptBin "website-dump" (builtins.readFile ./scripts/website_dump.sh)}/bin/website_dump";
 
   # File navigation
   ".." = "../..";

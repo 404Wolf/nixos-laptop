@@ -15,4 +15,5 @@
   "${pkgs.wl-clipboard}/bin/wl-paste --type text --watch ${pkgs.cliphist}/bin/cliphist store"
   "${pkgs.wl-clipboard}/bin/wl-paste --type image --watch ${pkgs.cliphist}/bin/cliphist store"
   "${pkgs.hyprpolkitagent}/libexec/hyprpolkitagent"
+  "${pkgs.udiskie}/bin/udiskie --tray --notify --automount"
 ]

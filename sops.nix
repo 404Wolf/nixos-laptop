@@ -1,13 +1,13 @@
 {config, ...}: {
   sops.defaultSopsFile = ./secrets.yaml;
 
-  # This is using an age key that is expected to already be in the filesystem
+  # Use a age key that is expected to already be in the filesystem
   sops.age.keyFile = "/nix/persist/var/lib/sops-nix/key.txt";
 
-  # This will generate a new key if the key specified above does not exist
+  # Generate a new key if the key specified above does not exist
   sops.age.generateKey = true;
 
-  # This is the actual specification of the secrets
+  # Specification of the secrets
   sops.secrets =
     builtins.mapAttrs
     (name: value: {owner = config.users.users.wolf.name;} // value) {
@@ -24,5 +24,6 @@
       "api-keys/openai" = {};
       "api-keys/anthropic" = {};
       "api-keys/valtown" = {};
+      "other/restic/password" = {};
     };
 }

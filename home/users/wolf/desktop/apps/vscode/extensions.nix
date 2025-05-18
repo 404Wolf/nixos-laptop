@@ -3,6 +3,8 @@
   extensions = pkgs.vscode-extensions;
 in
   (with extensions; [
+    redhat.vscode-yaml
+    tamasfe.even-better-toml
     james-yu.latex-workshop
     vscjava.vscode-maven
     firsttris.vscode-jest-runner

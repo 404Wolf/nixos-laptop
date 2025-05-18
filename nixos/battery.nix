@@ -1,9 +1,11 @@
 {pkgs, ...}: {
   # Configure power button and lid switch actions
   services = {
-    logind.powerKey = "lock";
-    logind.powerKeyLongPress = "hibernate";
-    logind.lidSwitch = "suspend-then-hibernate";
+    logind = {
+      powerKey = "lock";
+      powerKeyLongPress = "hibernate";
+      lidSwitch = "suspend-then-hibernate";
+    };
   };
   systemd.sleep.extraConfig = ''
     HibernateDelaySec=30M

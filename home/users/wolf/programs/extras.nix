@@ -24,7 +24,9 @@
     cliphist
     ungoogled-chromium
     usbutils
-    restic
+    udiskie
+    monolith
+    sops
 
     # Networking & File Management
     rclone

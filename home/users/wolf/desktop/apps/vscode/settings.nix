@@ -1,10 +1,9 @@
 {pkgs, ...}: {
   "chat.setupFromDialog" = false;
+  "workbench.activityBar.location" = "hidden";
+  "window.menuBarVisibility" = "compact";
 
-  "search.exclude" = {
-    ".*" = true;
-  };
-  # "files.autoSave" = "afterDelay";
+  "search.exclude" = {".*" = true;};
   "window.titleBarStyle" = "custom"; # Necessary or VSCode crashes
 
   "workbench.colorTheme" = "Default High Contrast";
