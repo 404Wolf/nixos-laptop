@@ -17,6 +17,7 @@ global:
 profiles:
   base:
     password-file: /run/secrets/other/restic/password
+    verbose: 2
     backup:
       exclude:
         - .direnv
@@ -38,8 +39,8 @@ profiles:
     backup:
       source:
         - /home/wolf
-      exclude-file:
-        - /home/wolf/Obsidian
+      exclude:
+        - /home/wolf/Obsidian/**
 
   obsidian:
     repository: local:/mnt/vault/Restic/Obsidian
