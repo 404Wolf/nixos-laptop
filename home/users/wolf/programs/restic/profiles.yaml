@@ -1,6 +1,6 @@
-# yaml-language-server: $schema=https://creativeprojects.github.io/resticprofile/jsonschema/config.json
+# yaml-language-server: $schema=https://creativeprojects.github.io/resticprofile/jsonschema/config-2.json
 
-version: "1"
+version: "2"
 
 global:
   prevent-sleep: true
@@ -14,47 +14,45 @@ global:
   scheduler: auto
   initialize: true
 
-base:
-  password-file: /run/secrets/other/restic/password
-  backup:
-    base-dir: /home/wolf
-    exclude:
-      - .direnv
-      - .cache
-      - node_modules
-      - .cargo
-      - .rustup
-      - .local/share/Trash
-      - .local/share/Steam/.*
+profiles:
+  base:
+    password-file: /run/secrets/other/restic/password
+    backup:
+      exclude:
+        - .direnv
+        - .cache
+        - node_modules
+        - .local/share/Trash
+        - .local/share/Steam/.*
 
-laptop:
-  repository: /mnt/vault/Restic/Laptop
-  lock: /tmp/resticprofile-laptop.lock
-  inherit: base
-  retention:
-    keep-hourly: 1
-    keep-daily: 30
-    keep-weekly: 26
-    keep-monthly: unlimited
-    keep-yearly: unlimited
-  backup:
-    source:
-      - .
-    exclude-file:
-      - Obsidian
+  laptop:
+    repository: local:/mnt/vault/Restic/Laptop
+    lock: /tmp/resticprofile-laptop.lock
+    inherit: base
+    retention:
+      keep-hourly: 1
+      keep-daily: 30
+      keep-weekly: 26
+      keep-monthly: 9999
+      keep-yearly: 9999
+    backup:
+      source:
+        - /home/wolf
+      exclude-file:
+        - /home/wolf/Obsidian
 
-obsidian:
-  repository: /mnt/vault/Restic/Obsidian
-  lock: /tmp/resticprofile-obsidian.lock
-  inherit: base
-  retention:
-    keep-hourly: 3
-    keep-daily: 30
-    keep-weekly: "unlimited"
-    keep-monthly: "unlimited"
-    keep-yearly: "unlimited"
-  backup:
+  obsidian:
+    repository: local:/mnt/vault/Restic/Obsidian
+    lock: /tmp/resticprofile-obsidian.lock
+    inherit: base
+    retention:
+      keep-hourly: 3
+      keep-daily: 30
+      keep-weekly: 9999
+      keep-monthly: 9999
+      keep-yearly: 9999
+    backup:
+      source:
+        - /home/wolf/Obsidian
     schedule:
       - "0 23 * * *"
-    source:
-      - /home/wolf/Obsidian

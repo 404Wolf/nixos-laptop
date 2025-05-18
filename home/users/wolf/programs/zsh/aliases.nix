@@ -12,7 +12,7 @@
   delta = "${pkgs.delta}/bin/delta";
   tmux = "${pkgs.tmux}/bin/tmux";
 
-  passwordFiles = {
+  tokenFiles = {
     anthropic = osConfig.sops.secrets."api-keys/anthropic".path;
     openai = osConfig.sops.secrets."api-keys/openai".path;
     google = osConfig.sops.secrets."api-keys/google".path;
@@ -23,15 +23,16 @@ in {
 
   # Utilities
   gpt =
-    "GOOGLE_API_KEY=$(cat ${passwordFiles.google}) "
-    + "ANTHROPIC_API_KEY=$(cat ${passwordFiles.anthropic}) "
-    + "OPENAI_API_KEY=$(cat ${passwordFiles.openai}) "
+    "GOOGLE_API_KEY=$(cat ${tokenFiles.google}) "
+    + "ANTHROPIC_API_KEY=$(cat ${tokenFiles.anthropic}) "
+    + "OPENAI_API_KEY=$(cat ${tokenFiles.openai}) "
     + "${pkgs-unstable.gpt-cli}/bin/gpt";
   gpt-tmux = "${pkgs.writeShellScriptBin "gpt-tmux" (builtins.readFile ./scripts/gpt-tmux.sh)}/bin/gpt-tmux";
   dalle =
-    "OPENAI_API_KEY=$(cat ${passwordFiles.openai}) "
+    "OPENAI_API_KEY=$(cat ${tokenFiles.openai}) "
     + "${pkgs.dalleCLI}/bin/dallecli";
   website-dump = "${pkgs.writeShellScriptBin "website-dump" (builtins.readFile ./scripts/website_dump.sh)}/bin/website_dump";
+  restic = "RESTIC_PASSWORD=${osConfig.sops.secrets."other/restic/password".path} ${pkgs.restic}/bin/restic";
 
   # File navigation
   ".." = "../..";
