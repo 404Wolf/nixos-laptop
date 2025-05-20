@@ -12,7 +12,7 @@
     openssl
     yubikey-agent
     yubikey-manager
-    dnsmasq
+    # dnsmasq
     htop
     cloudflared
     speedtest-cli
