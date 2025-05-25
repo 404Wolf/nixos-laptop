@@ -3,10 +3,6 @@
   virtualisation = {
     podman.enable = true;
     docker = {
-      rootless = {
-        enable = true;
-        setSocketVariable = true;
-      };
       enable = true;
       storageDriver = "btrfs";
     };

@@ -7,6 +7,7 @@
     "claude-3-opus-latest"
     "claude-3-5-sonnet-latest"
     "claude-3-7-sonnet-latest"
+    "claude-4-sonnet-latest"
     "gpt-4o"
     "gpt-4o-mini"
     "o1"

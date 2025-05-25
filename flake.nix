@@ -2,7 +2,7 @@
   description = "Collection of Wolf's NixOS and Home Manager Config";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-dev.url = "github:nixos/nixpkgs";
     home-manager.url = "github:nix-community/home-manager/release-24.11";

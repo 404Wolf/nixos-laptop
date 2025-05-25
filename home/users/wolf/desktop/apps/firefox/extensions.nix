@@ -11,18 +11,26 @@ in
     firefox-addons.i-dont-care-about-cookies
   ]
   ++ [
-    (buildFirefoxXpiAddon {
-      pname = "bypass-paywalls-clean";
-      version = "3.9.6.0";
-      addonId = "magnolia@12.34";
-      url = "https://gitflic.ru/project/magnolia1234/bpc_uploads/blob/raw?file=bypass_paywalls_clean-latest.xpi&inline=false&commit=d95939bfd62559b6159ee7b84c2c0c4500b0b85b";
-      sha256 = "sha256-mXDE02yM78nv3UBkAP9JNFsm+Gz2bFDhENZjiaLRZ4w=";
+    (pkgs.stdenv.mkDerivation rec {
+      name = "bypass-paywalls-custom";
+      version = "1.0";
+      src = ./bypass-paywalls.xpi;
+      preferLocalBuild = true;
+      allowSubstitutes = true;
+      passthru = {
+        addonId = "bypasspaywalls@bypasspaywalls";
+      };
       meta = with pkgs.lib; {
-        homepage = "https://twitter.com/Magnolia1234B";
-        description = "Bypass Paywalls of (custom) news sites";
+        homepage = "https://github.com/iamadamdev/bypass-paywalls-chrome";
+        description = "Bypass Paywalls for various news sites";
         license = licenses.mit;
         platforms = platforms.all;
       };
+      buildCommand = ''
+        dst="$out/share/mozilla/extensions/{ec8030f7-c20a-464f-9b0e-13a3a9e97384}"
+        mkdir -p "$dst"
+        install -v -m644 "$src" "$dst/${passthru.addonId}.xpi"
+      '';
     })
     (buildFirefoxXpiAddon {
       pname = "browser-zoom";
