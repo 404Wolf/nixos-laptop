@@ -19,12 +19,7 @@ profiles:
     password-file: /run/secrets/other/restic/password
     verbose: 2
     backup:
-      exclude:
-        - .direnv
-        - .cache
-        - node_modules
-        - .local/share/Trash
-        - .local/share/Steam/.*
+      exclude-caches: true
 
   laptop:
     repository: local:/mnt/vault/Restic/Laptop
@@ -40,6 +35,11 @@ profiles:
       source:
         - /home/wolf
       exclude:
+        - /**/.direnv
+        - /**/.cache
+        - /**/node_modules
+        - /**/.local/share/Trash
+        - /**/.local/share/Steam/.*
         - /home/wolf/Obsidian/**
 
   obsidian:
@@ -55,5 +55,9 @@ profiles:
     backup:
       source:
         - /home/wolf/Obsidian
+      exclude:
+        - /**/.direnv
+        - /**/.cache
+        - /**/node_modules
     schedule:
       - "0 23 * * *"
