@@ -10,6 +10,7 @@
     ./go.nix
     ./restic
     ./direnv.nix
+    ./ssh.nix
     ./zoxide.nix
   ];
 

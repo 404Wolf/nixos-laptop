@@ -1,7 +1,8 @@
 {
   security.pam.services = {
-    sudo.fprintAuth = true; # for sudo
-    login.fprintAuth = true; # for login
-    gdm.fprintAuth = true; # for GDM
+    sudo.fprintAuth = true;
+    login.fprintAuth = true;
+    gdm.fprintAuth = true;
+    sshd.fprintAuth = true;
   };
 }
