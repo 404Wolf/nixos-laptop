@@ -29,7 +29,7 @@ profiles:
       keep-hourly: 1
       keep-daily: 30
       keep-weekly: 26
-      keep-monthly: 9999
+      keep-monthly: 9999 
       keep-yearly: 9999
     backup:
       source:

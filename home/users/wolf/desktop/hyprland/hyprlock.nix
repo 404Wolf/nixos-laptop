@@ -7,11 +7,9 @@
         grace = 5;
         hide_cursor = false;
         no_fade_in = false;
-        screencopy_mode = true;
-        disable_loading_bar = true;
-        immediate_render = true;
-        enable_fingerprint = true;
-        fingerprint_ready_message = "Ready, tap your finger";
+      };
+      auth = {
+        "fingerprint:enabled" = true;
       };
       background = [
         {
@@ -61,7 +59,7 @@
         }
         {
           monitor = "";
-          text = "$FPRINTMESSAGE";
+          text = "$FPRINTPROMPT";
           font_size = 16;
           font_family = "monospace";
           position = "0, 20";

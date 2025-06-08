@@ -1,7 +1,7 @@
 {pkgs, ...}: {
   "chat.setupFromDialog" = false;
-  "workbench.activityBar.location" = "hidden";
-  "window.menuBarVisibility" = "compact";
+  # "workbench.activityBar.location" = "hidden";
+  # "window.menuBarVisibility" = "compact";
 
   "search.exclude" = {".*" = true;};
   "window.titleBarStyle" = "custom"; # Necessary or VSCode crashes

@@ -86,6 +86,7 @@ in {
   gcb = "${git} checkout -b";
   gw = "${git} switch";
   lg = "${pkgs.lazygit}/bin/lazygit";
+  grc = "gh repo list 404wolf | fzf --prompt=\"Select repo: \" --preview=\"gh repo view {1}\" | xargs -I {} gh repo clone {}";
 
   # Tmux Aliases
   tmns = "${tmux} new-session -s ";
