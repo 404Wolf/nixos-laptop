@@ -59,6 +59,7 @@
     texliveFull
     pandoc
     code-cursor
+    otree
 
     # Text Processing & File Manipulation
     ripgrep

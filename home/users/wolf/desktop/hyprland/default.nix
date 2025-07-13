@@ -15,7 +15,7 @@ in {
   ];
 
   programs = {
-    zsh.initExtra =
+    zsh.initContent =
       # bash
       ''
         unlock_hyprland() {

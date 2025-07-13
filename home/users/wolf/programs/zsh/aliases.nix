@@ -33,6 +33,7 @@ in {
     + "${pkgs.dalleCLI}/bin/dallecli";
   website-dump = "${pkgs.writeShellScriptBin "website-dump" (builtins.readFile ./scripts/website_dump.sh)}/bin/website_dump";
   restic = "RESTIC_PASSWORD=${osConfig.sops.secrets."other/restic/password".path} ${pkgs.restic}/bin/restic";
+  clock = "${pkgs.clock-rs}/bin/clock-rs";
 
   # File navigation
   ".." = "../..";
