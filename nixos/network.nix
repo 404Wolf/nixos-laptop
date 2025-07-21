@@ -13,7 +13,7 @@
   # Max out our networking options, like using super large window sizes, etc
   boot.kernel.sysctl = {
     "net.ipv4.tcp_adv_win_scale" = "4";
-    "net.ipv4.tcp_congestion_control" = "bbr";
+    "net.ipv4.tcp_congestion_control" = "highspeed";
     "net.core.wmem_max" = 16777216;
     "net.core.rmem_max" = 16777216;
     "net.ipv4.tcp_wmem" = "4096 87380 16777216"; # min, default, max

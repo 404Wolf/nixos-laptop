@@ -1,8 +1,13 @@
-{pkgs, ...}: let
+{
+  pkgs,
+  fenix,
+  ...
+}: let
   from-marketplace = pkgs.vscode-utils.extensionsFromVscodeMarketplace;
   extensions = pkgs.vscode-extensions;
 in
   (with extensions; [
+    fenix.packages.x86_64-linux.rust-analyzer-vscode-extension
     redhat.vscode-yaml
     tamasfe.even-better-toml
     james-yu.latex-workshop
@@ -28,7 +33,6 @@ in
     golang.go
     github.github-vscode-theme
     vscodevim.vim
-    rust-lang.rust-analyzer
     eamodio.gitlens
     serayuzgur.crates
     njpwerner.autodocstring
