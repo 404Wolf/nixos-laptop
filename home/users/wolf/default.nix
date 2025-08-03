@@ -5,7 +5,6 @@
     ./themeing.nix
     ./accounts.nix
     ./options.nix
-    ./syncthing.nix
     ./scripts
     ../../modules
   ];
