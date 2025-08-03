@@ -70,11 +70,16 @@
       ACTION=="change", SUBSYSTEM=="power_supply", ENV{POWER_SUPPLY_NAME}=="ACAD", ATTR{online}=="1", RUN+="${saveBrightnessScript}"
       ACTION=="change", SUBSYSTEM=="power_supply", ENV{POWER_SUPPLY_NAME}=="ACAD", ATTR{online}=="1", RUN+="${pluggedScript}"
       ACTION=="change", SUBSYSTEM=="power_supply", ENV{POWER_SUPPLY_NAME}=="ACAD", ATTR{online}=="0", RUN+="${unpluggedScript}"
-    '' # fix keyboard autosuspend
+    ''
+    # fix keyboard autosuspend
     + ''
       ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="0b05", ATTR{idProduct}=="1a96", ATTR{power/autosuspend}="-1", ATTR{power/control}="on"
       ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="0853", ATTR{idProduct}=="0146", ATTR{power/autosuspend}="-1", ATTR{power/control}="on"
-       ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="0853", ATTRS{idProduct}=="0146", ATTRS{manufacturer}=="Topre", ATTRS{product}=="REALFORCE 87 US", ATTR{power/autosuspend}="-1", ATTR{power/control}="on"
+      ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="0853", ATTRS{idProduct}=="0146", ATTRS{manufacturer}=="Topre", ATTRS{product}=="REALFORCE 87 US", ATTR{power/autosuspend}="-1", ATTR{power/control}="on"
+    ''
+    # disable usb storage autosuspend
+    + ''
+      ACTION=="add", SUBSYSTEM=="usb", DRIVERS=="usb-storage", ATTR{power/autosuspend}="-1", ATTR{power/control}="on"
     '';
 
   powerManagement = {
