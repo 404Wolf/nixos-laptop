@@ -7,11 +7,11 @@
     ./extras.nix
     ./gpt
     ./rbw.nix
-    ./go.nix
     ./restic
     ./direnv.nix
     ./ssh.nix
     ./zoxide.nix
+    ./zed
   ];
 
   programs = {

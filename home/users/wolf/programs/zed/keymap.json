@@ -1,0 +1,11 @@
+[
+  {
+    "bindings": {
+      "alt-c": "pane::CloseActiveItem",
+      "ctrl-n": "workspace::ToggleLeftDock",
+      "ctrl-m": "workspace::ToggleRightDock",
+      "ctrl-alt-a": "agent::ToggleFocus",
+      "ctrl-alt-f": "project_panel::ToggleFocus"
+    }
+  }
+]

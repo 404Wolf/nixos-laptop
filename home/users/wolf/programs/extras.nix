@@ -105,7 +105,10 @@
 
     # Browsers & Communication
     google-chrome
-    discord
+    (discord.override {
+      withOpenASAR = true;
+      withVencord = true;
+    })
     zulip
     zoom-us
     signal-desktop

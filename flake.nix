@@ -21,7 +21,6 @@
       url = "github:nix-community/NUR";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    firenvim.url = "github:404Wolf/firenvim-config";
     nix-neovim.url = "github:404Wolf/nix-neovim";
     capture-utils.url = "github:404Wolf/Screen-Capture";
     dalleCLI.url = "github:404Wolf/DALLE-CLI";
@@ -133,6 +132,7 @@
           sops
           gitleaks
           alejandra
+          nixfmt-classic
         ];
       };
 

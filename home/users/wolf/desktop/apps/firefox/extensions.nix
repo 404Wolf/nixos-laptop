@@ -7,7 +7,6 @@ in
     firefox-addons.ublock-origin
     firefox-addons.bitwarden
     firefox-addons.clearurls
-    firefox-addons.firenvim
     firefox-addons.i-dont-care-about-cookies
   ]
   ++ [

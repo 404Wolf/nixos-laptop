@@ -10,33 +10,28 @@
         cleanup_cmd = "rm -f /tmp/brightness_* || true"; # cleanup tempfiles on service stop
       };
 
-      listener = let
-        bctl = "${pkgs.brightnessctl}/bin/brightnessctl";
-        keylight = "framework_laptop::kbd_backlight";
-        backlight = "amdgpu_bl1";
-
-        # Save current brightness to tempfile
-        saveBrightness = device: ''
-          ${bctl} -d ${device} g > /tmp/brightness_${device}
-        '';
-
-        # Restore brightness from tempfile
-        restoreBrightness = device: ''
-          if [ -f /tmp/brightness_${device} ]; then
-            ${bctl} -d ${device} s $(cat /tmp/brightness_${device})
-            rm -f /tmp/brightness_${device}
-          fi
-        '';
-      in [
+      listener = [
         {
           timeout = 300; # 5min
-          on-timeout = "if [ ! $(cat /sys/class/power_supply/ACAD/online) ]; then ${saveBrightness backlight} && ${bctl} s 10%; fi";
-          on-resume = restoreBrightness backlight;
+          on-timeout = ''
+            if [ ! $(cat /sys/class/power_supply/ACAD/online) ]; then
+              ${pkgs.brightnessctl}/bin/brightnessctl -d amdgpu_bl1 g > /tmp/brightness_amdgpu_bl1
+              ${pkgs.brightnessctl}/bin/brightnessctl s 10%;
+            fi
+          '';
+          on-resume = ''
+            if [ -f /tmp/brightness_amdgpu_bl1 ]; then
+              ${pkgs.brightnessctl}/bin/brightnessctl -d amdgpu_bl1 s $(cat /tmp/brightness_amdgpu_bl1)
+              rm -f /tmp/brightness_amdgpu_bl1;
+            fi
+          '';
         }
         {
           timeout = 300; # 5min
-          on-timeout = "if [ ! $(cat /sys/class/power_supply/ACAD/online) ]; then ${saveBrightness keylight} && ${bctl} -d ${keylight} s 0%; fi";
-          on-resume = restoreBrightness keylight;
+          on-timeout = "if [ ! $(cat /sys/class/power_supply/ACAD/online) ]; then ${pkgs.brightnessctl}/bin/brightnessctl -d framework_laptop::kbd_backlight g > /tmp/brightness_framework_laptop::kbd_backlight &&             
+ ${pkgs.brightnessctl}/bin/brightnessctl -d framework_laptop::kbd_backlight s 0%; fi";
+          on-resume = "if [ -f /tmp/brightness_framework_laptop::kbd_backlight ]; then ${pkgs.brightnessctl}/bin/brightnessctl -d framework_laptop::kbd_backlight s $(cat /tmp/brightness_framework_laptop::kbd_backlight) && r 
+ -f /tmp/brightness_framework_laptop::kbd_backlight; fi";
         }
         {
           # suspend if on battery
