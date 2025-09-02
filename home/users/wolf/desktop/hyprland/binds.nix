@@ -12,15 +12,6 @@
   in {
     dunst = (import ../../scripts/pause-dunst.nix) {inherit pkgs;};
 
-    remmina = toggle rec {
-      program = "remmina";
-      launch = let
-        remmina-connect = import ../apps/remmina/connect.nix {inherit pkgs osConfig;};
-      in "${remmina-connect}/bin/remmina-connect-default.sh";
-      kill = "pkill ${program}";
-      conditional = "pgrep ${program}";
-    };
-
     spotify = toggle rec {
       program = "spotify";
       launch = "${pkgs.spotify}/bin/spotify";
@@ -105,12 +96,8 @@ in
     bind=$MOD ALT, F, exec, ${config.my.variables.firefox-package} -P "Primary" --new-window
     bind=$MOD CONTROL, F, exec, ${pkgs.qutebrowser}/bin/qutebrowser --target window
 
-    # Apps
     bind=$MOD, T, exec, ${pkgs.kitty}/bin/kitty
     bind=$MOD, C, exec, ${pkgs.qalculate-qt}/bin/qalculate-qt
-
-    # Toggles
-    bind=$MOD, D, exec, sh ${toggles.remmina}/bin/toggle-remmina.sh
     bind=$MOD, M, exec, sh ${toggles.spotify}/bin/toggle-spotify.sh
   ''
   + ''

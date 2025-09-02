@@ -20,6 +20,10 @@ profiles:
     verbose: 2
     backup:
       exclude-caches: true
+    run-before:
+      - export access_key_id={{S3_ACCESS_KEY_ID}}
+      - export secret_access_key={{S3_SECRET_ACCESS_KEY}}
+      - export endpoint={{S3_ENDPOINT}}
 
   laptop:
     repository: local:/mnt/vault/Restic/Laptop
@@ -29,7 +33,7 @@ profiles:
       keep-hourly: 1
       keep-daily: 30
       keep-weekly: 26
-      keep-monthly: 9999 
+      keep-monthly: 9999
       keep-yearly: 9999
     backup:
       source:
@@ -46,6 +50,9 @@ profiles:
     repository: local:/mnt/vault/Restic/Obsidian
     lock: /tmp/resticprofile-obsidian.lock
     inherit: base
+    environment:
+      AWS_ACCESS_KEY_ID: ${access_key_id}
+      AWS_SECRET_ACCESS_KEY: ${secret_access_key}
     retention:
       keep-hourly: 3
       keep-daily: 30

@@ -18,8 +18,9 @@
       "accounts/wsm32_case/app-password" = {};
       "accounts/wsm32_case/password" = {};
       "accounts/pia_vpn/auth" = {};
-      "remotes/windows/password" = {};
-      "remotes/cloudflare/404wolf" = {};
+      "api-keys/cloudflare/personal-r2/access_key_id" = {};
+      "api-keys/cloudflare/personal-r2/secret_access_key" = {};
+      "api-keys/cloudflare/personal-r2/endpoint" = {};
       "api-keys/google" = {};
       "api-keys/openai" = {};
       "api-keys/anthropic" = {};

@@ -1,8 +1,17 @@
 {
+  "agent": {
+    "model_parameters": [],
+    "default_model": {
+      "provider": "copilot_chat",
+      "model": "claude-sonnet-4"
+    },
+    "version": "2"
+  },
   "vim_mode": true,
   "vim": {
     "toggle_relative_line_numbers": true,
     "highlight_on_yank_duration": 200,
+    "use_system_clipboard": "always",
     "context_bindings": {
       "Dock": {
         "ctrl-w h": "workspace::ActivatePaneLeft",
@@ -11,10 +20,44 @@
         "ctrl-w j": "workspace::ActivatePaneDown"
       },
       "vim_mode == visual": {
-        "space f f": "file_finder::Toggle",
-        "space p p": "editor::format"
+        "<space> f f": "file_finder::Toggle",
+        "<space> p p": "editor::format"
       }
     }
   },
-  "theme": "ultradark"
+  "theme": "True Dark",
+  "inlay_hints": {
+    "enabled": true,
+    "show_type_hints": true,
+    "show_parameter_hints": true,
+    "show_other_hints": true
+  },
+  "scrollbar": {
+    "diagnostics": "all"
+  },
+  "diagnostics": {
+    "inline": {
+      "enabled": true,
+      "max_severity": null
+    }
+  },
+  "language_models": {
+    "anthropic": {
+      "api_url": "https://api.anthropic.com",
+      "version": "1",
+      "available_models": [
+        {
+          "display_name": "Claude Sonnet 4.1",
+          "name": "claude-3-5-sonnet-20240620",
+          "max_tokens": 128000,
+          "max_output_tokens": 2560,
+          "cache_configuration": {
+            "max_cache_anchors": 10,
+            "min_total_token": 10000,
+            "should_speculate": false
+          }
+        }
+      ]
+    }
+  }
 }

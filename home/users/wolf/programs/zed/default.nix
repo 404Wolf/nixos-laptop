@@ -14,7 +14,7 @@
     paths = [pkgs.zed-editor-fhs];
     buildInputs = [pkgs.makeWrapper];
     postBuild = ''
-      wrapProgram "$out/bin/zed" \
+      wrapProgram "$out/bin/zeditor" \
         --run 'export GOOGLE_API_KEY="$(cat ${tokenFiles.google})"' \
         --run 'export ANTHROPIC_API_KEY="$(cat ${tokenFiles.anthropic})"' \
         --run 'export OPENAI_API_KEY="$(cat ${tokenFiles.openai})"'
@@ -29,6 +29,6 @@ in {
     userSettings = builtins.fromJSON (builtins.readFile ./settings.json);
     userKeymaps = builtins.fromJSON (builtins.readFile ./keymap.json);
 
-    themes = builtins.mapAttrs (name: value: builtins.readFile value) (builtins.readDir ./themes);
+    themes = builtins.mapAttrs (name: value: ./themes + ("/" + name)) (builtins.readDir ./themes);
   };
 }

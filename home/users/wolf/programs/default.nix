@@ -12,6 +12,7 @@
     ./ssh.nix
     ./zoxide.nix
     ./zed
+    ./rclone.nix
   ];
 
   programs = {

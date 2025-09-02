@@ -7,7 +7,6 @@
   imports = [
     ./audio.nix
     ./battery.nix
-    ./cloudflare.nix
     ./fonts.nix
     ./hardware
     ./misc
