@@ -11,9 +11,25 @@
       font_family = "FiraCode";
       font_size = 12;
       enable_ligatures = "always";
+
       foreground = "#${config.colorScheme.palette.base05}";
       background = "#${config.colorScheme.palette.base00}";
+
+      cursor_blink_interval = 0.5; # Half-second blink rate
+      cursor_stop_blinking_after = 15.0; # Stop blinking after 15 seconds of inactivity
+      cursor_trail = 0; # Disable cursor trail effect
+
+      scrollback_lines = 10000; # Increased from 2000 for more history
+      scrollback_indicator_opacity = 1.0; # Fully visible scrollback indicator
+      scrollback_fill_enlarged_window = "no";
+      wheel_scroll_multiplier = 5.0;
+      wheel_scroll_min_lines = 1;
+      touch_scroll_multiplier = 1.0;
+
+      mouse_hide_wait = 3.0; # Hide mouse after 3 seconds of inactivity
     };
+
+    # Disabling default keyboard shortcuts
     extraConfig =
       ''
         map ctrl+shift+enter no_op
