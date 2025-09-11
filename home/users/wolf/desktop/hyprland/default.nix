@@ -1,11 +1,13 @@
 {
   config,
   osConfig,
+  lib,
   pkgs,
   system,
   ...
 }: let
   mkColor = hash: "rgb(${hash})";
+  workspace2d = "${lib.getBin pkgs.hyprland-workspace2d}/bin/workspace2d";
 in {
   imports = [
     ./hyprlock.nix
@@ -45,6 +47,7 @@ in {
       ];
       ecosystem = {
         no_donation_nag = true;
+        no_update_news = true;
       };
       general = {
         allow_tearing = false;
@@ -78,17 +81,19 @@ in {
       };
       input = {
         repeat_rate = 20; # Repeat rate in ms between key repeats
-        repeat_delay = 150; # Delay in ms before key starts repeating
+        repeat_delay = 140; # Delay in ms before key starts repeating
         scroll_button = 274; # 274 = scroll button
         scroll_button_lock = false;
         scroll_method = "on_button_down";
         touchpad.natural_scroll = true;
         kb_options = "caps:numlock";
       };
-      gestures = {
-        workspace_swipe = true;
-        workspace_swipe_fingers = 4;
-      };
+      gesture = [
+        "4, up, dispatcher, exec ${workspace2d} up"
+        "4, down, dispatcher, exec ${workspace2d} down"
+        "4, left, dispatcher, exec ${workspace2d} left"
+        "4, right, dispatcher, exec ${workspace2d} right"
+      ];
       misc = {
         vfr = true;
         disable_hyprland_logo = true;
@@ -96,11 +101,17 @@ in {
       };
       windowrulev2 = import ./rules.nix {};
     };
-    plugins = [
-      # pkgs.hyprland-plugins.hyprexpo
-    ];
     extraConfig =
-      (import ./binds.nix {inherit pkgs system osConfig config;})
+      (import ./binds.nix {
+        inherit
+          lib
+          pkgs
+          system
+          osConfig
+          config
+          workspace2d
+          ;
+      })
       + (import ./chords.nix {inherit pkgs;});
   };
 }

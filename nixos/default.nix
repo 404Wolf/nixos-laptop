@@ -12,6 +12,7 @@
     ./misc
     ./network.nix
     ./pam.nix
+    ./nix.nix
     ./printing.nix
     ./remotes.nix
     ./users.nix
@@ -36,15 +37,6 @@
   zramSwap = {
     enable = true;
     memoryPercent = 10;
-  };
-
-  # Nix configuration
-  nix.settings = {
-    auto-optimise-store = true;
-    substituters = ["https://hyprland.cachix.org"];
-    trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
-    trusted-users = ["root" "wolf"];
-    experimental-features = ["nix-command" "flakes"];
   };
 
   # Localization

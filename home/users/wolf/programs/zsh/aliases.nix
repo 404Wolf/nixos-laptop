@@ -28,11 +28,11 @@ in {
     + "OPENAI_API_KEY=$(cat ${tokenFiles.openai}) "
     + "${pkgs-unstable.gpt-cli}/bin/gpt";
   gpt-tmux = "${pkgs.writeShellScriptBin "gpt-tmux" (builtins.readFile ./scripts/gpt-tmux.sh)}/bin/gpt-tmux";
-  dalle =
-    "OPENAI_API_KEY=$(cat ${tokenFiles.openai}) "
-    + "${pkgs.dalleCLI}/bin/dallecli";
+  dalle = "OPENAI_API_KEY=$(cat ${tokenFiles.openai}) " + "${pkgs.dalleCLI}/bin/dallecli";
   website-dump = "${pkgs.writeShellScriptBin "website-dump" (builtins.readFile ./scripts/website_dump.sh)}/bin/website_dump";
-  restic = "RESTIC_PASSWORD=${osConfig.sops.secrets."other/restic/password".path} ${pkgs.restic}/bin/restic";
+  restic = "RESTIC_PASSWORD=${
+    osConfig.sops.secrets."other/restic/password".path
+  } ${pkgs.restic}/bin/restic";
   clock = "${pkgs.clock-rs}/bin/clock-rs";
 
   # File navigation
@@ -42,8 +42,7 @@ in {
   ls = "${pkgs.eza}/bin/eza";
   lsd = "${pkgs.lsd}/bin/lsd -al --git";
   cdtmp = "cd $(mktemp -d) && pwd | copy";
-  cpd = "cp $(\"${fzf}\") .";
-  cpc = ''cp $(wl-paste | grep -o "/tmp.*")'';
+  cpc = ''cp $(wl-paste | sed "s|file://||")'';
 
   # Copy paste
   copy = "${pkgs.wl-clipboard}/bin/wl-copy";
@@ -91,16 +90,21 @@ in {
 
   # Tmux Aliases
   tmns = "${tmux} new-session -s ";
-  tmsw = "${pkgs.writeShellApplication {
-    name = "choose_tmux_session";
-    runtimeInputs = [pkgs.fzf pkgs.tmux];
-    text = ''
-      session="$(tmux list-sessions -F "#S" | fzf)"
-      if [ -n "$session" ]; then
-        tmux attach-session -t "$session"
-      fi
-    '';
-  }}/bin/choose_tmux_session";
+  tmsw = "${
+    pkgs.writeShellApplication {
+      name = "choose_tmux_session";
+      runtimeInputs = [
+        pkgs.fzf
+        pkgs.tmux
+      ];
+      text = ''
+        session="$(tmux list-sessions -F "#S" | fzf)"
+        if [ -n "$session" ]; then
+          tmux attach-session -t "$session"
+        fi
+      '';
+    }
+  }/bin/choose_tmux_session";
   tma = "${tmux} attach-session -t ";
   tmls = "${tmux} list-sessions";
   tmks = "${tmux} kill-session -t ";

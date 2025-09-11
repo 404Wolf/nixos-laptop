@@ -110,13 +110,19 @@ in
     {
       name = "markdown-mermaid";
       publisher = "bierner";
-      version = "1.25.0";
-      sha256 = "sha256-UNMpauEPr/K8vLy/lS1Oni4EfBceM9TI6/6713tKS5Y=";
+      version = "1.28.0";
+      sha256 = "sha256-NAQD6DK1c13nA/O0QHNxFraImE6C0+Jzj9+f06EkiW0=";
     }
     {
       name = "copilot";
       publisher = "Github";
-      version = "1.311.0";
-      sha256 = "sha256-TXentIAJ9pZZeM6XbdsIMd0KJ5sFsXjKx377I9oKczQ=";
+      version = "1.368.1780";
+      sha256 = "sha256-YcQuMm5sc4RXgXqyxilzoy8QoWQcwg7ZVOui/OwqTMo=";
+    }
+    {
+      name = "quarto";
+      publisher = "quarto";
+      version = "1.124.0";
+      sha256 = "sha256-N6Itn7IManLJtt+6b4COob4MXjbO5k++mRP5/A4hDU4=";
     }
   ]

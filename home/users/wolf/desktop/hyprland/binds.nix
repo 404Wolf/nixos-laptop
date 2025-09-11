@@ -1,15 +1,21 @@
 {
   pkgs,
+  lib,
   system,
   osConfig,
   config,
+  workspace2d,
   ...
 }: let
-  workspace2d = "${pkgs.hyprland-workspace2d}/bin/workspace2d";
+  toggle = {
+    program,
+    launch,
+    kill,
+    conditional,
+  }:
+    pkgs.writeShellScriptBin "toggle-${program}.sh" "${conditional} && ${kill} || ${launch}";
 
-  toggles = let
-    toggle = args: (import ./scripts/toggle.nix (args // {inherit pkgs;}));
-  in {
+  toggles = {
     dunst = (import ../../scripts/pause-dunst.nix) {inherit pkgs;};
 
     spotify = toggle rec {

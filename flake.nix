@@ -38,6 +38,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    hyprland.url = "github:hyprwm/Hyprland";
     hyprland-workspace2d = {
       url = "github:404wolf/Hyprland-Workspace-2D";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -59,13 +60,20 @@
       inherit system;
       config = {
         allowUnfree = true;
-        permittedInsecurePackages = ["electron-25.9.0" "electron-32.3.3"];
+        permittedInsecurePackages = [
+          "electron-25.9.0"
+          "electron-32.3.3"
+        ];
       };
-      permittedInsecurePackages = ["electron-25.9.0" "electron-32.3.3"];
+      permittedInsecurePackages = [
+        "electron-25.9.0"
+        "electron-32.3.3"
+      ];
     };
 
     pkgs-unstable = import nixpkgs-unstable pkgs-options;
-    pkgs = import nixpkgs (pkgs-options
+    pkgs = import nixpkgs (
+      pkgs-options
       // {
         overlays = [
           (final: prev: {
@@ -83,11 +91,14 @@
             valfs = inputs.valfs.packages.${system}.default;
             firefox-addons = inputs.firefox-addons.packages.${system};
 
+            hyprland = inputs.hyprland.packages.${system}.hyprland;
+
             hyprland-workspace2d = inputs.hyprland-workspace2d.packages.${system}.workspace2d;
           })
           inputs.nur.overlays.default
         ];
-      });
+      }
+    );
 
     utils = pkgs.callPackage ./utils.nix {};
 
@@ -116,7 +127,11 @@
             {
               _module.args.disks = ["/dev/nvme0n1"];
               nixpkgs.system = system;
-              home-manager.extraSpecialArgs = {inherit pkgs system;} // specialArgs;
+              home-manager.extraSpecialArgs =
+                {
+                  inherit pkgs system;
+                }
+                // specialArgs;
               home-manager.backupFileExtension = ".bak";
             }
           ];
@@ -151,7 +166,10 @@
           drv = pkgs.writeShellApplication {
             name = "rebuild";
             text = builtins.readFile ./rebuild.sh;
-            runtimeInputs = with pkgs; [git nix];
+            runtimeInputs = with pkgs; [
+              git
+              nix
+            ];
           };
         };
         vm = flake-utils.lib.mkApp {
@@ -162,14 +180,9 @@
       };
 
       packages.default =
-        (nixpkgs.lib.nixosSystem
-          {
-            inherit system pkgs;
-            modules = [(nixpkgs + "/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix")];
-          })
-        .config
-        .system
-        .build
-        .isoImage;
+        (nixpkgs.lib.nixosSystem {
+          inherit system pkgs;
+          modules = [(nixpkgs + "/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix")];
+        }).config.system.build.isoImage;
     });
 }
