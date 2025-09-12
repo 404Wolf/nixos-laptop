@@ -3,7 +3,8 @@
   config,
   inputs,
   ...
-}: {
+}:
+{
   imports = [
     ./audio.nix
     ./battery.nix
@@ -29,8 +30,8 @@
 
   # Hardware configuration
   boot = {
-    extraModulePackages = [config.boot.kernelPackages.acpi_call];
-    kernelModules = ["acpi_call"];
+    extraModulePackages = [ config.boot.kernelPackages.acpi_call ];
+    kernelModules = [ "acpi_call" ];
   };
 
   # System configuration
@@ -92,6 +93,10 @@
     };
     dev.enable = true;
   };
+  environment.systemPackages = [
+    pkgs.man-pages
+    pkgs.man-pages-posix
+  ];
 
   system.stateVersion = "23.11";
 }
