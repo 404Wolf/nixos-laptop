@@ -2,11 +2,15 @@
   description = "Collection of Wolf's NixOS and Home Manager Config";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
-    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-dev.url = "github:nixos/nixpkgs";
-    home-manager.url = "github:nix-community/home-manager/release-25.05";
+
+    disko.url = "github:nix-community/disko";
+    disko.inputs.nixpkgs.follows = "nixpkgs";
+
+    home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+
     treefmt-nix.url = "github:numtide/treefmt-nix";
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
     nix-index-database.url = "github:nix-community/nix-index-database";
@@ -15,8 +19,6 @@
     sops-nix.url = "github:Mic92/sops-nix";
     flake-utils.url = "github:numtide/flake-utils";
     nix-colors.url = "github:misterio77/nix-colors";
-    disko.url = "github:nix-community/disko";
-    disko.inputs.nixpkgs.follows = "nixpkgs";
     nur = {
       url = "github:nix-community/NUR";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -37,6 +39,7 @@
       url = "github:nix-community/fenix/monthly";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    zed.url = "github:zed-industries/zed";
 
     hyprland.url = "github:hyprwm/Hyprland";
     hyprland-workspace2d = {
@@ -48,7 +51,6 @@
   outputs = {
     self,
     nixpkgs,
-    nixpkgs-unstable,
     flake-utils,
     home-manager,
     nixos-hardware,
@@ -71,15 +73,11 @@
       ];
     };
 
-    pkgs-unstable = import nixpkgs-unstable pkgs-options;
     pkgs = import nixpkgs (
       pkgs-options
       // {
         overlays = [
           (final: prev: {
-            firefox-devedition = pkgs-unstable.firefox-devedition;
-            beeper = pkgs-unstable.beeper;
-
             wrappedNvim = inputs.nix-neovim.packages.${system}.default;
             capture-utils = inputs.capture-utils.packages.${system}.default;
             dalleCLI = inputs.dalleCLI.packages.${system}.default;
@@ -90,6 +88,7 @@
             dashToDock = inputs.dashToDock.packages.${system}.default;
             valfs = inputs.valfs.packages.${system}.default;
             firefox-addons = inputs.firefox-addons.packages.${system};
+            # zed-editor = inputs.zed.packages.${system}.default;
 
             hyprland = inputs.hyprland.packages.${system}.hyprland;
 
@@ -100,7 +99,7 @@
       }
     );
 
-    utils = pkgs.callPackage ./utils.nix {};
+    helpers = pkgs.callPackage ./utils.nix {};
 
     baseModules = [
       home-manager.nixosModules.home-manager
@@ -114,8 +113,7 @@
       nixosConfigurations.default = nixpkgs.lib.nixosSystem rec {
         inherit system pkgs;
         specialArgs = {
-          inherit inputs pkgs-unstable system;
-          helpers = utils;
+          inherit inputs system helpers;
           nix-colors = inputs.nix-colors;
         };
         modules =
@@ -182,7 +180,9 @@
       packages.default =
         (nixpkgs.lib.nixosSystem {
           inherit system pkgs;
-          modules = [(nixpkgs + "/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix")];
+          modules = [
+            (nixpkgs + "/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix")
+          ];
         }).config.system.build.isoImage;
     });
 }

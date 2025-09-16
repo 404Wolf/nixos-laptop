@@ -2,6 +2,7 @@
   home.packages = with pkgs; [
     # System Utilities
     curl
+    bat
     wget
     tree
     dhcpcd
@@ -54,8 +55,9 @@
       ]))
     typst
     lazygit
+    delta
     valfs
-    yubikey-personalization-gui
+    yubioath-flutter
     texliveFull
     pandoc
     code-cursor

@@ -4,26 +4,16 @@
     "default_model": {
       "provider": "copilot_chat",
       "model": "claude-sonnet-4"
-    },
-    "version": "2"
+    }
   },
   "vim_mode": true,
   "vim": {
     "toggle_relative_line_numbers": true,
     "highlight_on_yank_duration": 200,
-    "use_system_clipboard": "always",
-    "context_bindings": {
-      "Dock": {
-        "ctrl-w h": "workspace::ActivatePaneLeft",
-        "ctrl-w l": "workspace::ActivatePaneRight",
-        "ctrl-w k": "workspace::ActivatePaneUp",
-        "ctrl-w j": "workspace::ActivatePaneDown"
-      },
-      "vim_mode == visual": {
-        "<space> f f": "file_finder::Toggle",
-        "<space> p p": "editor::format"
-      }
-    }
+    "use_system_clipboard": "always"
+  },
+  "file_types": {
+    "Markdown": ["qmd", "md"]
   },
   "theme": "True Dark",
   "inlay_hints": {
@@ -44,7 +34,6 @@
   "language_models": {
     "anthropic": {
       "api_url": "https://api.anthropic.com",
-      "version": "1",
       "available_models": [
         {
           "display_name": "Claude Sonnet 4.1",

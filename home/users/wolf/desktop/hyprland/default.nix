@@ -9,12 +9,7 @@
   mkColor = hash: "rgb(${hash})";
   workspace2d = "${lib.getBin pkgs.hyprland-workspace2d}/bin/workspace2d";
 in {
-  imports = [
-    ./hyprlock.nix
-    ./hypridle.nix
-    ./hyprpaper.nix
-    ./services.nix
-  ];
+  imports = [./hyprlock.nix ./hypridle.nix ./hyprpaper.nix ./services.nix];
 
   programs = {
     zsh.initContent =
@@ -37,14 +32,8 @@ in {
     settings = {
       source = "~/.config/hypr/monitors.conf";
       exec-once = import ./execs.nix {inherit pkgs config osConfig;};
-      animation = [
-        "workspaces,1,1,default"
-        "windows,1,1,default"
-      ];
-      env = [
-        "QT_QPA_PLATFORM,wayland;xcb"
-        "XCURSOR_SIZE,22"
-      ];
+      animation = ["workspaces,1,1,default" "windows,1,1,default"];
+      env = ["QT_QPA_PLATFORM,wayland;xcb" "XCURSOR_SIZE,22"];
       ecosystem = {
         no_donation_nag = true;
         no_update_news = true;
@@ -69,7 +58,8 @@ in {
         "col.border_active" = mkColor config.colorScheme.palette.base0A;
         "col.border_inactive" = mkColor config.colorScheme.palette.base03;
         "col.border_locked_active" = mkColor config.colorScheme.palette.base03;
-        "col.border_locked_inactive" = mkColor config.colorScheme.palette.base01;
+        "col.border_locked_inactive" =
+          mkColor config.colorScheme.palette.base01;
         groupbar = {
           height = 4;
           "col.active" = mkColor config.colorScheme.palette.base09;
@@ -89,11 +79,12 @@ in {
         kb_options = "caps:numlock";
       };
       gesture = [
-        "4, up, dispatcher, exec ${workspace2d} up"
-        "4, down, dispatcher, exec ${workspace2d} down"
-        "4, left, dispatcher, exec ${workspace2d} left"
-        "4, right, dispatcher, exec ${workspace2d} right"
+        "4, up, dispatcher, exec ${workspace2d} up '' ''"
+        "4, down, dispatcher, exec ${workspace2d} down '' ''"
+        "4, left, dispatcher, exec ${workspace2d} left '' ''"
+        "4, right, dispatcher, exec ${workspace2d} right '' ''"
       ];
+      debug.disable_logs = false;
       misc = {
         vfr = true;
         disable_hyprland_logo = true;
@@ -102,15 +93,8 @@ in {
       windowrulev2 = import ./rules.nix {};
     };
     extraConfig =
-      (import ./binds.nix {
-        inherit
-          lib
-          pkgs
-          system
-          osConfig
-          config
-          workspace2d
-          ;
+      (import ./keybinds.nix {
+        inherit lib pkgs system osConfig config workspace2d;
       })
       + (import ./chords.nix {inherit pkgs;});
   };

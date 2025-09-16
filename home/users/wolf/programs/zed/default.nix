@@ -11,7 +11,7 @@
 
   wrappedZed = pkgs.symlinkJoin {
     name = "zed";
-    paths = [pkgs.zed-editor-fhs];
+    paths = [pkgs.zed-editor];
     buildInputs = [pkgs.makeWrapper];
     postBuild = ''
       wrapProgram "$out/bin/zeditor" \
@@ -24,7 +24,6 @@ in {
   programs.zed-editor = {
     enable = true;
     package = wrappedZed;
-    extensions = ["awk" "deno" "nix" "pylsp" "make" "react-typescript-snippets"];
 
     userSettings = builtins.fromJSON (builtins.readFile ./settings.json);
     userKeymaps = builtins.fromJSON (builtins.readFile ./keymap.json);

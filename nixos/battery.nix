@@ -107,36 +107,38 @@
       ExecStart = "${pkgs.writeShellApplication {
         name = "low-battery-actions";
         runtimeInputs = with pkgs; [acpi systemd brightnessctl];
-        text = ''
-          did_reduce=0 # if the battery drops below 10% we don't want to keep resetting the brightness
+        text =
+          #bash
+          ''
+            did_reduce=0 # if the battery drops below 10% we don't want to keep resetting the brightness
 
-          while true; do
-            battery_info=$(acpi -b)
-            ac_info=$(acpi -a)
-            battery_level=$(echo "$battery_info" | grep -P -o '[0-9]+(?=%)' || echo "");
-            ac_powered=$(echo "$ac_info" | grep -c "on-line" || true)
+            while true; do
+              battery_info=$(acpi -b)
+              ac_info=$(acpi -a)
+              battery_level=$(echo "$battery_info" | grep -P -o '[0-9]+(?=%)' || echo "");
+              ac_powered=$(echo "$ac_info" | grep -c "on-line" || true)
 
-            if { [ "$battery_level" -gt 10 ] || [ "$ac_powered" -eq 1 ]; }; then
-              did_reduce=0
-            fi
-
-            if [ "$battery_level" -eq 10 ] && [ "$ac_powered" -eq 0 ]; then
-              current_brightness=$(brightnessctl info | grep -oP '\(\K[0-9]+(?=%)' || echo "100")
-
-              if [ "$did_reduce" -eq 0 ] && [ "$current_brightness" -gt 40 ]; then
-                brightnessctl set 40%
-                did_reduce=1
+              if { [ "$battery_level" -gt 10 ] || [ "$ac_powered" -eq 1 ]; }; then
+                did_reduce=0
               fi
-            fi
 
-            if [ -n "$battery_level" ] && [ "$battery_level" -le 2 ] && [ "$ac_powered" -eq 0 ]; then
-              echo "Battery level is $battery_level%, hibernating..."
-              systemctl hibernate
-            fi
+              if [ "$battery_level" -eq 10 ] && [ "$ac_powered" -eq 0 ]; then
+                current_brightness=$(brightnessctl info | grep -oP '\(\K[0-9]+(?=%)' || echo "100")
 
-            sleep 30
-          done
-        '';
+                if [ "$did_reduce" -eq 0 ] && [ "$current_brightness" -gt 40 ]; then
+                  brightnessctl set 40%
+                  did_reduce=1
+                fi
+              fi
+
+              if [ -n "$battery_level" ] && [ "$battery_level" -le 2 ] && [ "$ac_powered" -eq 0 ]; then
+                echo "Battery level is $battery_level%, hibernating..."
+                systemctl hibernate
+              fi
+
+              sleep 30
+            done
+          '';
       }}/bin/low-battery-actions";
     };
     wantedBy = ["multi-user.target"];
