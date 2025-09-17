@@ -934,11 +934,11 @@
         "treefmt-nix": "treefmt-nix_2"
       },
       "locked": {
-        "lastModified": 1757642318,
-        "narHash": "sha256-hQY2afI6d30d28ZQxPANA16NtubWPhWbv9GgB1btMpk=",
+        "lastModified": 1758122647,
+        "narHash": "sha256-7NOlpXV+CCB3HTjeDzFslKr3shW0Vf/ozkPdtfR/Y24=",
         "owner": "404Wolf",
         "repo": "nix-neovim",
-        "rev": "fe089e001a74d4eb241ca7ab730e5e95de5ade1b",
+        "rev": "f9879746ce8c36a701d297b1f125b337650460db",
         "type": "github"
       },
       "original": {
