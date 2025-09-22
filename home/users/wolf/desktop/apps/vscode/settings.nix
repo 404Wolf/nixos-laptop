@@ -54,6 +54,9 @@
   "[nginx]" = {
     "editor.defaultFormatter" = "raynigon.nginx-formatter";
   };
+  "[markdown]" = {
+    "editor.defaultFormatter" = "esbenp.prettier-vscode";
+  };
   "[dockercompose]" = {
     "editor.defaultFormatter" = "ms-azuretools.vscode-docker";
   };
