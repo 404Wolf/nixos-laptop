@@ -41,8 +41,6 @@
     };
     zed.url = "github:zed-industries/zed";
 
-    hyprlock.url = "github:hyprwm/hyprlock";
-    hyprland.url = "github:hyprwm/Hyprland";
     hyprland-workspace2d = {
       url = "github:404wolf/Hyprland-Workspace-2D";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -90,9 +88,6 @@
             valfs = inputs.valfs.packages.${system}.default;
             firefox-addons = inputs.firefox-addons.packages.${system};
             # zed-editor = inputs.zed.packages.${system}.default;
-
-            hyprland = inputs.hyprland.packages.${system}.hyprland;
-            hyprlock = inputs.hyprlock.packages.${system}.hyprlock;
 
             hyprland-workspace2d = inputs.hyprland-workspace2d.packages.${system}.workspace2d;
           })
