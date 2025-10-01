@@ -14,6 +14,8 @@
             -o ${config.my.variables.wallpaper-path}
 
           hyprctl hyprpaper reload ,"${config.my.variables.wallpaper-path}"
+
+          ${pkgs.imagemagick}/bin/convert ${config.my.variables.wallpaper-path} -resize 800x600 ${config.my.variables.low-resolution-wallpaper-path}
         '';
       };
     };

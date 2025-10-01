@@ -17,12 +17,12 @@
     ./remotes.nix
     ./users.nix
     ./virt.nix
+    ./programs.nix
     (inputs.nix-index-database.nixosModules.nix-index)
   ];
 
   # Clock time
   time.timeZone = "America/New_York";
-  programs.npm.enable = true;
 
   # Pinentry
   programs.gnupg.agent.pinentryPackage = pkgs.pinentry-qt;

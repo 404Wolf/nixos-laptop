@@ -604,11 +604,11 @@
         "treefmt-nix": "treefmt-nix_2"
       },
       "locked": {
-        "lastModified": 1759102607,
-        "narHash": "sha256-KRjZtqKNfpM5/Xo9zEdmHIo9JU81lBd3pJyZz1rdCJU=",
+        "lastModified": 1759107048,
+        "narHash": "sha256-a9HIhkkeiJ6sizz/VcqXJQmbi40k+zpAdoB6xLpUMVw=",
         "owner": "404Wolf",
         "repo": "nix-neovim",
-        "rev": "b85398aae069d22721d03b4227d05b0a5a3b7076",
+        "rev": "aea340875aa32f7a83bd72403c4fe339578e6723",
         "type": "github"
       },
       "original": {

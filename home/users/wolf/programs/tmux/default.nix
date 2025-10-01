@@ -57,6 +57,8 @@
 
         # Control a, control c, to change the working directory
         bind C-c command-prompt -p "New working directory:" "attach -c '%%'"
+
+        set -g allow-passthrough on
       ''
       + (helpers.template ./template.mustache config.colorScheme.palette);
   };

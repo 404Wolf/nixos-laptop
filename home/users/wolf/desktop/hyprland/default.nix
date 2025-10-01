@@ -9,7 +9,14 @@
   mkColor = hash: "rgb(${hash})";
   workspace2d = "${lib.getBin pkgs.hyprland-workspace2d}/bin/workspace2d";
 in {
-  imports = [./hyprlock.nix ./hypridle.nix ./hyprpaper.nix ./services.nix];
+  imports = [
+    ./hyprlock.nix
+    ./hypridle.nix
+    ./hyprpaper.nix
+    ./services.nix
+  ];
+
+  home.packages = with pkgs; [uwsm];
 
   programs = {
     zsh.initContent =
@@ -20,11 +27,18 @@ in {
           ${pkgs.killall}/bin/killall -9 hyprlock
           hyprctl --instance 0 'dispatch exec hyprlock'
         }
+
+        if uwsm check may-start && uwsm select; then
+          exec uwsm start default
+        fi
       '';
   };
 
   wayland.windowManager.hyprland = {
     enable = true;
+
+    # https://wiki.hypr.land/Useful-Utilities/Systemd-start/
+    systemd.enable = false; # prevents conflicts with `programs.hyprland.withUWSM`
 
     systemd.variables = ["--all"];
     xwayland.enable = true;
@@ -32,8 +46,14 @@ in {
     settings = {
       source = "~/.config/hypr/monitors.conf";
       exec-once = import ./execs.nix {inherit pkgs config osConfig;};
-      animation = ["workspaces,1,1,default" "windows,1,1,default"];
-      env = ["QT_QPA_PLATFORM,wayland;xcb" "XCURSOR_SIZE,22"];
+      animation = [
+        "workspaces,1,1,default"
+        "windows,1,1,default"
+      ];
+      env = [
+        "QT_QPA_PLATFORM,wayland;xcb"
+        "XCURSOR_SIZE,22"
+      ];
       ecosystem = {
         no_donation_nag = true;
         no_update_news = true;
@@ -58,8 +78,7 @@ in {
         "col.border_active" = mkColor config.colorScheme.palette.base0A;
         "col.border_inactive" = mkColor config.colorScheme.palette.base03;
         "col.border_locked_active" = mkColor config.colorScheme.palette.base03;
-        "col.border_locked_inactive" =
-          mkColor config.colorScheme.palette.base01;
+        "col.border_locked_inactive" = mkColor config.colorScheme.palette.base01;
         groupbar = {
           height = 4;
           "col.active" = mkColor config.colorScheme.palette.base09;
@@ -94,7 +113,14 @@ in {
     };
     extraConfig =
       (import ./keybinds.nix {
-        inherit lib pkgs system osConfig config workspace2d;
+        inherit
+          lib
+          pkgs
+          system
+          osConfig
+          config
+          workspace2d
+          ;
       })
       + (import ./chords.nix {inherit pkgs;});
   };

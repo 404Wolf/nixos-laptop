@@ -131,7 +131,7 @@
       after = ["<C-d>" "z" "z"];
     }
     {
-      before = ["g" "n" "r"];
+      before = ["c" "d"];
       commands = ["editor.action.rename"];
     }
     # Open the command palette
