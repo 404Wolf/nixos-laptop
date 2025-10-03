@@ -30,6 +30,10 @@
     command = "workbench.action.toggleSidebarVisibility";
   }
   {
+    key = "ctrl+m";
+    command = "workbench.action.toggleAuxiliaryBar";
+  }
+  {
     key = "ctrl+alt+n";
     command = "workbench.action.focusActivityBar";
   }

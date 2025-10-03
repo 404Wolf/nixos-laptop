@@ -49,28 +49,28 @@ in
   ''
   + ''
     # Audio keybinds
-    binde=, XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 4%+   # Increase Volume
-    binde=, XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 4%-   # Decrease Volume
-    bind=, XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle          # Mute Volume
-    bindl=, XF86AudioPlay, exec, ${pkgs.playerctl}/bin/playerctl play-pause         # Pause song
-    bindl=, XF86AudioNext, exec, ${pkgs.playerctl}/bin/playerctl next               # Previous song
-    bindl=, XF86AudioPrev, exec, ${pkgs.playerctl}/bin/playerctl previous           # Previous song
+    binde=, XF86AudioRaiseVolume, exec, uwsm app -- wpctl set-volume @DEFAULT_AUDIO_SINK@ 4%+   # Increase Volume
+    binde=, XF86AudioLowerVolume, exec, uwsm app -- wpctl set-volume @DEFAULT_AUDIO_SINK@ 4%-   # Decrease Volume
+    bind=, XF86AudioMute, exec, uwsm app --  wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle          # Mute Volume
+    bindl=, XF86AudioPlay, exec, uwsm app -- ${pkgs.playerctl}/bin/playerctl play-pause         # Pause song
+    bindl=, XF86AudioNext, exec, uwsm app -- ${pkgs.playerctl}/bin/playerctl next               # Previous song
+    bindl=, XF86AudioPrev, exec, uwsm app -- ${pkgs.playerctl}/bin/playerctl previous           # Previous song
   ''
   + ''
     # Brightness keybinds
-    binde=, XF86MonBrightnessUp, exec, ${pkgs.brightnessctl}/bin/brightnessctl set 10+    # Increase brightness
-    binde=, XF86MonBrightnessDown, exec, ${pkgs.brightnessctl}/bin/brightnessctl set 10-  # Decrease brightness
+    binde=, XF86MonBrightnessUp, exec, uwsm app -- ${pkgs.brightnessctl}/bin/brightnessctl set 10+    # Increase brightness
+    binde=, XF86MonBrightnessDown, exec, uwsm app -- ${pkgs.brightnessctl}/bin/brightnessctl set 10-  # Decrease brightness
   ''
   + ''
     # Dunst notification toggle
-    bind=$CAP ALT SHIFT, D, exec, ${toggles.dunst}/bin/toggle-dunst
+    bind=$CAP ALT SHIFT, D, exec, uwsm app -- ${toggles.dunst}/bin/toggle-dunst
 
     # Dunst dismiss all notifications
-    bind = ALT SHIFT, D, exec, dunstctl close-all
+    bind = ALT SHIFT, D, exec, uwsm app -- dunstctl close-all
   ''
   + ''
     # Waybar keybind
-    bind=$SUPER, W, exec, ${pkgs.toybox}/bin/killall -SIGUSR1 waybar
+    bind=$SUPER, W, exec, uwsm app -- ${pkgs.toybox}/bin/killall -SIGUSR1 waybar
   ''
   + ''
     # Monitor focus keybinds
@@ -97,26 +97,26 @@ in
     # Quick launch keybinds
 
     # Browsers
-    bind=$MOD, F, exec, ${pkgs.google-chrome}/bin/google-chrome-stable --profile-directory='Profile 1' --new-window=about:newtab
-    bind=$MOD SHIFT, F, exec, ${pkgs.google-chrome}/bin/google-chrome-stable --profile-directory='Default' --new-window=about:newtab
-    bind=$MOD ALT, F, exec, ${config.my.variables.firefox-package} -P "Primary" --new-window
-    bind=$MOD CONTROL, F, exec, ${pkgs.qutebrowser}/bin/qutebrowser --target window
+    bind=$MOD, F, exec, uwsm app -- ${pkgs.google-chrome}/bin/google-chrome-stable --profile-directory='Profile 1' --new-window=about:newtab
+    bind=$MOD SHIFT, F, exec, uwsm app -- ${pkgs.google-chrome}/bin/google-chrome-stable --profile-directory='Default' --new-window=about:newtab
+    bind=$MOD ALT, F, exec, uwsm app -- ${config.my.variables.firefox-package} -P "Primary" --new-window
+    bind=$MOD CONTROL, F, exec, uwsm app -- ${pkgs.qutebrowser}/bin/qutebrowser --target window
 
-    bind=$MOD, T, exec, ${pkgs.kitty}/bin/kitty
-    bind=$MOD, C, exec, ${pkgs.qalculate-qt}/bin/qalculate-qt
-    bind=$MOD, M, exec, sh ${toggles.spotify}/bin/toggle-spotify.sh
+    bind=$MOD, T, exec, uwsm app -- ${pkgs.kitty}/bin/kitty
+    bind=$MOD, C, exec, uwsm app -- ${pkgs.qalculate-qt}/bin/qalculate-qt
+    bind=$MOD, M, exec, uwsm app -- sh ${toggles.spotify}/bin/toggle-spotify.sh
   ''
   + ''
     # App launcher
-    bind=$MOD, Space, exec, ${pkgs.fuzzel}/bin/fuzzel
+    bind=$MOD, Space, exec, uwsm app -- ${pkgs.fuzzel}/bin/fuzzel
 
     # Window selector
-    bind=$MOD SHIFT, Space, exec, ${toggles.windows}/bin/hyprland-select-window
+    bind=$MOD SHIFT, Space, exec, uwsm app -- ${toggles.windows}/bin/hyprland-select-window
   ''
   + ''
     # Basic app manipulation commands
     bind=$MOD, Y, togglefloating
-    bind=$MOD, E, exec, ${pkgs.nemo-with-extensions}/bin/nemo
+    bind=$MOD, E, exec, uwsm app -- ${pkgs.nemo-with-extensions}/bin/nemo
   ''
   + ''
     # Groups
@@ -126,21 +126,21 @@ in
   ''
   + ''
     # Switch one workspace left/right
-    bind=$MOD CONTROL_L, L, exec, ${workspace2d} right "" ""
-    bind=$MOD CONTROL_L, H, exec, ${workspace2d} left "" ""
-    bind=$MOD CONTROL_L, J, exec, ${workspace2d} down "" ""
-    bind=$MOD CONTROL_L, K, exec, ${workspace2d} up "" ""
+    bind=$MOD CONTROL_L, L, exec, uwsm app -- ${workspace2d} right "" ""
+    bind=$MOD CONTROL_L, H, exec, uwsm app -- ${workspace2d} left "" ""
+    bind=$MOD CONTROL_L, J, exec, uwsm app -- ${workspace2d} down "" ""
+    bind=$MOD CONTROL_L, K, exec, uwsm app -- ${workspace2d} up "" ""
   ''
   + ''
-    bind=$MOD ALT, J, exec, ${workspace2d} down "all" ""
-    bind=$MOD ALT, K, exec, ${workspace2d} up "all" ""
+    bind=$MOD ALT, J, exec, uwsm app -- ${workspace2d} down "all" ""
+    bind=$MOD ALT, K, exec, uwsm app -- ${workspace2d} up "all" ""
   ''
   + ''
     # Move things one workspace left/right
-    bind=$MOD SHIFT, L, exec, ${workspace2d} move_right "" ""
-    bind=$MOD SHIFT, H, exec, ${workspace2d} move_left "" ""
-    bind=$MOD SHIFT, J, exec, ${workspace2d} move_down "" ""
-    bind=$MOD SHIFT, K, exec, ${workspace2d} move_up "" ""
+    bind=$MOD SHIFT, L, exec, uwsm app -- ${workspace2d} move_right "" ""
+    bind=$MOD SHIFT, H, exec, uwsm app -- ${workspace2d} move_left "" ""
+    bind=$MOD SHIFT, J, exec, uwsm app -- ${workspace2d} move_down "" ""
+    bind=$MOD SHIFT, K, exec, uwsm app -- ${workspace2d} move_up "" ""
   ''
   + ''
     # Lock workspaces
@@ -199,7 +199,7 @@ in
   ''
   + ''
     # Easily get to obsidian
-    bind=$MOD, O, exec, hyprctl dispatch workspace special:16 & [ ps aux | grep '[o]bsidian' || ${pkgs.obsidian}/bin/obsidian ]
+    bind=$MOD, O, exec, uwsm app -- hyprctl dispatch workspace special:16 & [ ps aux | grep '[o]bsidian' || ${pkgs.obsidian}/bin/obsidian ]
   ''
   + ''
     # Changing window focus
@@ -244,10 +244,10 @@ in
     bind=$MOD SHIFT, H, moveintogroup, l
 
     # Yoinking windows in
-    bind=$MOD, L, exec, hyprctl dispatch moveoutofgroup && hyprctl dispatch movewindow r
-    bind=$MOD, K, exec, hyprctl dispatch moveoutofgroup && hyprctl dispatch movewindow u
-    bind=$MOD, J, exec, hyprctl dispatch moveoutofgroup && hyprctl dispatch movewindow d
-    bind=$MOD, H, exec, hyprctl dispatch moveoutofgroup && hyprctl dispatch movewindow l
+    bind=$MOD, L, exec, uwsm app -- hyprctl dispatch moveoutofgroup && hyprctl dispatch movewindow r
+    bind=$MOD, K, exec, uwsm app -- hyprctl dispatch moveoutofgroup && hyprctl dispatch movewindow u
+    bind=$MOD, J, exec, uwsm app -- hyprctl dispatch moveoutofgroup && hyprctl dispatch movewindow d
+    bind=$MOD, H, exec, uwsm app -- hyprctl dispatch moveoutofgroup && hyprctl dispatch movewindow l
 
     # Escaping the submap
     bind=, escape, submap, reset
@@ -257,5 +257,5 @@ in
   ''
   + ''
     # Clipboard history
-    bind=$MOD, V, exec, ${pkgs.cliphist}/bin/cliphist list | fuzzel --dmenu | ${pkgs.cliphist}/bin/cliphist decode | ${pkgs.wl-clipboard}/bin/wl-copy
+    bind=$MOD, V, exec, uwsm app -- ${pkgs.cliphist}/bin/cliphist list | fuzzel --dmenu | ${pkgs.cliphist}/bin/cliphist decode | ${pkgs.wl-clipboard}/bin/wl-copy
   ''

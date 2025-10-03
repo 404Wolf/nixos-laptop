@@ -98,10 +98,10 @@ in {
         kb_options = "caps:numlock";
       };
       gesture = [
-        "4, up, dispatcher, exec ${workspace2d} up '' ''"
-        "4, down, dispatcher, exec ${workspace2d} down '' ''"
-        "4, left, dispatcher, exec ${workspace2d} left '' ''"
-        "4, right, dispatcher, exec ${workspace2d} right '' ''"
+        "4, up, dispatcher, exec, uwsm app -- ${workspace2d} up '' ''"
+        "4, down, dispatcher, exec, uwsm app -- ${workspace2d} down '' ''"
+        "4, left, dispatcher, exec, uwsm app -- ${workspace2d} left '' ''"
+        "4, right, dispatcher, exec, uwsm app -- ${workspace2d} right '' ''"
       ];
       debug.disable_logs = false;
       misc = {
