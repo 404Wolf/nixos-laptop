@@ -44,6 +44,7 @@ in
     ms-vsliveshare.vsliveshare
     golang.go
     denoland.vscode-deno
+    detachhead.basedpyright
     (
       ms-toolsai.jupyter.overrideAttrs (final: prev: (prev
         // {
@@ -59,12 +60,6 @@ in
     )
   ])
   ++ from-marketplace [
-    {
-      name = "python";
-      publisher = "ms-python";
-      version = "2024.10.0";
-      sha256 = "sha256-C7YaluW+FMnAUg2yrqLVqsH6m4qU1riyXz7E3xukPeI=";
-    }
     {
       name = "simple-react-snippets";
       publisher = "burkeholland";

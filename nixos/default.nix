@@ -29,7 +29,9 @@
 
   # Hardware configuration
   boot = {
-    extraModulePackages = [config.boot.kernelPackages.acpi_call];
+    extraModulePackages = [
+      config.boot.kernelPackages.acpi_call
+    ];
     kernelModules = ["acpi_call"];
   };
 

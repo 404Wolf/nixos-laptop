@@ -3,8 +3,8 @@
   osConfig,
   ...
 }: {
-  # Wakeup hyprland
-  hypr-wakeup = "hyprctl dispatch dpms on eDP-1 && hyprctl dispatch dpms on DP-6 && hyprctl dispatch dpms on DP-8";
+  # Hyprland stuff
+  coltman_monitors = "cp ~/.config/hypr/1947Coltman.conf ~/.config/hypr/monitors.conf";
 
   # Utilities
   gpt =
@@ -46,15 +46,6 @@
   # Direnv stuff
   dr = "direnv reload";
   da = "direnv allow";
-
-  # FZF Aliases
-  fzf = "fzf --preview 'bat --color=always {}'";
-  fzo = ''TO_OPEN="$(fzf)" && open $TO_OPEN 2>& /dev/null & disown'';
-  fzv = ''neovim "$(fzf)"'';
-  fzfcd = ''z $(find * -type d | "fzf")'';
-  fzfcp = ''bat $("fzf") | wwl-copy'';
-  # Chatgpt fancy bash command that lets you scroll through history
-  fzfsh = "history | fzf +s --tac | awk '{print substr($0,index($0,$3))}' | sh";
 
   # Git Aliases
   g = "git";

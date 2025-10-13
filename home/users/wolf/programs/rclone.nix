@@ -22,7 +22,6 @@
     "personal"
     "backups"
     "shares"
-    "404wolf"
     "static"
   ];
 in {

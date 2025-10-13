@@ -8,17 +8,7 @@
     };
 
     # libvirt configuration for managing virtual machines
-    libvirtd = {
-      enable = true;
-      qemu = {
-        # Enable swtpm for software TPM emulation
-        swtpm.enable = true;
-        # Enable OVMF for UEFI support in VMs
-        ovmf.enable = true;
-        # Use the full OVMF package
-        ovmf.packages = [pkgs.OVMFFull.fd];
-      };
-    };
+    libvirtd.enable = true;
     # Enable USB redirection for SPICE
     spiceUSBRedirection.enable = true;
   };
