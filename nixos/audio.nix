@@ -13,6 +13,20 @@
         };
       };
     };
+    extraConfig.client = {
+      context.modules = [
+        {
+          name = "libpipewire-module-alsa-source";
+          args = {
+            device = "hw:2,0";
+            node.name = "alsa_input.pci-0000_c1_00.6.analog-stereo";
+            node.description = "Built-in Audio Analog Stereo (Forced Input)";
+            channels = 2;
+            rate = 48000;
+          };
+        }
+      ];
+    };
   };
 
   # https://chatgpt.com/share/68f545d2-be80-8004-a961-57c1a1386e18
