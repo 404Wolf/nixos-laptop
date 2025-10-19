@@ -117,7 +117,6 @@
           baseModules
           ++ [
             inputs.disko.nixosModules.disko
-            nixos-hardware.nixosModules.framework-13-7040-amd
             ./disko.nix
             {
               _module.args.disks = ["/dev/nvme0n1"];
@@ -129,6 +128,7 @@
                 // specialArgs;
               home-manager.backupFileExtension = ".bak";
             }
+            nixos-hardware.nixosModules.framework-13-7040-amd
           ];
       };
     }

@@ -27,7 +27,7 @@ in
           }
         ];
       };
-      theme.manager = {
+      theme.mgr = {
         # Reusing bat themes, since it's suggested in the stying guide
         # https://yazi-rs.github.io/docs/configuration/theme#manager
         syntect_theme = helpers.template ./template.mustache config.colorScheme.palette;

@@ -1,5 +1,15 @@
-{pkgs, ...}: rec {
+{
+  pkgs,
+  lib,
+  ...
+}: rec {
   my.variables.firefox-package = "firefox-devedition";
+
+  home.activation = {
+    rmFirefoxJunk = lib.hm.dag.entryAfter ["writeBoundary"] ''
+      rm -f rm /home/wolf/.mozilla/firefox/primary/search.json.mozlz4
+    '';
+  };
 
   programs.firefox = {
     enable = true;

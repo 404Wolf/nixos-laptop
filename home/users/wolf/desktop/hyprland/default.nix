@@ -24,13 +24,17 @@ in {
       ''
         unlock_hyprland() {
           hyprctl --instance 0 'keyword misc:allow_session_lock_restore 1'
-          ${pkgs.killall}/bin/killall -9 hyprlock
+          killall -9 hyprlock
           hyprctl --instance 0 'dispatch exec hyprlock'
         }
 
-        if uwsm check may-start && uwsm select; then
-          exec uwsm start default
-        fi
+        uwsm_select() {
+          if command -v uwsm >/dev/null; then
+            if uwsm check may-start && uwsm select; then
+              exec uwsm start default
+            fi
+          fi
+        }
       '';
   };
 
@@ -40,20 +44,18 @@ in {
     # https://wiki.hypr.land/Useful-Utilities/Systemd-start/
     systemd.enable = false; # prevents conflicts with `programs.hyprland.withUWSM`
 
-    systemd.variables = ["--all"];
     xwayland.enable = true;
 
     settings = {
       source = "~/.config/hypr/monitors.conf";
-      exec-once = import ./execs.nix {inherit pkgs config osConfig;};
       animation = [
         "workspaces,1,1,default"
         "windows,1,1,default"
       ];
-      env = [
-        "QT_QPA_PLATFORM,wayland;xcb"
-        "XCURSOR_SIZE,22"
-      ];
+      # env = [
+      #   "QT_QPA_PLATFORM,wayland;xcb"
+      #   "XCURSOR_SIZE,22"
+      # ];
       ecosystem = {
         no_donation_nag = true;
         no_update_news = true;
@@ -98,10 +100,10 @@ in {
         kb_options = "caps:numlock";
       };
       gesture = [
-        "4, up, dispatcher, exec, uwsm app -- ${workspace2d} up '' ''"
-        "4, down, dispatcher, exec, uwsm app -- ${workspace2d} down '' ''"
-        "4, left, dispatcher, exec, uwsm app -- ${workspace2d} left '' ''"
-        "4, right, dispatcher, exec, uwsm app -- ${workspace2d} right '' ''"
+        "4, up, dispatcher, exec, ${workspace2d} up '' ''"
+        "4, down, dispatcher, exec, ${workspace2d} down '' ''"
+        "4, left, dispatcher, exec, ${workspace2d} left '' ''"
+        "4, right, dispatcher, exec, ${workspace2d} right '' ''"
       ];
       debug.disable_logs = false;
       misc = {

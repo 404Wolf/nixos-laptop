@@ -120,4 +120,16 @@ in
       version = "1.124.0";
       sha256 = "sha256-N6Itn7IManLJtt+6b4COob4MXjbO5k++mRP5/A4hDU4=";
     }
+    {
+      name = "ruby-lsp";
+      publisher = "Shopify";
+      version = "0.9.32";
+      sha256 = "sha256-b8VFojeIkplnr48D8el0HeEtN47al/tgqgq52ozjw9M=";
+    }
+    {
+      name = "sorbet-vscode-extension";
+      publisher = "sorbet";
+      version = "0.3.46";
+      sha256 = "sha256-fKJbaJgsLgypprylbUKUjyeU1B9x0RlaD1dUnFd1w7Y=";
+    }
   ]

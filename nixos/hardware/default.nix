@@ -12,7 +12,12 @@
   ];
 
   # Kernel modules to be loaded in the initial ramdisk
-  boot.initrd.availableKernelModules = ["xhci_pci" "thunderbolt" "nvme" "usbhid"];
+  boot.initrd.availableKernelModules = [
+    "xhci_pci"
+    "thunderbolt"
+    "nvme"
+    "usbhid"
+  ];
 
   # Kernel modules to be loaded by the kernel
   boot.kernelModules = ["usbserial" "ftdi_sio" "tcp_highspeed"];

@@ -49,28 +49,28 @@ in
   ''
   + ''
     # Audio keybinds
-    binde=, XF86AudioRaiseVolume, exec, uwsm app -- wpctl set-volume @DEFAULT_AUDIO_SINK@ 4%+   # Increase Volume
-    binde=, XF86AudioLowerVolume, exec, uwsm app -- wpctl set-volume @DEFAULT_AUDIO_SINK@ 4%-   # Decrease Volume
-    bind=, XF86AudioMute, exec, uwsm app --  wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle          # Mute Volume
-    bindl=, XF86AudioPlay, exec, uwsm app -- ${pkgs.playerctl}/bin/playerctl play-pause         # Pause song
-    bindl=, XF86AudioNext, exec, uwsm app -- ${pkgs.playerctl}/bin/playerctl next               # Previous song
-    bindl=, XF86AudioPrev, exec, uwsm app -- ${pkgs.playerctl}/bin/playerctl previous           # Previous song
+    binde=, XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 4%+   # Increase Volume
+    binde=, XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 4%-   # Decrease Volume
+    bind=, XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle          # Mute Volume
+    bindl=, XF86AudioPlay, exec, ${pkgs.playerctl}/bin/playerctl play-pause         # Pause song
+    bindl=, XF86AudioNext, exec, ${pkgs.playerctl}/bin/playerctl next               # Previous song
+    bindl=, XF86AudioPrev, exec, ${pkgs.playerctl}/bin/playerctl previous           # Previous song
   ''
   + ''
     # Brightness keybinds
-    binde=, XF86MonBrightnessUp, exec, uwsm app -- ${pkgs.brightnessctl}/bin/brightnessctl set 10+    # Increase brightness
-    binde=, XF86MonBrightnessDown, exec, uwsm app -- ${pkgs.brightnessctl}/bin/brightnessctl set 10-  # Decrease brightness
+    binde=, XF86MonBrightnessUp, exec, ${pkgs.brightnessctl}/bin/brightnessctl set 10+    # Increase brightness
+    binde=, XF86MonBrightnessDown, exec, ${pkgs.brightnessctl}/bin/brightnessctl set 10-  # Decrease brightness
   ''
   + ''
     # Dunst notification toggle
-    bind=$CAP ALT SHIFT, D, exec, uwsm app -- ${toggles.dunst}/bin/toggle-dunst
+    bind=$CAP ALT SHIFT, D, exec, ${toggles.dunst}/bin/toggle-dunst
 
     # Dunst dismiss all notifications
-    bind = ALT SHIFT, D, exec, uwsm app -- dunstctl close-all
+    bind = ALT SHIFT, D, exec, dunstctl close-all
   ''
   + ''
     # Waybar keybind
-    bind=$SUPER, W, exec, uwsm app -- ${pkgs.toybox}/bin/killall -SIGUSR1 waybar
+    bind=$SUPER, W, exec, ${pkgs.toybox}/bin/killall -SIGUSR1 waybar
   ''
   + ''
     # Monitor focus keybinds
@@ -87,10 +87,7 @@ in
     bind=$CAP SHIFT, L, movewindow, r
   ''
   + ''
-    # Fullscreen keybinds
-    bind=$MOD, F11, fullscreen, 0
-    bind=$MOD SHIFT, M, fullscreen, 0
-    bind=$MOD SHIFT ALT, M, fullscreenstate, 1
+    bind=$MOD SHIFT ALT, M, fullscreenstate, 0, 2, 2
     bind=$MOD SHIFT, P, pin, 1
   ''
   + ''
@@ -126,21 +123,21 @@ in
   ''
   + ''
     # Switch one workspace left/right
-    bind=$MOD CONTROL_L, L, exec, uwsm app -- ${workspace2d} right "" ""
-    bind=$MOD CONTROL_L, H, exec, uwsm app -- ${workspace2d} left "" ""
-    bind=$MOD CONTROL_L, J, exec, uwsm app -- ${workspace2d} down "" ""
-    bind=$MOD CONTROL_L, K, exec, uwsm app -- ${workspace2d} up "" ""
+    bind=$MOD CONTROL_L, L, exec, ${workspace2d} right "" ""
+    bind=$MOD CONTROL_L, H, exec, ${workspace2d} left "" ""
+    bind=$MOD CONTROL_L, J, exec, ${workspace2d} down "" ""
+    bind=$MOD CONTROL_L, K, exec, ${workspace2d} up "" ""
   ''
   + ''
-    bind=$MOD ALT, J, exec, uwsm app -- ${workspace2d} down "all" ""
-    bind=$MOD ALT, K, exec, uwsm app -- ${workspace2d} up "all" ""
+    bind=$MOD ALT, J, exec, ${workspace2d} down "all" ""
+    bind=$MOD ALT, K, exec, ${workspace2d} up "all" ""
   ''
   + ''
     # Move things one workspace left/right
-    bind=$MOD SHIFT, L, exec, uwsm app -- ${workspace2d} move_right "" ""
-    bind=$MOD SHIFT, H, exec, uwsm app -- ${workspace2d} move_left "" ""
-    bind=$MOD SHIFT, J, exec, uwsm app -- ${workspace2d} move_down "" ""
-    bind=$MOD SHIFT, K, exec, uwsm app -- ${workspace2d} move_up "" ""
+    bind=$MOD SHIFT, L, exec, ${workspace2d} move_right "" ""
+    bind=$MOD SHIFT, H, exec, ${workspace2d} move_left "" ""
+    bind=$MOD SHIFT, J, exec, ${workspace2d} move_down "" ""
+    bind=$MOD SHIFT, K, exec, ${workspace2d} move_up "" ""
   ''
   + ''
     # Lock workspaces

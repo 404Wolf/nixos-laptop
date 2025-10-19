@@ -1,4 +1,7 @@
 {
   programs.npm.enable = true;
-  programs.hyprland.withUWSM = true;
+  programs.hyprland = {
+    enable = true;
+    withUWSM = true;
+  };
 }

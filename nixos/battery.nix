@@ -1,10 +1,10 @@
 {pkgs, ...}: {
   # Configure power button and lid switch actions
   services = {
-    logind = {
-      powerKey = "lock";
-      powerKeyLongPress = "hibernate";
-      lidSwitch = "suspend-then-hibernate";
+    logind.settings.Login = {
+      HandlePowerKey = "lock";
+      HandlePowerKeyLongPress = "hibernate";
+      HandleLidSwitch = "suspend-then-hibernate";
     };
   };
   systemd.sleep.extraConfig = ''

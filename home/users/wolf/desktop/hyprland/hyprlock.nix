@@ -1,6 +1,6 @@
 {config, ...}: {
   programs.hyprlock = {
-    enable = false;
+    enable = true;
 
     settings = {
       general = {
@@ -13,7 +13,7 @@
       };
       background = [
         {
-          path = config.my.config.my.variables.wallpaper-path;
+          path = config.my.variables.wallpaper-path;
           blur_passes = 0;
           blur_size = 3;
           reload_time = 10;

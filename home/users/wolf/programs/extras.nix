@@ -25,9 +25,11 @@
     cliphist
     ungoogled-chromium
     usbutils
+    pciutils
     udiskie
     monolith
     sops
+    killall
 
     # Networking & File Management
     rclone
