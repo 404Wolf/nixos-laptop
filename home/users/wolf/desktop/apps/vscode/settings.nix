@@ -252,4 +252,8 @@
     "scope"
     "missin"
   ];
+
+  "workbench.activityBar.location" = "hidden";
+  "window.menuBarVisibility" = "toggle";
+  "window.commandCenter" = false;
 }

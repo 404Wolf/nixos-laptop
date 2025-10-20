@@ -52,10 +52,6 @@ in {
         "workspaces,1,1,default"
         "windows,1,1,default"
       ];
-      # env = [
-      #   "QT_QPA_PLATFORM,wayland;xcb"
-      #   "XCURSOR_SIZE,22"
-      # ];
       ecosystem = {
         no_donation_nag = true;
         no_update_news = true;
@@ -91,7 +87,7 @@ in {
         };
       };
       input = {
-        repeat_rate = 20; # Repeat rate in ms between key repeats
+        repeat_rate = 15; # Repeat rate in ms between key repeats
         repeat_delay = 140; # Delay in ms before key starts repeating
         scroll_button = 274; # 274 = scroll button
         scroll_button_lock = false;

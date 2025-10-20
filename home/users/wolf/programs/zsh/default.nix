@@ -10,6 +10,19 @@
       plugins = ["colorize"];
       "theme" = "fino";
     };
+    initContent =
+      # bash
+      ''
+        unpersist() {
+          local target="$1"
+          local tempfile=$(mktemp)
+          cp -L "$target" "$tempfile" || return
+          rm -rf "$target"
+          cp -a "$tempfile" "$target"
+          chmod --reference="$tempfile" "$target"
+          rm -rf "$tempfile"
+        }
+      '';
     plugins = [
       {
         name = "zsh-nix-shell";

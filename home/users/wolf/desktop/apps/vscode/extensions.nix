@@ -15,7 +15,6 @@ in
     firsttris.vscode-jest-runner
     ms-python.isort
     samuelcolvin.jinjahtml
-    github.copilot
     myriad-dreamin.tinymist
     vscjava.vscode-java-pack
     dbaeumer.vscode-eslint
@@ -31,7 +30,6 @@ in
     jnoortheen.nix-ide
     mkhl.direnv
     golang.go
-    github.github-vscode-theme
     vscodevim.vim
     eamodio.gitlens
     serayuzgur.crates
@@ -41,7 +39,6 @@ in
     ms-vscode.cpptools
     ms-toolsai.jupyter-keymap
     ms-python.debugpy
-    ms-vsliveshare.vsliveshare
     golang.go
     denoland.vscode-deno
     detachhead.basedpyright
@@ -65,18 +62,6 @@ in
       publisher = "burkeholland";
       version = "1.2.8";
       sha256 = "sha256-zrRxJZHRqBMGVkd56Q+wDbCSFfl4X3Kta4sX8ecZmu8=";
-    }
-    {
-      name = "vscode-print";
-      publisher = "pdconsec";
-      version = "0.12.13";
-      sha256 = "sha256-ABy9AOQR0FOE1cO1qZiJ72V8Wq+bwavLck3fwNtwF5I=";
-    }
-    {
-      name = "md-paste-enhanced";
-      publisher = "dzylikecode";
-      version = "2.11.2";
-      sha256 = "sha256-n7LYgKcpZ5gHhCrC9sdUYd/lpsHpJ21d31s8JZyyW5c=";
     }
     {
       name = "nginx-formatter";

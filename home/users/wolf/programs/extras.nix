@@ -64,6 +64,7 @@
     pandoc
     code-cursor
     otree
+    appimage-run
 
     # Text Processing & File Manipulation
     ripgrep
@@ -106,6 +107,7 @@
     slurp
     nwg-displays
     hyprpicker
+    pulseaudio
 
     # Browsers & Communication
     google-chrome
