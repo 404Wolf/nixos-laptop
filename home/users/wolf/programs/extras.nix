@@ -30,6 +30,7 @@
     monolith
     sops
     killall
+    lsof
 
     # Networking & File Management
     rclone

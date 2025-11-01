@@ -56,6 +56,9 @@ in {
         no_donation_nag = true;
         no_update_news = true;
       };
+      exec-once = [
+        "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
+      ];
       general = {
         allow_tearing = false;
         gaps_in = 1;
@@ -96,10 +99,10 @@ in {
         kb_options = "caps:numlock";
       };
       gesture = [
-        "4, up, dispatcher, exec, ${workspace2d} up '' ''"
-        "4, down, dispatcher, exec, ${workspace2d} down '' ''"
-        "4, left, dispatcher, exec, ${workspace2d} left '' ''"
-        "4, right, dispatcher, exec, ${workspace2d} right '' ''"
+        "4, up, dispatcher, exec, ${workspace2d} down '' ''"
+        "4, down, dispatcher, exec, ${workspace2d} up '' ''"
+        "4, left, dispatcher, exec, ${workspace2d} right '' ''"
+        "4, right, dispatcher, exec, ${workspace2d} left '' ''"
       ];
       debug.disable_logs = false;
       misc = {

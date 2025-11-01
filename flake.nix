@@ -12,9 +12,12 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     treefmt-nix.url = "github:numtide/treefmt-nix";
+
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
+
     nix-index-database.url = "github:nix-community/nix-index-database";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
+
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     sops-nix.url = "github:Mic92/sops-nix";
     flake-utils.url = "github:numtide/flake-utils";
@@ -33,10 +36,6 @@
     valfs.url = "github:404wolf/valfs";
     firefox-addons = {
       url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    fenix = {
-      url = "github:nix-community/fenix/monthly";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     zed.url = "github:zed-industries/zed";
@@ -92,6 +91,7 @@
             hyprland-workspace2d = inputs.hyprland-workspace2d.packages.${system}.workspace2d;
           })
           inputs.nur.overlays.default
+          inputs.nix-vscode-extensions.overlays.default
         ];
       }
     );

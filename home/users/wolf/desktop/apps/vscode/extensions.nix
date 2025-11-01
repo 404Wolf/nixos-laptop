@@ -1,120 +1,62 @@
-{
-  pkgs,
-  fenix,
-  ...
-}: let
-  from-marketplace = pkgs.vscode-utils.extensionsFromVscodeMarketplace;
-  extensions = pkgs.vscode-extensions;
-in
-  (with extensions; [
-    fenix.packages.x86_64-linux.rust-analyzer-vscode-extension
-    redhat.vscode-yaml
-    tamasfe.even-better-toml
-    james-yu.latex-workshop
-    vscjava.vscode-maven
-    firsttris.vscode-jest-runner
-    ms-python.isort
-    samuelcolvin.jinjahtml
-    myriad-dreamin.tinymist
-    vscjava.vscode-java-pack
-    dbaeumer.vscode-eslint
-    usernamehw.errorlens
-    batisteo.vscode-django
-    aaron-bond.better-comments
-    redhat.vscode-xml
-    streetsidesoftware.code-spell-checker
-    jock.svg
-    prisma.prisma
-    shd101wyy.markdown-preview-enhanced
-    tomoki1207.pdf
-    jnoortheen.nix-ide
-    mkhl.direnv
-    golang.go
-    vscodevim.vim
-    eamodio.gitlens
-    serayuzgur.crates
-    njpwerner.autodocstring
-    ms-vscode-remote.remote-ssh
-    ms-vscode-remote.remote-ssh-edit
-    ms-vscode.cpptools
-    ms-toolsai.jupyter-keymap
-    ms-python.debugpy
-    golang.go
-    denoland.vscode-deno
-    detachhead.basedpyright
-    (
-      ms-toolsai.jupyter.overrideAttrs (final: prev: (prev
-        // {
-          buildPhase =
-            prev.buildPhase
-            + ''
-              pkg=package.json
-              cat $pkg | ${pkgs.jq}/bin/jq ".engines.vscode=\"^1.92.0\"" > $pkg.new
-              rm $pkg
-              mv $pkg.new $pkg
-            '';
-        }))
-    )
-  ])
-  ++ from-marketplace [
-    {
-      name = "simple-react-snippets";
-      publisher = "burkeholland";
-      version = "1.2.8";
-      sha256 = "sha256-zrRxJZHRqBMGVkd56Q+wDbCSFfl4X3Kta4sX8ecZmu8=";
-    }
-    {
-      name = "nginx-formatter";
-      publisher = "raynigon";
-      version = "0.0.13";
-      sha256 = "sha256-pehpoX3reGE7Y4jXLTuyRSIKZRYuragI0GUIwJf7o0I=";
-    }
-    {
-      name = "syntax-mcfunction";
-      publisher = "minecraftcommands";
-      version = "1.0.0";
-      sha256 = "sha256-H92tLZcwrsmAep7z6Z0TxMtYFRa0OAoVIYoXp+vrhzM=";
-    }
-    {
-      name = "sublime-text-4-theme";
-      publisher = "emilijanmb";
-      version = "1.1.2";
-      sha256 = "sha256-I1UO8IEq7HKxgH0gVyUN4cdBOouTvsyMgBjPIYQ6E5U=";
-    }
-    {
-      name = "valtown";
-      publisher = "pomdtr";
-      version = "0.8.11";
-      sha256 = "sha256-NoSCJcu+I64q8aLOi3XzW24kGwQ+y7vlmIIermmL3/g=";
-    }
-    {
-      name = "markdown-mermaid";
-      publisher = "bierner";
-      version = "1.28.0";
-      sha256 = "sha256-NAQD6DK1c13nA/O0QHNxFraImE6C0+Jzj9+f06EkiW0=";
-    }
-    {
-      name = "copilot";
-      publisher = "Github";
-      version = "1.368.1780";
-      sha256 = "sha256-YcQuMm5sc4RXgXqyxilzoy8QoWQcwg7ZVOui/OwqTMo=";
-    }
-    {
-      name = "quarto";
-      publisher = "quarto";
-      version = "1.124.0";
-      sha256 = "sha256-N6Itn7IManLJtt+6b4COob4MXjbO5k++mRP5/A4hDU4=";
-    }
-    {
-      name = "ruby-lsp";
-      publisher = "Shopify";
-      version = "0.9.32";
-      sha256 = "sha256-b8VFojeIkplnr48D8el0HeEtN47al/tgqgq52ozjw9M=";
-    }
-    {
-      name = "sorbet-vscode-extension";
-      publisher = "sorbet";
-      version = "0.3.46";
-      sha256 = "sha256-fKJbaJgsLgypprylbUKUjyeU1B9x0RlaD1dUnFd1w7Y=";
-    }
-  ]
+{pkgs, ...}: let
+  extensions = pkgs.vscode-marketplace;
+  # from-marketplace = pkgs.vscode-utils.extensionsFromVscodeMarketplace;
+  #++{[ # usage looks like this:
+  #   name = "sorbet-vscode-extension";
+  #   publisher = "sorbet";
+  #   version = "0.3.46";
+  #   sha256 = "sha256-fKJbaJgsLgypprylbUKUjyeU1B9x0RlaD1dUnFd1w7Y=";
+  # }]
+in (with pkgs; [
+  # nix
+  open-vsx.jnoortheen.nix-ide
+  open-vsx.mkhl.direnv
+
+  # python
+  open-vsx.ms-python.isort
+  open-vsx.ms-python.debugpy
+  open-vsx.njpwerner.autodocstring
+  open-vsx.detachhead.basedpyright
+
+  # rust
+  open-vsx.rust-lang.rust-analyzer
+  open-vsx.serayuzgur.crates
+
+  # go
+  open-vsx.golang.go
+
+  # java
+  open-vsx.vscjava.vscode-maven
+  open-vsx.vscjava.vscode-java-pack
+
+  # javascript/typescript
+  open-vsx.firsttris.vscode-jest-runner
+  open-vsx.dbaeumer.vscode-eslint
+  open-vsx.denoland.vscode-deno
+
+  # c/c++
+  vscode-marketplace.ms-vscode.cpptools
+
+  # markup/config languages
+  open-vsx.redhat.vscode-yaml
+  open-vsx.tamasfe.even-better-toml
+  open-vsx.redhat.vscode-xml
+  open-vsx.shd101wyy.markdown-preview-enhanced
+  open-vsx.quarto.quarto
+
+  # latex
+  open-vsx.james-yu.latex-workshop
+
+  # typst
+  open-vsx.myriad-dreamin.tinymist
+
+  # ruby
+  vscode-marketplace.shopify.ruby-extensions-pack
+
+  # general
+  open-vsx.usernamehw.errorlens
+  open-vsx.aaron-bond.better-comments
+  open-vsx.vscodevim.vim
+  open-vsx.eamodio.gitlens
+  vscode-marketplace.github.copilot
+])

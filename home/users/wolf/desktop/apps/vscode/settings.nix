@@ -5,6 +5,11 @@
   };
   "window.titleBarStyle" = "custom"; # Necessary or VSCode crashes
 
+  "cSpell.enabled" = true;
+  "cSpell.userWords" = [
+    "hyperparameters"
+  ];
+
   "workbench.colorTheme" = "Default High Contrast";
   "workbench.startupEditor" = "none";
   "workbench.sideBar.location" = "right";
@@ -12,6 +17,9 @@
   "editor.tabSize" = 2;
 
   "editor.inlineSuggest.enabled" = true;
+  "editor.guides.bracketPairs" = true;
+  "editor.guides.bracketPairsHorizontal" = true;
+
   "github.copilot.enable" = {
     "*" = true;
     plaintext = false;
@@ -40,17 +48,83 @@
     "subsubsection"
   ];
 
-  "prettier.printWidth" = "98";
-  "prettier.tabWidth" = "2";
-
   "tinymist.formatterMode" = "typstyle";
   "git.enableSmartCommit" = true;
 
-  "typst-lsp.experimentalFormatterMode" = "on";
-  "typst-lsp.serverPath" = "typst-lsp";
+  "[nginx]" = {
+    "editor.defaultFormatter" = "raynigon.nginx-formatter";
+  };
+  "[markdown]" = {
+    "editor.defaultFormatter" = "esbenp.prettier-vscode";
+  };
+  "[dockercompose]" = {
+    "editor.defaultFormatter" = "ms-azuretools.vscode-docker";
+  };
+  "[python]" = {
+    "editor.formatOnType" = true;
+    "editor.defaultFormatter" = "mikoz.black-py";
+  };
+  "[json]" = {
+    "editor.defaultFormatter" = "esbenp.prettier-vscode";
+  };
+  "[typescriptreact]" = {
+    "editor.defaultFormatter" = "vscode.typescript-language-features";
+  };
+  "[javascript]" = {
+    "editor.defaultFormatter" = "vscode.typescript-language-features";
+  };
+  "[typescript]" = {
+    "editor.defaultFormatter" = "vscode.typescript-language-features";
+  };
+  "[svg]" = {
+    "editor.defaultFormatter" = "jock.svg";
+  };
+  "[html]" = {
+    "editor.defaultFormatter" = "esbenp.prettier-vscode";
+  };
+  "[jsonc]" = {
+    "editor.defaultFormatter" = "esbenp.prettier-vscode";
+  };
+  "[css]" = {
+    "ditor.defaultFormatter" = "esbenp.prettier-vscode";
+  };
+  "[javascriptreact]" = {
+    "editor.defaultFormatter" = "esbenp.prettier-vscode";
+  };
+  "[typst]" = {
+    "editor.defaultFormatter" = "myriad-dreamin.tinymist";
+  };
+
+  "git.autofetch" = true;
+  "black-formatter.args" = [
+    "--version 3.11"
+    "--indent-size 2"
+  ];
+  "redhat.telemetry.enabled" = false;
+  "editor.accessibilitySupport" = "off";
+  "typescript.updateImportsOnFileMove.enabled" = "always";
+  "javascript.updateImportsOnFileMove.enabled" = "always";
+  "editor.lineNumbers" = "relative";
+  "errorLens.exclude" = [
+    "spell"
+    "unknown word"
+    "replace"
+    "quote"
+    "remove"
+    "delete"
+    "trailing"
+    "insert"
+    "scope"
+    "missin"
+  ];
+
+  "workbench.activityBar.location" = "hidden";
+  "window.menuBarVisibility" = "toggle";
+  "window.commandCenter" = false;
 
   "vim.enableNeovim" = true;
   "vim.neovimPath" = "${pkgs.neovim}/bin/nvim";
+  "vim.foldfix" = true;
   "vim.useSystemClipboard" = false;
   "vim.leader" = "<space>";
   "vim.highlightedyank.enable" = true;
@@ -107,6 +181,15 @@
         "f"
       ];
       commands = ["workbench.action.quickOpen"];
+    }
+
+    {
+      before = [
+        "<leader>"
+        "t"
+        "t"
+      ];
+      commands = ["workbench.action.showAllSymbols"];
     }
 
     {
@@ -180,80 +263,5 @@
       ];
       commands = ["gitlens.quickOpenFileHistory"];
     }
-
-    {
-      "[nginx]" = {
-        "editor.defaultFormatter" = "raynigon.nginx-formatter";
-      };
-      "[markdown]" = {
-        "editor.defaultFormatter" = "esbenp.prettier-vscode";
-      };
-      "[dockercompose]" = {
-        "editor.defaultFormatter" = "ms-azuretools.vscode-docker";
-      };
-      "[python]" = {
-        "editor.formatOnType" = true;
-        "editor.defaultFormatter" = "mikoz.black-py";
-      };
-      "[json]" = {
-        "editor.defaultFormatter" = "esbenp.prettier-vscode";
-      };
-      "[typescriptreact]" = {
-        "editor.defaultFormatter" = "vscode.typescript-language-features";
-      };
-      "[javascript]" = {
-        "editor.defaultFormatter" = "vscode.typescript-language-features";
-      };
-      "[typescript]" = {
-        "editor.defaultFormatter" = "vscode.typescript-language-features";
-      };
-      "[svg]" = {
-        "editor.defaultFormatter" = "jock.svg";
-      };
-      "[html]" = {
-        "editor.defaultFormatter" = "esbenp.prettier-vscode";
-      };
-      "[jsonc]" = {
-        "editor.defaultFormatter" = "esbenp.prettier-vscode";
-      };
-      "[css]" = {
-        "ditor.defaultFormatter" = "esbenp.prettier-vscode";
-      };
-      "[javascriptreact]" = {
-        "editor.defaultFormatter" = "esbenp.prettier-vscode";
-      };
-      "[typst]" = {
-        "editor.defaultFormatter" = "myriad-dreamin.tinymist";
-      };
-    }
   ];
-
-  "git.autofetch" = true;
-  "black-formatter.args" = [
-    "--version 3.11"
-    "--indent-size 2"
-  ];
-  "redhat.telemetry.enabled" = false;
-  "editor.accessibilitySupport" = "off";
-  "cSpell.enabled" = true;
-  "cSpell.enableFiletypes" = ["typst"];
-  "typescript.updateImportsOnFileMove.enabled" = "always";
-  "javascript.updateImportsOnFileMove.enabled" = "always";
-  "editor.lineNumbers" = "relative";
-  "errorLens.exclude" = [
-    "spell"
-    "unknown word"
-    "replace"
-    "quote"
-    "remove"
-    "delete"
-    "trailing"
-    "insert"
-    "scope"
-    "missin"
-  ];
-
-  "workbench.activityBar.location" = "hidden";
-  "window.menuBarVisibility" = "toggle";
-  "window.commandCenter" = false;
 }
