@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-(with pkgs; [
+{pkgs, ...}: (with pkgs; [
   # nix
   open-vsx.jnoortheen.nix-ide
   open-vsx.mkhl.direnv
@@ -55,7 +54,6 @@
   open-vsx.streetsidesoftware.code-spell-checker
   vscode-extensions.github.copilot
 ])
-
 # For custom extensions (I got rid of mine)
 # extensions = pkgs.vscode-marketplace;
 # pkgs.vscode-utils.extensionsFromVscodeMarketplace {
@@ -64,3 +62,4 @@
 #   version = "0.3.46";
 #   sha256 = "sha256-fKJbaJgsLgypprylbUKUjyeU1B9x0RlaD1dUnFd1w7Y=";
 # }
+

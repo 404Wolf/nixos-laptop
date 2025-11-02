@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   "chat.setupFromDialog" = false;
   "search.exclude" = {
     ".*" = true;
@@ -94,7 +93,7 @@
   "vim.smartRelativeLine" = true;
   "vim.normalModeKeyBindings" = [
     {
-      before = [ "<C-u>" ];
+      before = ["<C-u>"];
       after = [
         "<C-u>"
         "z"
@@ -102,7 +101,7 @@
       ];
     }
     {
-      before = [ "<C-d>" ];
+      before = ["<C-d>"];
       after = [
         "<C-d>"
         "z"
@@ -114,7 +113,7 @@
         "c"
         "d"
       ];
-      commands = [ "editor.action.rename" ];
+      commands = ["editor.action.rename"];
     }
 
     {
@@ -123,7 +122,7 @@
         "f"
         "p"
       ];
-      commands = [ "workbench.action.showCommands" ];
+      commands = ["workbench.action.showCommands"];
     }
 
     {
@@ -132,7 +131,7 @@
         "f"
         "g"
       ];
-      commands = [ "workbench.action.findInFiles" ];
+      commands = ["workbench.action.findInFiles"];
     }
 
     {
@@ -141,7 +140,7 @@
         "f"
         "f"
       ];
-      commands = [ "workbench.action.quickOpen" ];
+      commands = ["workbench.action.quickOpen"];
     }
 
     {
@@ -150,7 +149,7 @@
         "t"
         "t"
       ];
-      commands = [ "workbench.action.showAllSymbols" ];
+      commands = ["workbench.action.showAllSymbols"];
     }
 
     {
@@ -159,7 +158,7 @@
         "r"
         "a"
       ];
-      commands = [ "editor.action.quickFix" ];
+      commands = ["editor.action.quickFix"];
     }
 
     {
@@ -167,7 +166,7 @@
         "g"
         "d"
       ];
-      commands = [ "editor.action.goToDeclaration" ];
+      commands = ["editor.action.goToDeclaration"];
     }
 
     {
@@ -175,7 +174,7 @@
         "g"
         "i"
       ];
-      commands = [ "editor.action.goToImplementation" ];
+      commands = ["editor.action.goToImplementation"];
     }
 
     {
@@ -183,7 +182,7 @@
         "g"
         "t"
       ];
-      commands = [ "editor.action.goToTypeDefinition" ];
+      commands = ["editor.action.goToTypeDefinition"];
     }
 
     {
@@ -191,23 +190,23 @@
         "g"
         "r"
       ];
-      commands = [ "editor.action.referenceSearch.trigger" ];
+      commands = ["editor.action.referenceSearch.trigger"];
     }
 
     {
-      before = [ "K" ];
-      commands = [ "editor.action.showDefinitionPreviewHover" ];
+      before = ["K"];
+      commands = ["editor.action.showDefinitionPreviewHover"];
     }
 
     {
-      before = [ "o" ];
+      before = ["o"];
       after = [
         "A"
         "Enter"
       ];
     }
     {
-      before = [ "O" ];
+      before = ["O"];
       after = [
         "I"
         "Enter"
@@ -220,7 +219,7 @@
         "p"
         "p"
       ];
-      commands = [ "editor.action.formatDocument" ];
+      commands = ["editor.action.formatDocument"];
     }
 
     {
@@ -228,14 +227,14 @@
         "["
         "d"
       ];
-      commands = [ "editor.action.marker.prev" ];
+      commands = ["editor.action.marker.prev"];
     }
     {
       before = [
         "]"
         "d"
       ];
-      commands = [ "editor.action.marker.next" ];
+      commands = ["editor.action.marker.next"];
     }
 
     {
@@ -245,7 +244,7 @@
         "h"
         "h"
       ];
-      commands = [ "gitlens.quickOpenFileHistory" ];
+      commands = ["gitlens.quickOpenFileHistory"];
     }
   ];
 }
