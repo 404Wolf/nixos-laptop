@@ -1,13 +1,5 @@
-{pkgs, ...}: let
-  extensions = pkgs.vscode-marketplace;
-  # from-marketplace = pkgs.vscode-utils.extensionsFromVscodeMarketplace;
-  #++{[ # usage looks like this:
-  #   name = "sorbet-vscode-extension";
-  #   publisher = "sorbet";
-  #   version = "0.3.46";
-  #   sha256 = "sha256-fKJbaJgsLgypprylbUKUjyeU1B9x0RlaD1dUnFd1w7Y=";
-  # }]
-in (with pkgs; [
+{ pkgs, ... }:
+(with pkgs; [
   # nix
   open-vsx.jnoortheen.nix-ide
   open-vsx.mkhl.direnv
@@ -33,6 +25,8 @@ in (with pkgs; [
   open-vsx.firsttris.vscode-jest-runner
   open-vsx.dbaeumer.vscode-eslint
   open-vsx.denoland.vscode-deno
+  open-vsx.astro-build.astro-vscode
+  open-vsx.unifiedjs.vscode-mdx
 
   # c/c++
   vscode-marketplace.ms-vscode.cpptools
@@ -58,5 +52,15 @@ in (with pkgs; [
   open-vsx.aaron-bond.better-comments
   open-vsx.vscodevim.vim
   open-vsx.eamodio.gitlens
-  vscode-marketplace.github.copilot
+  open-vsx.streetsidesoftware.code-spell-checker
+  vscode-extensions.github.copilot
 ])
+
+# For custom extensions (I got rid of mine)
+# extensions = pkgs.vscode-marketplace;
+# pkgs.vscode-utils.extensionsFromVscodeMarketplace {
+#   name = "sorbet-vscode-extension";
+#   publisher = "sorbet";
+#   version = "0.3.46";
+#   sha256 = "sha256-fKJbaJgsLgypprylbUKUjyeU1B9x0RlaD1dUnFd1w7Y=";
+# }

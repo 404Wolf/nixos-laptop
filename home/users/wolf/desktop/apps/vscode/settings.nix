@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   "chat.setupFromDialog" = false;
   "search.exclude" = {
     ".*" = true;
@@ -20,6 +21,21 @@
   "editor.guides.bracketPairs" = true;
   "editor.guides.bracketPairsHorizontal" = true;
 
+  "editor.experimentalGpuAcceleration" = "on";
+
+  "editor.experimental.preferTreeSitter.ini" = true;
+  "editor.experimental.preferTreeSitter.css" = true;
+  "editor.experimental.preferTreeSitter.typescript" = true;
+  "editor.experimental.preferTreeSitter.regex" = true;
+  "editor.experimental.treeSitterTelemetry" = true;
+
+  "editor.inlayHints.enabled" = true;
+
+  "github.copilot.nextEditSuggestions.enabled" = "true";
+  "github.copilot.chat.editor.temporalContext.enabled" = true;
+  "github.copilot.chat.edits.temporalContext.enabled" = true;
+  "github.copilot.chat.edits.suggestRelatedFilesFromGitHistory" = true;
+
   "github.copilot.enable" = {
     "*" = true;
     plaintext = false;
@@ -28,6 +44,7 @@
     typst = false;
     latex = true;
   };
+
   "editor.rulers" = [
     {
       color = "#b3bbc254";
@@ -51,50 +68,6 @@
   "tinymist.formatterMode" = "typstyle";
   "git.enableSmartCommit" = true;
 
-  "[nginx]" = {
-    "editor.defaultFormatter" = "raynigon.nginx-formatter";
-  };
-  "[markdown]" = {
-    "editor.defaultFormatter" = "esbenp.prettier-vscode";
-  };
-  "[dockercompose]" = {
-    "editor.defaultFormatter" = "ms-azuretools.vscode-docker";
-  };
-  "[python]" = {
-    "editor.formatOnType" = true;
-    "editor.defaultFormatter" = "mikoz.black-py";
-  };
-  "[json]" = {
-    "editor.defaultFormatter" = "esbenp.prettier-vscode";
-  };
-  "[typescriptreact]" = {
-    "editor.defaultFormatter" = "vscode.typescript-language-features";
-  };
-  "[javascript]" = {
-    "editor.defaultFormatter" = "vscode.typescript-language-features";
-  };
-  "[typescript]" = {
-    "editor.defaultFormatter" = "vscode.typescript-language-features";
-  };
-  "[svg]" = {
-    "editor.defaultFormatter" = "jock.svg";
-  };
-  "[html]" = {
-    "editor.defaultFormatter" = "esbenp.prettier-vscode";
-  };
-  "[jsonc]" = {
-    "editor.defaultFormatter" = "esbenp.prettier-vscode";
-  };
-  "[css]" = {
-    "ditor.defaultFormatter" = "esbenp.prettier-vscode";
-  };
-  "[javascriptreact]" = {
-    "editor.defaultFormatter" = "esbenp.prettier-vscode";
-  };
-  "[typst]" = {
-    "editor.defaultFormatter" = "myriad-dreamin.tinymist";
-  };
-
   "git.autofetch" = true;
   "black-formatter.args" = [
     "--version 3.11"
@@ -105,18 +78,6 @@
   "typescript.updateImportsOnFileMove.enabled" = "always";
   "javascript.updateImportsOnFileMove.enabled" = "always";
   "editor.lineNumbers" = "relative";
-  "errorLens.exclude" = [
-    "spell"
-    "unknown word"
-    "replace"
-    "quote"
-    "remove"
-    "delete"
-    "trailing"
-    "insert"
-    "scope"
-    "missin"
-  ];
 
   "workbench.activityBar.location" = "hidden";
   "window.menuBarVisibility" = "toggle";
@@ -133,7 +94,7 @@
   "vim.smartRelativeLine" = true;
   "vim.normalModeKeyBindings" = [
     {
-      before = ["<C-u>"];
+      before = [ "<C-u>" ];
       after = [
         "<C-u>"
         "z"
@@ -141,7 +102,7 @@
       ];
     }
     {
-      before = ["<C-d>"];
+      before = [ "<C-d>" ];
       after = [
         "<C-d>"
         "z"
@@ -153,7 +114,7 @@
         "c"
         "d"
       ];
-      commands = ["editor.action.rename"];
+      commands = [ "editor.action.rename" ];
     }
 
     {
@@ -162,7 +123,7 @@
         "f"
         "p"
       ];
-      commands = ["workbench.action.showCommands"];
+      commands = [ "workbench.action.showCommands" ];
     }
 
     {
@@ -171,7 +132,7 @@
         "f"
         "g"
       ];
-      commands = ["workbench.action.findInFiles"];
+      commands = [ "workbench.action.findInFiles" ];
     }
 
     {
@@ -180,7 +141,7 @@
         "f"
         "f"
       ];
-      commands = ["workbench.action.quickOpen"];
+      commands = [ "workbench.action.quickOpen" ];
     }
 
     {
@@ -189,7 +150,7 @@
         "t"
         "t"
       ];
-      commands = ["workbench.action.showAllSymbols"];
+      commands = [ "workbench.action.showAllSymbols" ];
     }
 
     {
@@ -198,7 +159,7 @@
         "r"
         "a"
       ];
-      commands = ["editor.action.quickFix"];
+      commands = [ "editor.action.quickFix" ];
     }
 
     {
@@ -206,23 +167,47 @@
         "g"
         "d"
       ];
-      commands = ["editor.action.goToDeclaration"];
+      commands = [ "editor.action.goToDeclaration" ];
     }
 
     {
-      before = ["K"];
-      commands = ["editor.action.showDefinitionPreviewHover"];
+      before = [
+        "g"
+        "i"
+      ];
+      commands = [ "editor.action.goToImplementation" ];
     }
 
     {
-      before = ["o"];
+      before = [
+        "g"
+        "t"
+      ];
+      commands = [ "editor.action.goToTypeDefinition" ];
+    }
+
+    {
+      before = [
+        "g"
+        "r"
+      ];
+      commands = [ "editor.action.referenceSearch.trigger" ];
+    }
+
+    {
+      before = [ "K" ];
+      commands = [ "editor.action.showDefinitionPreviewHover" ];
+    }
+
+    {
+      before = [ "o" ];
       after = [
         "A"
         "Enter"
       ];
     }
     {
-      before = ["O"];
+      before = [ "O" ];
       after = [
         "I"
         "Enter"
@@ -235,7 +220,7 @@
         "p"
         "p"
       ];
-      commands = ["editor.action.formatDocument"];
+      commands = [ "editor.action.formatDocument" ];
     }
 
     {
@@ -243,17 +228,16 @@
         "["
         "d"
       ];
-      commands = ["editor.action.marker.prev"];
+      commands = [ "editor.action.marker.prev" ];
     }
     {
       before = [
         "]"
         "d"
       ];
-      commands = ["editor.action.marker.next"];
+      commands = [ "editor.action.marker.next" ];
     }
 
-    # Git commands
     {
       before = [
         "<leader>"
@@ -261,7 +245,7 @@
         "h"
         "h"
       ];
-      commands = ["gitlens.quickOpenFileHistory"];
+      commands = [ "gitlens.quickOpenFileHistory" ];
     }
   ];
 }
