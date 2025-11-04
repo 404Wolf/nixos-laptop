@@ -20,7 +20,7 @@
   "editor.guides.bracketPairs" = true;
   "editor.guides.bracketPairsHorizontal" = true;
 
-  "editor.experimentalGpuAcceleration" = "on";
+  "biome.suggestInstallingGlobally" = false;
 
   "editor.experimental.preferTreeSitter.ini" = true;
   "editor.experimental.preferTreeSitter.css" = true;
@@ -65,6 +65,10 @@
   ];
 
   "tinymist.formatterMode" = "typstyle";
+
+  "pyrefly.lspPath" = "pyrefly";
+  "python.pyrefly.displayTypeErrors" = "force-on";
+
   "git.enableSmartCommit" = true;
 
   "git.autofetch" = true;

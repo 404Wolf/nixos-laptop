@@ -7,7 +7,9 @@
   open-vsx.ms-python.isort
   open-vsx.ms-python.debugpy
   open-vsx.njpwerner.autodocstring
-  open-vsx.detachhead.basedpyright
+  # open-vsx.detachhead.basedpyright
+  open-vsx.meta.pyrefly
+  vscode-marketplace.ms-python.vscode-pylance
 
   # rust
   open-vsx.rust-lang.rust-analyzer
@@ -26,6 +28,7 @@
   open-vsx.denoland.vscode-deno
   open-vsx.astro-build.astro-vscode
   open-vsx.unifiedjs.vscode-mdx
+  open-vsx.biomejs.biome
 
   # c/c++
   vscode-marketplace.ms-vscode.cpptools

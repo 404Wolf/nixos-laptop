@@ -26,7 +26,7 @@
     spice # Remote-access technology for virtual environments
     spice-gtk # GTK client and libraries for SPICE
     spice-protocol # SPICE protocol headers
-    win-virtio # VirtIO drivers for Windows guests
+    virtio-win # VirtIO drivers for Windows guests
     win-spice # SPICE drivers for Windows guests
     docker-compose # Tool for defining and running multi-container Docker applications
     podman-compose # Docker Compose-compatible CLI plugin for Podman

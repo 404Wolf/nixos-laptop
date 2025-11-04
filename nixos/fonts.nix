@@ -9,7 +9,7 @@
         pkgs.liberation_ttf
         pkgs.mplus-outline-fonts.githubRelease
         pkgs.noto-fonts
-        pkgs.noto-fonts-emoji
+        pkgs.noto-fonts-color-emoji
         pkgs.proggyfonts
         pkgs.cartographcf
       ]

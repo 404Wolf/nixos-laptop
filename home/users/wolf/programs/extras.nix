@@ -119,7 +119,7 @@
     zulip
     zoom-us
     signal-desktop
-    whatsapp-for-linux
+    wasistlos
     hoppscotch
     beeper
 
