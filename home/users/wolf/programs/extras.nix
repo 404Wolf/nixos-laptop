@@ -23,7 +23,6 @@
     playerctl
     cpulimit
     cliphist
-    ungoogled-chromium
     usbutils
     pciutils
     udiskie
@@ -31,6 +30,8 @@
     sops
     killall
     lsof
+    traceroute
+    dig
 
     # Networking & File Management
     rclone
@@ -49,13 +50,15 @@
     bun
     sd
     mise
-    (python3.withPackages (pyPkgs:
-      with pyPkgs; [
-        numpy
-        pandas
-        pytest
-        pip
-      ]))
+    (python3.withPackages (
+      pyPkgs:
+        with pyPkgs; [
+          numpy
+          pandas
+          pytest
+          pip
+        ]
+    ))
     typst
     lazygit
     delta
@@ -112,6 +115,8 @@
 
     # Browsers & Communication
     google-chrome
+    brave
+    ungoogled-chromium
     (discord.override {
       withOpenASAR = true;
       withVencord = true;

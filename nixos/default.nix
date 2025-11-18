@@ -21,13 +21,11 @@
     (inputs.nix-index-database.nixosModules.nix-index)
   ];
 
-  # Clock time
-  time.timeZone = "America/New_York";
-
-  # Pinentry
+  security.pam.services.greetd.enableGnomeKeyring = true;
   programs.gnupg.agent.pinentryPackage = pkgs.pinentry-qt;
 
-  # Hardware configuration
+  time.timeZone = "America/New_York";
+
   boot = {
     extraModulePackages = [
       config.boot.kernelPackages.acpi_call
@@ -35,13 +33,11 @@
     kernelModules = ["acpi_call"];
   };
 
-  # System configuration
   zramSwap = {
     enable = true;
     memoryPercent = 10;
   };
 
-  # Localization
   i18n = {
     defaultLocale = "en_US.UTF-8";
     extraLocaleSettings = {
@@ -57,12 +53,11 @@
     };
   };
 
-  # Environment variables
   environment = {
     variables = {
       PKG_CONFIG_PATH = "/run/current-system/sw/lib/pkgconfig";
       FZF_BASE = "${pkgs.fzf}/bin/fzf";
-      EDITOR = "nvim";
+      EDITOR = "zeditor";
     };
     sessionVariables = {
       NIXOS_OZONE_WL = "1";
@@ -70,7 +65,6 @@
     };
   };
 
-  # Programs
   programs = {
     nix-index-database.comma.enable = true;
     dconf.enable = true;
@@ -82,10 +76,8 @@
     };
   };
 
-  # Security
   security.rtkit.enable = true;
 
-  # Documentation
   documentation = {
     enable = true;
     man = {
@@ -98,6 +90,12 @@
   environment.systemPackages = [
     pkgs.man-pages
     pkgs.man-pages-posix
+  ];
+
+  security.pki.certificates = pkgs.lib.mkDefault [];
+
+  security.pki.certificateFiles = [
+    "${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt"
   ];
 
   system.stateVersion = "23.11";

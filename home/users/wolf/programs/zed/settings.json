@@ -1,16 +1,13 @@
 {
-  "agent": {
-    "model_parameters": [],
-    "default_model": {
-      "provider": "copilot_chat",
-      "model": "claude-sonnet-4"
-    }
+  "project_panel": {
+    "dock": "right"
   },
   "vim_mode": true,
   "vim": {
     "toggle_relative_line_numbers": true,
     "highlight_on_yank_duration": 200,
-    "use_system_clipboard": "always"
+    "use_system_clipboard": "always",
+    "use_smartcase_find": true
   },
   "file_types": {
     "Markdown": ["qmd", "md"]
@@ -47,6 +44,13 @@
           }
         }
       ]
+    }
+  },
+  "agent": {
+    "model_parameters": [],
+    "default_model": {
+      "provider": "copilot_chat",
+      "model": "claude-sonnet-4"
     }
   }
 }

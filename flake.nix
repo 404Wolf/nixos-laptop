@@ -39,6 +39,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     zed.url = "github:zed-industries/zed";
+    zed-extensions = {
+      url = "github:DuskSystems/nix-zed-extensions";
+    };
 
     hyprland-workspace2d = {
       url = "github:404wolf/Hyprland-Workspace-2D";
@@ -86,12 +89,13 @@
             dashToDock = inputs.dashToDock.packages.${system}.default;
             valfs = inputs.valfs.packages.${system}.default;
             firefox-addons = inputs.firefox-addons.packages.${system};
-            # zed-editor = inputs.zed.packages.${system}.default;
+            zed-editor = inputs.zed.packages.${system}.default;
 
             hyprland-workspace2d = inputs.hyprland-workspace2d.packages.${system}.workspace2d;
           })
           inputs.nur.overlays.default
           inputs.nix-vscode-extensions.overlays.default
+          inputs.zed-extensions.overlays.default
         ];
       }
     );
@@ -100,7 +104,14 @@
 
     baseModules = [
       home-manager.nixosModules.home-manager
-      {home-manager.users.wolf = ./home/users/wolf;}
+      {
+        home-manager = {
+          users.wolf = ./home/users/wolf;
+          sharedModules = [
+            inputs.zed-extensions.homeManagerModules.default
+          ];
+        };
+      }
       inputs.sops-nix.nixosModules.sops
       ./nixos
       ./sops.nix
