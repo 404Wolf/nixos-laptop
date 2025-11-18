@@ -21,8 +21,9 @@
     (inputs.nix-index-database.nixosModules.nix-index)
   ];
 
-  security.pam.services.greetd.enableGnomeKeyring = true;
   programs.gnupg.agent.pinentryPackage = pkgs.pinentry-qt;
+  services.gnome.gnome-keyring.enable = true;
+  programs.seahorse.enable = true;
 
   time.timeZone = "America/New_York";
 

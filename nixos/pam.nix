@@ -4,5 +4,6 @@
     login.fprintAuth = true;
     gdm.fprintAuth = true;
     sshd.fprintAuth = true;
+    greetd.enableGnomeKeyring = true;
   };
 }
