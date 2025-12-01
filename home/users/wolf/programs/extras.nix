@@ -50,6 +50,7 @@
     bun
     sd
     mise
+    go
     (python3.withPackages (
       pyPkgs:
         with pyPkgs; [
@@ -69,6 +70,17 @@
     code-cursor
     otree
     appimage-run
+
+    # Language servers (fallbacks)
+    gopls
+    rust-analyzer
+    basedpyright
+    superhtml
+    tinymist
+    nil
+    nixd
+    biome
+    vtsls
 
     # Text Processing & File Manipulation
     ripgrep

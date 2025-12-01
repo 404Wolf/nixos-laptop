@@ -10,14 +10,20 @@
     "use_smartcase_find": true
   },
   "file_types": {
-    "Markdown": ["qmd", "md"]
+    "Markdown": [
+      "qmd",
+      "md"
+    ]
   },
   "theme": "True Dark",
   "inlay_hints": {
-    "enabled": true,
+    "enabled": false,
     "show_type_hints": true,
     "show_parameter_hints": true,
-    "show_other_hints": true
+    "show_other_hints": true,
+    "toggle_on_modifiers_press": {
+      "alt": true
+    }
   },
   "scrollbar": {
     "diagnostics": "all"
@@ -28,6 +34,7 @@
       "max_severity": null
     }
   },
+  "auto_update": false,
   "language_models": {
     "anthropic": {
       "api_url": "https://api.anthropic.com",
@@ -46,11 +53,50 @@
       ]
     }
   },
+  "git_panel": {
+    "dock": "left"
+  },
   "agent": {
     "model_parameters": [],
+    "dock": "left",
     "default_model": {
       "provider": "copilot_chat",
       "model": "claude-sonnet-4"
+    }
+  },
+  "auto_install_extensions": {
+    "*": false
+  },
+  "auto_update_extensions": {
+    "*": false
+  },
+  "edit_predictions": {
+    "enabled_in_text_threads": true
+  },
+  "features": {
+    "edit_prediction_provider": "zed"
+  },
+  "format_on_save": "on",
+  "formatter": "language_server",
+  "jsx_tag_auto_close": {
+    "enabled": true
+  },
+  "use_autoclose": true,
+  "use_auto_surround": true,
+  "lsp": {
+    "vtsls": {
+      "settings": {
+        "typescript": {
+          "tsserver": {
+            "maxTsServerMemory": 20480
+          }
+        },
+        "javascript": {
+          "tsserver": {
+            "maxTsServerMemory": 20480
+          }
+        }
+      }
     }
   }
 }

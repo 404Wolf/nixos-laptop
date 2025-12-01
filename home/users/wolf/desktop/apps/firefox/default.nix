@@ -35,38 +35,9 @@
         settings = import ./settings.nix;
         extensions.packages = import ./extensions.nix {inherit pkgs;};
         search.order = [
+          "DuckDuckGo"
           "Google"
-          "NixOS-Wiki"
-          "NixOS-Pkgs"
         ];
-        search.engines = {
-          "Nix Packages" = {
-            urls = [
-              {
-                template = "https://search.nixos.org/packages";
-                params = [
-                  {
-                    name = "type";
-                    value = "packages";
-                  }
-                  {
-                    name = "query";
-                    value = "{searchTerms}";
-                  }
-                ];
-              }
-            ];
-
-            icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
-            definedAliases = ["@np"];
-          };
-          "NixOS Wiki" = {
-            urls = [{template = "https://wiki.nixos.org/index.php?search={searchTerms}";}];
-            iconUpdateURL = "https://wiki.nixos.org/favicon.png";
-            updateInterval = 24 * 60 * 60 * 1000; # every day
-            definedAliases = ["@nw"];
-          };
-        };
         containersForce = true;
         containers = {
           Valtown = {

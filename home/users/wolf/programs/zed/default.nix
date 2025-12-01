@@ -2,23 +2,58 @@
   pkgs,
   osConfig,
   ...
-}: let
-  wrappedZed = pkgs.symlinkJoin {
-    name = "zed";
-    paths = [pkgs.zed-editor];
-    buildInputs = [pkgs.makeWrapper];
-    postBuild = ''
-      wrapProgram "$out/bin/zeditor" \
-      --prefix PATH : "${pkgs.lib.makeBinPath [pkgs.copilot-language-server]}" \
-        --run 'export GOOGLE_API_KEY="$(cat ${osConfig.sops.secrets."api-keys/google".path})"' \
-        --run 'export ANTHROPIC_API_KEY="$(cat ${osConfig.sops.secrets."api-keys/anthropic".path})"' \
-        --run 'export OPENAI_API_KEY="$(cat ${osConfig.sops.secrets."api-keys/openai".path})"' \
-    '';
-  };
-in {
+}: {
   programs.zed-editor = {
     enable = true;
-    package = wrappedZed;
+    package = pkgs.symlinkJoin {
+      name = "zed";
+      paths = [pkgs.zed-editor];
+      buildInputs = [pkgs.makeWrapper];
+      postBuild = ''
+        wrapProgram "$out/bin/zeditor" \
+        --prefix PATH : "${
+          pkgs.lib.makeBinPath (
+            with pkgs; [
+              docker-compose-language-service
+              copilot-language-server
+              nil
+              nixd
+              vscode-js-debug
+              gopls
+              rust-analyzer
+              basedpyright
+              superhtml
+              tinymist
+              nil
+              nixd
+              biome
+              vtsls
+              tailwindcss-language-server
+              tailwindcss
+              deno
+              nodePackages.bash-language-server
+              jdt-language-server
+              ruby-lsp
+              texlab
+              tinymist
+              nil
+              nodePackages.vscode-langservers-extracted
+              taplo
+              docker-compose-language-service
+              dockerfile-language-server-nodejs
+              phpactor
+              lemminx
+              just-lsp
+              nushell
+              perl538Packages.PLS
+              jq-lsp
+            ]
+          )
+        }" \
+          --run 'export ANTHROPIC_API_KEY="$(cat ${osConfig.sops.secrets."api-keys/anthropic".path})"' \
+          --add-flags "-n"
+      '';
+    };
 
     userSettings = builtins.fromJSON (builtins.readFile ./settings.json);
     userKeymaps = builtins.fromJSON (builtins.readFile ./keymap.json);
@@ -31,6 +66,7 @@ in {
     packages = with pkgs.zed-extensions; [
       html
       toml
+      basher
       java
       sql
       ruby
@@ -38,6 +74,20 @@ in {
       typst
       nix
       mdx
+      docker-compose
+      dockerfile
+      php
+      xml
+      biome
+      proto
+      just
+      scheme
+      nu
+      perl
+      jq
+      make
+      codebook
+      deno
     ];
   };
 }

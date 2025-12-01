@@ -4,7 +4,7 @@
   ...
 }: {
   # Hyprland stuff
-  coltman_monitors = "cp ~/.config/hypr/1947Coltman.conf ~/.config/hypr/monitors.conf";
+  coltman_monitors = "cp ~/.config/hypr/1947Coltman.conf ~/.config/hypr/monitors.conf && hyprctl reload";
 
   # Utilities
   gpt =

@@ -4,12 +4,8 @@
       "alt-c": "pane::CloseActiveItem",
       "ctrl-n": "workspace::ToggleLeftDock",
       "ctrl-m": "workspace::ToggleRightDock",
-      "ctrl-alt-a": "agent::ToggleFocus",
       "ctrl-alt-f": "project_panel::ToggleFocus",
-      "cmd-h": "workspace::ActivatePaneLeft",
-      "cmd-j": "workspace::ActivatePaneDown",
-      "cmd-k": "workspace::ActivatePaneUp",
-      "cmd-l": "workspace::ActivatePaneRight"
+      "ctrl-shift-a": "agent::ToggleFocus"
     }
   }
 ]
