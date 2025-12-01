@@ -71,17 +71,6 @@
     otree
     appimage-run
 
-    # Language servers (fallbacks)
-    gopls
-    rust-analyzer
-    basedpyright
-    superhtml
-    tinymist
-    nil
-    nixd
-    biome
-    vtsls
-
     # Text Processing & File Manipulation
     ripgrep
     jq
