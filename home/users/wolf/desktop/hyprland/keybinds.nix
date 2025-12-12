@@ -1,8 +1,5 @@
 {
   pkgs,
-  lib,
-  system,
-  osConfig,
   config,
   workspace2d,
   ...

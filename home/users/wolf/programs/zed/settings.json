@@ -76,7 +76,7 @@
   "features": {
     "edit_prediction_provider": "zed"
   },
-  "format_on_save": "on",
+  "format_on_save": "off",
   "formatter": "language_server",
   "jsx_tag_auto_close": {
     "enabled": true
@@ -84,6 +84,27 @@
   "use_autoclose": true,
   "use_auto_surround": true,
   "lsp": {
+    "json-language-server": {
+      "settings": {
+        "json": {
+          "schemas": [
+            {
+              "fileMatch": [
+                "deno.json",
+                "deno.jsonc"
+              ],
+              "url": "https://raw.githubusercontent.com/denoland/deno/refs/heads/main/cli/schemas/config-file.v1.json"
+            },
+            {
+              "fileMatch": [
+                "package.json"
+              ],
+              "url": "https://www.schemastore.org/package"
+            }
+          ]
+        }
+      }
+    },
     "vtsls": {
       "settings": {
         "typescript": {

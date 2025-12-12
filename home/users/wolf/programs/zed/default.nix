@@ -88,6 +88,9 @@
       make
       codebook
       deno
+      git-firefly
+      astro
+      comment
     ];
   };
 }
