@@ -1,15 +1,17 @@
 {pkgs}: let
-  firefox-addons = pkgs.nur.repos.rycee.firefox-addons;
   buildFirefoxXpiAddon = pkgs.nur.repos.rycee.firefox-addons.buildFirefoxXpiAddon;
 in
-  with firefox-addons;
+  with pkgs.nur.repos.rycee.firefox-addons;
     [
+      # https://github.com/nix-community/nur-combined/blob/main/repos/rycee/pkgs/firefox-addons/addons.json
       multi-account-containers
       ublock-origin
       bitwarden
       clearurls
       i-dont-care-about-cookies
       videospeed
+      absolute-enable-right-click
+      tree-style-tab
     ]
     ++ [
       (pkgs.stdenv.mkDerivation rec {

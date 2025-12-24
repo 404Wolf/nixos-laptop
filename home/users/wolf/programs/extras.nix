@@ -83,7 +83,7 @@
     dtrx
 
     # Monitoring & Analysis
-    cloc
+    tokei
     nix-tree
     entr
     acpi
@@ -100,6 +100,8 @@
     anki
     evince
     rcu # remarkable connection utility
+    obsidian
+    obsidian-export
 
     # Graphics & Media
     gimp

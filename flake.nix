@@ -30,7 +30,6 @@
     capture-utils.url = "github:404Wolf/Screen-Capture";
     dalleCLI.url = "github:404Wolf/DALLE-CLI";
     remarkable-connection-utility.url = "github:/404wolf/remarkable-connection-utility";
-    remarkable-obsidian.url = "github:404Wolf/remarkable-obsidian";
     cartographcf.url = "github:404Wolf/CartographCF";
     dashToDock.url = "github:404wolf/HyprDash";
     valfs.url = "github:404wolf/valfs";
@@ -84,7 +83,6 @@
             dalleCLI = inputs.dalleCLI.packages.${system}.default;
             nixGpt = inputs.nixGpt.packages.${system}.default;
             rcu = inputs.remarkable-connection-utility.packages.${system}.default;
-            obsidian = inputs.remarkable-obsidian.packages.${system}.obsidian;
             cartographcf = inputs.cartographcf.packages.${system}.default;
             dashToDock = inputs.dashToDock.packages.${system}.default;
             valfs = inputs.valfs.packages.${system}.default;

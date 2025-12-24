@@ -20,6 +20,7 @@
               nixd
               vscode-js-debug
               gopls
+              llvmPackages_20.clang-unwrapped
               rust-analyzer
               basedpyright
               superhtml

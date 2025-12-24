@@ -35,8 +35,8 @@
         settings = import ./settings.nix;
         extensions.packages = import ./extensions.nix {inherit pkgs;};
         search.order = [
-          "DuckDuckGo"
-          "Google"
+          "ddg"
+          "google"
         ];
         containersForce = true;
         containers = {
