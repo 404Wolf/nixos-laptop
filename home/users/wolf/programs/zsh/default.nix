@@ -1,4 +1,19 @@
-{pkgs, ...} @ args: {
+{pkgs, ...} @ args: let
+  applets = let
+    applets = builtins.map (
+      name:
+        pkgs.writeShellApplication {
+          name = builtins.replaceStrings [".sh"] [""] name;
+          text = builtins.readFile ./applets/${name};
+          runtimeInputs = with pkgs; [jq];
+        }
+    ) (builtins.attrNames (builtins.readDir ./applets));
+  in
+    pkgs.buildEnv {
+      name = "applets";
+      paths = applets;
+    };
+in {
   programs.zsh = {
     enable = true;
     enableCompletion = true;
@@ -10,19 +25,9 @@
       plugins = ["colorize"];
       "theme" = "fino";
     };
-    initContent =
-      # bash
-      ''
-        unpersist() {
-          local target="$1"
-          local tempfile=$(mktemp)
-          cp -L "$target" "$tempfile" || return
-          rm -rf "$target"
-          cp -a "$tempfile" "$target"
-          chmod --reference="$tempfile" "$target"
-          rm -rf "$tempfile"
-        }
-      '';
+    initContent = ''
+      PATH=$PATH:${applets}/bin
+    '';
     plugins = [
       {
         name = "zsh-nix-shell";
