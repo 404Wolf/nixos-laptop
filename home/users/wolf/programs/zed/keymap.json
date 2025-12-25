@@ -2,6 +2,12 @@
   {
     "bindings": {
       "alt-c": "pane::CloseActiveItem",
+      "alt-<": "pane::SwapItemLeft",
+      "alt->": "pane::SwapItemRight",
+      "ctrl-h": "workspace::ActivatePaneLeft",
+      "ctrl-l": "workspace::ActivatePaneRight",
+      "ctrl-k": "workspace::ActivatePaneUp",
+      "ctrl-j": "workspace::ActivatePaneDown",
       "ctrl-n": "workspace::ToggleLeftDock",
       "ctrl-m": "workspace::ToggleRightDock",
       "ctrl-alt-f": "project_panel::ToggleFocus",

@@ -12,6 +12,9 @@
       init = {
         defaultBranch = "main";
       };
+      core = {
+        editor = "nvim";
+      };
       global = {
         safe.directory = "*";
         core = {
