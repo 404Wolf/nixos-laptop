@@ -17,7 +17,6 @@
               docker-compose-language-service
               copilot-language-server
               nil
-              nixd
               vscode-js-debug
               gopls
               llvmPackages_20.clang-unwrapped

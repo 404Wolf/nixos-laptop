@@ -1,13 +1,37 @@
 {pkgs, ...} @ args: let
+  appletsDir = builtins.readDir ./applets;
+
+  # Separate .func.sh files from regular applets
+  funcFiles = builtins.filter (name: pkgs.lib.hasSuffix ".func.sh" name) (
+    builtins.attrNames appletsDir
+  );
+  regularApplets = builtins.filter (name: !pkgs.lib.hasSuffix ".func.sh" name) (
+    builtins.attrNames appletsDir
+  );
+
+  # Concatenate all .func.sh files
+  funcContent = builtins.concatStringsSep "\n" (
+    builtins.map (
+      name: let
+        src = builtins.readFile ./applets/${name};
+        funcName = builtins.replaceStrings [".func.sh"] [""] name;
+      in "function ${funcName}() {\n${src}\n}"
+    )
+    funcFiles
+  );
+
+  # Build regular applets (non-.func.sh files)
   applets = let
-    applets = builtins.map (
-      name:
-        pkgs.writeShellApplication {
-          name = builtins.replaceStrings [".sh"] [""] name;
-          text = builtins.readFile ./applets/${name};
-          runtimeInputs = with pkgs; [jq];
-        }
-    ) (builtins.attrNames (builtins.readDir ./applets));
+    applets =
+      builtins.map (
+        name:
+          pkgs.writeShellApplication {
+            name = builtins.replaceStrings [".sh"] [""] name;
+            text = builtins.readFile ./applets/${name};
+            runtimeInputs = with pkgs; [jq];
+          }
+      )
+      regularApplets;
   in
     pkgs.buildEnv {
       name = "applets";
@@ -27,6 +51,8 @@ in {
     };
     initContent = ''
       PATH=$PATH:${applets}/bin
+
+      ${funcContent}
     '';
     plugins = [
       {
