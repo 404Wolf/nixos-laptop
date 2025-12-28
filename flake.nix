@@ -46,6 +46,33 @@
       url = "github:404wolf/Hyprland-Workspace-2D";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # Mac modules
+    darwin = {
+      url = "github:LnL7/nix-darwin/master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    mac-app-util.url = "github:hraban/mac-app-util";
+
+    nix-homebrew = {
+      url = "github:zhaofengli-wip/nix-homebrew";
+    };
+
+    homebrew-bundle = {
+      url = "github:homebrew/homebrew-bundle";
+      flake = false;
+    };
+
+    homebrew-core = {
+      url = "github:homebrew/homebrew-core";
+      flake = false;
+    };
+
+    homebrew-cask = {
+      url = "github:homebrew/homebrew-cask";
+      flake = false;
+    };
   };
 
   outputs = {
@@ -54,7 +81,11 @@
     flake-utils,
     home-manager,
     nixos-hardware,
-    sops-nix,
+    darwin,
+    nix-homebrew,
+    homebrew-cask,
+    homebrew-core,
+    homebrew-bundle,
     ...
   } @ inputs: let
     system = "x86_64-linux";
@@ -98,7 +129,7 @@
       }
     );
 
-    helpers = pkgs.callPackage ./utils.nix {};
+    utils = pkgs.callPackage ./utils.nix {};
 
     baseModules = [
       home-manager.nixosModules.home-manager
@@ -119,7 +150,8 @@
       nixosConfigurations.default = nixpkgs.lib.nixosSystem rec {
         inherit system pkgs;
         specialArgs = {
-          inherit inputs system helpers;
+          inherit inputs system;
+          helpers = utils;
           nix-colors = inputs.nix-colors;
         };
         modules =
@@ -133,12 +165,50 @@
               home-manager.extraSpecialArgs =
                 {
                   inherit pkgs system;
+                  machine = "framework";
                 }
                 // specialArgs;
               home-manager.backupFileExtension = ".bak";
             }
             nixos-hardware.nixosModules.framework-13-7040-amd
           ];
+      };
+
+      darwinConfigurations.default = darwin.lib.darwinSystem {
+        inherit system pkgs;
+        specialArgs = inputs;
+        modules = [
+          inputs.mac-app-util.darwinModules.default
+          {
+            home-manager = {
+              users.wolf = ./users/wolf;
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              sharedModules = [inputs.mac-app-util.homeManagerModules.default];
+              extraSpecialArgs = {
+                inherit inputs utils;
+                helpers = utils;
+                machine = "mac";
+              };
+            };
+          }
+          home-manager.darwinModules.home-manager
+          nix-homebrew.darwinModules.nix-homebrew
+          {
+            nix-homebrew = {
+              enable = true;
+              user = "wolf";
+              taps = {
+                "homebrew/homebrew-core" = homebrew-core;
+                "homebrew/homebrew-cask" = homebrew-cask;
+                "homebrew/homebrew-bundle" = homebrew-bundle;
+              };
+              mutableTaps = false;
+              autoMigrate = true;
+            };
+          }
+          ./darwin.nix
+        ];
       };
     }
     // flake-utils.lib.eachDefaultSystem (system: {

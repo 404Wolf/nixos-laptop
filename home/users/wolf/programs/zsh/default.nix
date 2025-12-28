@@ -1,15 +1,14 @@
 {pkgs, ...} @ args: let
   appletsDir = builtins.readDir ./applets;
 
-  # Separate .func.sh files from regular applets
   funcFiles = builtins.filter (name: pkgs.lib.hasSuffix ".func.sh" name) (
     builtins.attrNames appletsDir
   );
+
   regularApplets = builtins.filter (name: !pkgs.lib.hasSuffix ".func.sh" name) (
     builtins.attrNames appletsDir
   );
 
-  # Concatenate all .func.sh files
   funcContent = builtins.concatStringsSep "\n" (
     builtins.map (
       name: let

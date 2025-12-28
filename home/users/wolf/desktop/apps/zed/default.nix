@@ -22,6 +22,7 @@
               llvmPackages_20.clang-unwrapped
               rust-analyzer
               basedpyright
+              ty
               superhtml
               tinymist
               nil
@@ -91,6 +92,7 @@
       git-firefly
       astro
       comment
+      ty
     ];
   };
 }

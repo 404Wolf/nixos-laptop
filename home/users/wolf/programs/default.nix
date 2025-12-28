@@ -12,7 +12,6 @@
     ./direnv.nix
     ./ssh.nix
     ./zoxide.nix
-    ./zed
     ./rclone.nix
   ];
 
@@ -21,6 +20,9 @@
   };
 
   home.sessionVariables = {
-    PATH = "${config.home.homeDirectory}/.deno/bin:${config.home.homeDirectory}/.cargo/bin:$PATH";
+    PATH = "${config.lib.makeBinPath [
+      "${config.home.homeDirectory}/.deno"
+      "${config.home.homeDirectory}/.cargo"
+    ]}:$PATH";
   };
 }

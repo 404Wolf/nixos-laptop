@@ -2,6 +2,7 @@
   {
     "bindings": {
       "alt-c": "pane::CloseActiveItem",
+      "alt-z": "editor::ToggleSoftWrap",
       "alt-<": "pane::SwapItemLeft",
       "alt->": "pane::SwapItemRight",
       "ctrl-h": "workspace::ActivatePaneLeft",
