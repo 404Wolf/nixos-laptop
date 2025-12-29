@@ -91,26 +91,26 @@ in
     # Quick launch keybinds
 
     # Browsers
-    bind=$MOD, F, exec, uwsm app -- ${pkgs.google-chrome}/bin/google-chrome-stable --profile-directory='Profile 1' --new-window=about:newtab
-    bind=$MOD SHIFT, F, exec, uwsm app -- ${pkgs.google-chrome}/bin/google-chrome-stable --profile-directory='Default' --new-window=about:newtab
-    bind=$MOD ALT, F, exec, uwsm app -- ${config.my.variables.firefox-package} -P "Primary" --new-window
-    bind=$MOD CONTROL, F, exec, uwsm app -- ${pkgs.qutebrowser}/bin/qutebrowser --target window
+    bind=$MOD, F, exec, app2unit -- ${pkgs.google-chrome}/bin/google-chrome-stable --profile-directory='Profile 1' --new-window=about:newtab
+    bind=$MOD SHIFT, F, exec, app2unit -- ${pkgs.google-chrome}/bin/google-chrome-stable --profile-directory='Default' --new-window=about:newtab
+    bind=$MOD ALT, F, exec, app2unit -- ${config.my.variables.firefox-package} -P "Primary" --new-window
+    bind=$MOD CONTROL, F, exec, app2unit -- ${pkgs.qutebrowser}/bin/qutebrowser --target window
 
-    bind=$MOD, T, exec, uwsm app -- ${pkgs.kitty}/bin/kitty
-    bind=$MOD, C, exec, uwsm app -- ${pkgs.qalculate-qt}/bin/qalculate-qt
-    bind=$MOD, M, exec, uwsm app -- sh ${toggles.spotify}/bin/toggle-spotify.sh
+    bind=$MOD, T, exec, app2unit -- ${pkgs.kitty}/bin/kitty
+    bind=$MOD, C, exec, app2unit -- ${pkgs.qalculate-qt}/bin/qalculate-qt
+    bind=$MOD, M, exec, app2unit -- sh ${toggles.spotify}/bin/toggle-spotify.sh
   ''
   + ''
     # App launcher
-    bind=$MOD, Space, exec, uwsm app -- ${pkgs.fuzzel}/bin/fuzzel
+    bind=$MOD, Space, exec, app2unit -- ${pkgs.fuzzel}/bin/fuzzel
 
     # Window selector
-    bind=$MOD SHIFT, Space, exec, uwsm app -- ${toggles.windows}/bin/hyprland-select-window
+    bind=$MOD SHIFT, Space, exec, app2unit -- ${toggles.windows}/bin/hyprland-select-window
   ''
   + ''
     # Basic app manipulation commands
     bind=$MOD, Y, togglefloating
-    bind=$MOD, E, exec, uwsm app -- ${pkgs.nemo-with-extensions}/bin/nemo
+    bind=$MOD, E, exec, app2unit -- ${pkgs.nemo-with-extensions}/bin/nemo
   ''
   + ''
     # Groups
@@ -193,7 +193,7 @@ in
   ''
   + ''
     # Easily get to obsidian
-    bind=$MOD, O, exec, uwsm app -- hyprctl dispatch workspace special:16 & [ ps aux | grep '[o]bsidian' || ${pkgs.obsidian}/bin/obsidian ]
+    bind=$MOD, O, exec, app2unit -- hyprctl dispatch workspace special:16 & [ ps aux | grep '[o]bsidian' || ${pkgs.obsidian}/bin/obsidian ]
   ''
   + ''
     # Changing window focus
@@ -238,10 +238,10 @@ in
     bind=$MOD SHIFT, H, moveintogroup, l
 
     # Yoinking windows in
-    bind=$MOD, L, exec, uwsm app -- hyprctl dispatch moveoutofgroup && hyprctl dispatch movewindow r
-    bind=$MOD, K, exec, uwsm app -- hyprctl dispatch moveoutofgroup && hyprctl dispatch movewindow u
-    bind=$MOD, J, exec, uwsm app -- hyprctl dispatch moveoutofgroup && hyprctl dispatch movewindow d
-    bind=$MOD, H, exec, uwsm app -- hyprctl dispatch moveoutofgroup && hyprctl dispatch movewindow l
+    bind=$MOD, L, exec, app2unit -- hyprctl dispatch moveoutofgroup && hyprctl dispatch movewindow r
+    bind=$MOD, K, exec, app2unit -- hyprctl dispatch moveoutofgroup && hyprctl dispatch movewindow u
+    bind=$MOD, J, exec, app2unit -- hyprctl dispatch moveoutofgroup && hyprctl dispatch movewindow d
+    bind=$MOD, H, exec, app2unit -- hyprctl dispatch moveoutofgroup && hyprctl dispatch movewindow l
 
     # Escaping the submap
     bind=, escape, submap, reset
@@ -251,5 +251,5 @@ in
   ''
   + ''
     # Clipboard history
-    bind=$MOD, V, exec, uwsm app -- ${pkgs.cliphist}/bin/cliphist list | fuzzel --dmenu | ${pkgs.cliphist}/bin/cliphist decode | ${pkgs.wl-clipboard}/bin/wl-copy
+    bind=$MOD, V, exec, app2unit -- ${pkgs.cliphist}/bin/cliphist list | fuzzel --dmenu | ${pkgs.cliphist}/bin/cliphist decode | ${pkgs.wl-clipboard}/bin/wl-copy
   ''

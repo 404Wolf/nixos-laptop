@@ -15,6 +15,8 @@
 
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
 
+    librepods.url = "github:kavishdevar/librepods/linux/rust";
+
     nix-index-database.url = "github:nix-community/nix-index-database";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
 
@@ -54,7 +56,7 @@
     flake-utils,
     home-manager,
     nixos-hardware,
-    sops-nix,
+    librepods,
     ...
   } @ inputs: let
     system = "x86_64-linux";
@@ -88,6 +90,7 @@
             valfs = inputs.valfs.packages.${system}.default;
             firefox-addons = inputs.firefox-addons.packages.${system};
             zed-editor = inputs.zed.packages.${system}.default;
+            librepods = inputs.librepods.packages.${system}.default;
 
             hyprland-workspace2d = inputs.hyprland-workspace2d.packages.${system}.workspace2d;
           })

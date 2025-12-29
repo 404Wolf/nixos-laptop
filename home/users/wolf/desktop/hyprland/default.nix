@@ -16,7 +16,10 @@ in {
     ./services.nix
   ];
 
-  home.packages = with pkgs; [uwsm];
+  home.packages = with pkgs; [
+    uwsm
+    app2unit
+  ];
 
   programs = {
     zsh.initContent =

@@ -6,7 +6,9 @@
 }: {
   imports = [
     ./audio.nix
+    ./modules
     ./battery.nix
+    ./bluetooth.nix
     ./fonts.nix
     ./hardware
     ./misc

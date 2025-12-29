@@ -32,6 +32,7 @@
     lsof
     traceroute
     dig
+    librepods
 
     # Networking & File Management
     rclone

@@ -21,6 +21,7 @@
           line-height = 20;
           fields = "name,generic,comment,categories,filename,keywords,exec";
           show-actions = true;
+          launch-prefix = "app2unit --fuzzel-compat --";
         };
 
         border = {

@@ -6,4 +6,10 @@
       description = "Shared general variables";
     };
   };
+
+  config.my = {
+    variables = {
+      airpods-mac = "74:15:F5:5B:5E:DE";
+    };
+  };
 }
