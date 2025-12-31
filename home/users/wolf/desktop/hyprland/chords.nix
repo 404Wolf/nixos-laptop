@@ -35,6 +35,7 @@ in
       bind=, V, exec, sh -c '${pkgs.capture-utils}/bin/screen-capture video'
       bind=, S, exec, sh -c '${pkgs.capture-utils}/bin/screen-capture image'
       bind=, D, exec, SCREENSHOT_DELAY=3 ${pkgs.capture-utils}/bin/screen-capture image
+      bind=, O, exec, sh -c "hyprctl dispatch exec '[float]' ${pkgs.feh}/bin/feh \\"$(wl-paste)\\""
     '';
   }
   + mkSubmap {

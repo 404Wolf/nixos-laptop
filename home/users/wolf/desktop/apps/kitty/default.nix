@@ -1,10 +1,20 @@
 {
   config,
   helpers,
+  pkgs,
   ...
 }: {
   programs.kitty = {
     enable = true;
+    package = pkgs.symlinkJoin {
+      name = "kitty-wrapped";
+      paths = [pkgs.kitty];
+      buildInputs = [pkgs.makeWrapper];
+      postBuild = ''
+        wrapProgram $out/bin/kitty \
+          --add-flags "-e $SHELL -c 'cd \$(mktemp -d); exec $SHELL'"
+      '';
+    };
     shellIntegration.enableZshIntegration = true;
     settings = {
       enable_audio_bell = false;

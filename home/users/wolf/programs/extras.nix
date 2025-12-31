@@ -33,6 +33,7 @@
     traceroute
     dig
     librepods
+    binsider
 
     # Networking & File Management
     rclone

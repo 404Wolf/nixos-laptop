@@ -33,7 +33,7 @@
               deno
               nodePackages.bash-language-server
               jdt-language-server
-              ruby-lsp
+              # ruby-lsp
               texlab
               tinymist
               nil
@@ -69,7 +69,7 @@
       basher
       java
       sql
-      ruby
+      # ruby
       latex
       typst
       nix

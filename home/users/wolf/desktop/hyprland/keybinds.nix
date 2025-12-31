@@ -39,45 +39,46 @@ in
     $CAP=MOD2
     $MONITORSKEY=code:133
   ''
+  # Mouse
   + ''
-    # Mouse
     bindm=ALT,mouse:272,movewindow
     bindm=SUPER, mouse:272, resizewindow
   ''
+  # Audio keybinds
   + ''
-    # Audio keybinds
-    binde=, XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 4%+   # Increase Volume
-    binde=, XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 4%-   # Decrease Volume
-    bind=, XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle          # Mute Volume
-    bindl=, XF86AudioPlay, exec, ${pkgs.playerctl}/bin/playerctl play-pause         # Pause song
-    bindl=, XF86AudioNext, exec, ${pkgs.playerctl}/bin/playerctl next               # Previous song
-    bindl=, XF86AudioPrev, exec, ${pkgs.playerctl}/bin/playerctl previous           # Previous song
+    binde=, XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 4%+
+    binde=, XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 4%-
+    bind=, XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+    bindl=, XF86AudioPlay, exec, ${pkgs.playerctl}/bin/playerctl play-pause
+    bindl=, XF86AudioNext, exec, ${pkgs.playerctl}/bin/playerctl next
+    bindl=, XF86AudioPrev, exec, ${pkgs.playerctl}/bin/playerctl previous
   ''
+  # Brightness keybinds
   + ''
-    # Brightness keybinds
-    binde=, XF86MonBrightnessUp, exec, ${pkgs.brightnessctl}/bin/brightnessctl set 10+    # Increase brightness
-    binde=, XF86MonBrightnessDown, exec, ${pkgs.brightnessctl}/bin/brightnessctl set 10-  # Decrease brightness
+    binde=, XF86MonBrightnessUp, exec, ${pkgs.brightnessctl}/bin/brightnessctl set 10+
+    binde=, XF86MonBrightnessDown, exec, ${pkgs.brightnessctl}/bin/brightnessctl set 10-
   ''
+  # Dunst notification toggle
   + ''
-    # Dunst notification toggle
     bind=$CAP ALT SHIFT, D, exec, ${toggles.dunst}/bin/toggle-dunst
-
-    # Dunst dismiss all notifications
+  ''
+  # Dunst dismiss all notifications
+  + ''
     bind = ALT SHIFT, D, exec, dunstctl close-all
   ''
+  # Waybar keybind
   + ''
-    # Waybar keybind
     bind=$SUPER, W, exec, ${pkgs.toybox}/bin/killall -SIGUSR1 waybar
   ''
+  # Monitor focus keybinds
   + ''
-    # Monitor focus keybinds
     bind=$CAP, H, focusmonitor, l
     bind=$CAP, J, focusmonitor, d
     bind=$CAP, K, focusmonitor, u
     bind=$CAP, L, focusmonitor, r
   ''
+  # Monitor move window keybinds
   + ''
-    # Monitor move window keybinds
     bind=$CAP SHIFT, H, movewindow, l
     bind=$CAP SHIFT, J, movewindow, d
     bind=$CAP SHIFT, K, movewindow, u
@@ -87,40 +88,46 @@ in
     bind=$MOD SHIFT ALT, M, fullscreenstate, 0, 2, 2
     bind=$MOD SHIFT, P, pin, 1
   ''
-  + ''
-    # Quick launch keybinds
-
-    # Browsers
+  +
+  # Browsers
+  ''
     bind=$MOD, F, exec, app2unit -- ${pkgs.google-chrome}/bin/google-chrome-stable --profile-directory='Profile 1' --new-window=about:newtab
     bind=$MOD SHIFT, F, exec, app2unit -- ${pkgs.google-chrome}/bin/google-chrome-stable --profile-directory='Default' --new-window=about:newtab
     bind=$MOD ALT, F, exec, app2unit -- ${config.my.variables.firefox-package} -P "Primary" --new-window
     bind=$MOD CONTROL, F, exec, app2unit -- ${pkgs.qutebrowser}/bin/qutebrowser --target window
 
     bind=$MOD, T, exec, app2unit -- ${pkgs.kitty}/bin/kitty
-    bind=$MOD SHIFT, T, exec, app2unit -- hyprctl dispatch -- exec "[float;center;size=50% 50%]" "app2unit kitty -e sh -c 'cd $(mktemp -d) && exec $SHELL'"
+    bind=$MOD SHIFT, T, exec, app2unit -- hyprctl dispatch -- exec "[float;center;size=50% 50%]" "app2unit kitty"
     bind=$MOD, C, exec, app2unit -- ${pkgs.qalculate-qt}/bin/qalculate-qt
     bind=$MOD, M, exec, app2unit -- sh ${toggles.spotify}/bin/toggle-spotify.sh
   ''
-  + ''
-    # App launcher
+  +
+  # App launcher
+  ''
     bind=$MOD, Space, exec, app2unit -- ${pkgs.fuzzel}/bin/fuzzel
-
-    # Window selector
+  ''
+  +
+  # Window selector
+  ''
     bind=$MOD SHIFT, Space, exec, app2unit -- ${toggles.windows}/bin/hyprland-select-window
   ''
-  + ''
-    # Basic app manipulation commands
+  +
+  # Basic app manipulation commands
+  ''
+
     bind=$MOD, Y, togglefloating
     bind=$MOD, E, exec, app2unit -- ${pkgs.nemo-with-extensions}/bin/nemo
   ''
-  + ''
-    # Groups
+  +
+  # Groups
+  ''
     bind=$MOD, Q, killactive
     bind=$MOD, S, togglegroup
     bind=$MOD, L, changegroupactive
   ''
-  + ''
-    # Switch one workspace left/right
+  +
+  # Switch one workspace left/right
+  ''
     bind=$MOD CONTROL_L, L, exec, ${workspace2d} right "" ""
     bind=$MOD CONTROL_L, H, exec, ${workspace2d} left "" ""
     bind=$MOD CONTROL_L, J, exec, ${workspace2d} down "" ""
@@ -130,21 +137,26 @@ in
     bind=$MOD ALT, J, exec, ${workspace2d} down "all" ""
     bind=$MOD ALT, K, exec, ${workspace2d} up "all" ""
   ''
-  + ''
-    # Move things one workspace left/right
+  +
+  # Move things one workspace left/right
+  ''
     bind=$MOD SHIFT, L, exec, ${workspace2d} move_right "" ""
     bind=$MOD SHIFT, H, exec, ${workspace2d} move_left "" ""
     bind=$MOD SHIFT, J, exec, ${workspace2d} move_down "" ""
     bind=$MOD SHIFT, K, exec, ${workspace2d} move_up "" ""
   ''
-  + ''
-    # Lock workspaces
+  +
+  # Lock workspaces
+  ''
     bind=$MOD ALT, L, lockactivegroup, toggle
-    # Pin window
+  ''
+  # Pin window
+  + ''
     bind=$MOD, M, pin
   ''
-  + ''
-    # Scratchpad (special) workspaces
+  +
+  # Scratchpad (special) workspaces
+  ''
     bind=$CAP, A, togglespecialworkspace, 1
     bind=$CAP, B, togglespecialworkspace, 2
     bind=$CAP, C, togglespecialworkspace, 3
@@ -192,19 +204,22 @@ in
     bind=$CAP SHIFT, Y, movetoworkspace, special:26
     bind=$CAP SHIFT, Z, movetoworkspace, special:27
   ''
-  + ''
-    # Easily get to obsidian
+  +
+  # Easily get to obsidian
+  ''
     bind=$MOD, O, exec, app2unit -- hyprctl dispatch workspace special:16 & [ ps aux | grep '[o]bsidian' || ${pkgs.obsidian}/bin/obsidian ]
   ''
-  + ''
-    # Changing window focus
+  +
+  # Changing window focus
+  ''
     bind=$MOD, H, movefocus, l
     bind=$MOD, K, movefocus, u
     bind=$MOD, J, movefocus, d
     bind=$MOD, L, movefocus, r
   ''
-  + ''
-    # Changing focus within a group
+  +
+  # Changing focus within a group
+  ''
     bind=$MOD, Tab, changegroupactive, f
     bind=$MOD Shift, Tab, changegroupactive, b
     bind=$MOD $CAP, Z, changegroupactive, 1
@@ -215,42 +230,50 @@ in
     bind=$MOD $CAP, N, changegroupactive, 6
     bind=$MOD $CAP, M, changegroupactive, 7
   ''
+  # Moving windows within a group
   + ''
-    # Moving windows within a group
     bind=$MOD, code:192 L, moveactive, f
     bind=$MOD, code:192 H, moveactive, b
   ''
+  # Toggle Mode Submap
   + ''
-    # Toggle Mode Submap
     bind=$MOD, Return, submap, toggle
     submap=toggle
     $amount=40
-
-    # Resizing commands
+  ''
+  # Resizing commands
+  + ''
     binde=$CAP, L, resizeactive, $amount 0
     binde=$CAP, H, resizeactive, -$amount 0
     binde=$CAP, K, resizeactive, 0 -$amount
     binde=$CAP, J, resizeactive, 0 $amount
-
-    # Yoinking windows out
+  ''
+  # Yoinking windows out
+  + ''
     bind=$MOD SHIFT, L, moveintogroup, r
     bind=$MOD SHIFT, K, moveintogroup, u
     bind=$MOD SHIFT, J, moveintogroup, d
     bind=$MOD SHIFT, H, moveintogroup, l
-
-    # Yoinking windows in
+  ''
+  # Yoinking windows in
+  + ''
     bind=$MOD, L, exec, app2unit -- hyprctl dispatch moveoutofgroup && hyprctl dispatch movewindow r
     bind=$MOD, K, exec, app2unit -- hyprctl dispatch moveoutofgroup && hyprctl dispatch movewindow u
     bind=$MOD, J, exec, app2unit -- hyprctl dispatch moveoutofgroup && hyprctl dispatch movewindow d
     bind=$MOD, H, exec, app2unit -- hyprctl dispatch moveoutofgroup && hyprctl dispatch movewindow l
-
-    # Escaping the submap
+  ''
+  # Escaping the submap
+  + ''
     bind=, escape, submap, reset
     bind=, Return, submap, reset
     bind=,catchall,submap,reset
     submap=reset
   ''
+  # Clipboard history
   + ''
-    # Clipboard history
-    bind=$MOD, V, exec, app2unit -- ${pkgs.cliphist}/bin/cliphist list | fuzzel --dmenu | ${pkgs.cliphist}/bin/cliphist decode | ${pkgs.wl-clipboard}/bin/wl-copy
+    bind=$MOD, V, exec, app2unit -- ${pkgs.writeShellScript "cliphist-select" ''
+      SELECTION=$(${pkgs.cliphist}/bin/cliphist list | fuzzel --dmenu)
+      MIME=$(echo "$SELECTION" | ${pkgs.cliphist}/bin/cliphist decode --mime-type)
+      echo "$SELECTION" | ${pkgs.cliphist}/bin/cliphist decode | ${pkgs.wl-clipboard}/bin/wl-copy --type "$MIME"
+    ''}
   ''
