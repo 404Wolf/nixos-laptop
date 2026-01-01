@@ -24,6 +24,7 @@
       "api-keys/google" = {};
       "api-keys/openai" = {};
       "api-keys/anthropic" = {};
+      "api-keys/xai" = {};
       "api-keys/valtown" = {};
       "other/restic/password" = {};
     };

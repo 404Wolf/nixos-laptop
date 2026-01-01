@@ -1,20 +1,10 @@
 {
   config,
   helpers,
-  pkgs,
   ...
 }: {
   programs.kitty = {
     enable = true;
-    package = pkgs.symlinkJoin {
-      name = "kitty-wrapped";
-      paths = [pkgs.kitty];
-      buildInputs = [pkgs.makeWrapper];
-      postBuild = ''
-        wrapProgram $out/bin/kitty \
-          --add-flags "-e $SHELL -c 'cd \$(mktemp -d); exec $SHELL'"
-      '';
-    };
     shellIntegration.enableZshIntegration = true;
     settings = {
       enable_audio_bell = false;
@@ -27,7 +17,7 @@
 
       cursor_blink_interval = 0.5; # Half-second blink rate
       cursor_stop_blinking_after = 15.0; # Stop blinking after 15 seconds of inactivity
-      cursor_trail = 0; # Disable cursor trail effect
+      cursor_trail = 1; # Disable cursor trail effect
 
       scrollback_lines = 10000; # Increased from 2000 for more history
       scrollback_indicator_opacity = 1.0; # Fully visible scrollback indicator

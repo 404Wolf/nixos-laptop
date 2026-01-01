@@ -60,7 +60,6 @@
     variables = {
       PKG_CONFIG_PATH = "/run/current-system/sw/lib/pkgconfig";
       FZF_BASE = "${pkgs.fzf}/bin/fzf";
-      EDITOR = "zeditor";
     };
     sessionVariables = {
       NIXOS_OZONE_WL = "1";

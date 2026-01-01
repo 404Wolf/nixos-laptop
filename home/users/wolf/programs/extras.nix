@@ -6,7 +6,6 @@
     wget
     tree
     dhcpcd
-    tmux
     util-linux
     exfat
     sshfs

@@ -3,6 +3,9 @@
   osConfig,
   ...
 }: {
+  systemd.user.sessionVariables = {
+    EDITOR = "zeditor";
+  };
   programs.zed-editor = {
     enable = true;
     package = pkgs.symlinkJoin {
@@ -14,6 +17,7 @@
         --prefix PATH : "${
           pkgs.lib.makeBinPath (
             with pkgs; [
+              eslint
               docker-compose-language-service
               copilot-language-server
               nil
@@ -33,7 +37,6 @@
               deno
               nodePackages.bash-language-server
               jdt-language-server
-              # ruby-lsp
               texlab
               tinymist
               nil
@@ -51,7 +54,11 @@
           )
         }" \
           --run 'export ANTHROPIC_API_KEY="$(cat ${osConfig.sops.secrets."api-keys/anthropic".path})"' \
-          --add-flags "-n"
+          --run 'export XAI_API_KEY="$(cat ${osConfig.sops.secrets."api-keys/xai".path})"' \
+          --run 'export OPENAI_API_KEY="$(cat ${osConfig.sops.secrets."api-keys/openai".path})"' \
+          --run 'export GEMINI_API_KEY="$(cat ${osConfig.sops.secrets."api-keys/google".path})"' \
+          --add-flags "--new" \
+          --add-flags "--wait"
       '';
     };
 
@@ -69,7 +76,6 @@
       basher
       java
       sql
-      # ruby
       latex
       typst
       nix
@@ -91,6 +97,8 @@
       git-firefly
       astro
       comment
+      caddyfile
+      nginx
     ];
   };
 }

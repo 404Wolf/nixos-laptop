@@ -78,26 +78,29 @@
     pkgs = import nixpkgs (
       pkgs-options
       // {
-        overlays = [
-          (final: prev: {
-            wrappedNvim = inputs.nix-neovim.packages.${system}.default;
-            capture-utils = inputs.capture-utils.packages.${system}.default;
-            dalleCLI = inputs.dalleCLI.packages.${system}.default;
-            nixGpt = inputs.nixGpt.packages.${system}.default;
-            rcu = inputs.remarkable-connection-utility.packages.${system}.default;
-            cartographcf = inputs.cartographcf.packages.${system}.default;
-            dashToDock = inputs.dashToDock.packages.${system}.default;
-            valfs = inputs.valfs.packages.${system}.default;
-            firefox-addons = inputs.firefox-addons.packages.${system};
-            zed-editor = inputs.zed.packages.${system}.default;
-            librepods = inputs.librepods.packages.${system}.default;
+        overlays = (
+          [
+            (final: prev: {
+              wrappedNvim = inputs.nix-neovim.packages.${system}.default;
+              capture-utils = inputs.capture-utils.packages.${system}.default;
+              dalleCLI = inputs.dalleCLI.packages.${system}.default;
+              nixGpt = inputs.nixGpt.packages.${system}.default;
+              rcu = inputs.remarkable-connection-utility.packages.${system}.default;
+              cartographcf = inputs.cartographcf.packages.${system}.default;
+              dashToDock = inputs.dashToDock.packages.${system}.default;
+              valfs = inputs.valfs.packages.${system}.default;
+              firefox-addons = inputs.firefox-addons.packages.${system};
+              zed-editor = inputs.zed.packages.${system}.default;
+              librepods = inputs.librepods.packages.${system}.default;
 
-            hyprland-workspace2d = inputs.hyprland-workspace2d.packages.${system}.workspace2d;
-          })
-          inputs.nur.overlays.default
-          inputs.nix-vscode-extensions.overlays.default
-          inputs.zed-extensions.overlays.default
-        ];
+              hyprland-workspace2d = inputs.hyprland-workspace2d.packages.${system}.workspace2d;
+            })
+            inputs.nur.overlays.default
+            inputs.nix-vscode-extensions.overlays.default
+            inputs.zed-extensions.overlays.default
+          ]
+          ++ (import ./overlays.nix)
+        );
       }
     );
 
