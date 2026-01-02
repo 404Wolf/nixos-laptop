@@ -3,7 +3,8 @@
   config,
   inputs,
   ...
-}: {
+}:
+{
   imports = [
     ./audio.nix
     ./modules
@@ -33,7 +34,7 @@
     extraModulePackages = [
       config.boot.kernelPackages.acpi_call
     ];
-    kernelModules = ["acpi_call"];
+    kernelModules = [ "acpi_call" ];
   };
 
   zramSwap = {
@@ -64,6 +65,7 @@
     sessionVariables = {
       NIXOS_OZONE_WL = "1";
       TERM = "xterm-256color";
+      EDITOR = "zeditor";
     };
   };
 
@@ -94,7 +96,7 @@
     pkgs.man-pages-posix
   ];
 
-  security.pki.certificates = pkgs.lib.mkDefault [];
+  security.pki.certificates = pkgs.lib.mkDefault [ ];
 
   security.pki.certificateFiles = [
     "${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt"

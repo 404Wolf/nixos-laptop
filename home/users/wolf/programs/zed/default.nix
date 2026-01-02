@@ -3,9 +3,6 @@
   osConfig,
   ...
 }: {
-  systemd.user.sessionVariables = {
-    EDITOR = "zeditor";
-  };
   programs.zed-editor = {
     enable = true;
     package = pkgs.symlinkJoin {
@@ -50,6 +47,7 @@
               nushell
               perl538Packages.PLS
               jq-lsp
+              perlnavigator
             ]
           )
         }" \
