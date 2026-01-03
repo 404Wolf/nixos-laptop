@@ -56,6 +56,11 @@
   "git_panel": {
     "dock": "left"
   },
+  "debugger": {
+    "dock": "left",
+    "button": false,
+    "save_breakpoints": false
+  },
   "agent": {
     "model_parameters": [],
     "dock": "left",

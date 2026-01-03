@@ -3,8 +3,7 @@
   config,
   inputs,
   ...
-}:
-{
+}: {
   imports = [
     ./audio.nix
     ./modules
@@ -34,7 +33,7 @@
     extraModulePackages = [
       config.boot.kernelPackages.acpi_call
     ];
-    kernelModules = [ "acpi_call" ];
+    kernelModules = ["acpi_call"];
   };
 
   zramSwap = {
@@ -96,7 +95,7 @@
     pkgs.man-pages-posix
   ];
 
-  security.pki.certificates = pkgs.lib.mkDefault [ ];
+  security.pki.certificates = pkgs.lib.mkDefault [];
 
   security.pki.certificateFiles = [
     "${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt"

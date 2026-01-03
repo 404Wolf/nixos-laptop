@@ -11,7 +11,8 @@
       "ctrl-n": "workspace::ToggleLeftDock",
       "ctrl-m": "workspace::ToggleRightDock",
       "ctrl-alt-f": "project_panel::ToggleFocus",
-      "ctrl-shift-a": "agent::ToggleFocus"
+      "ctrl-shift-a": "agent::ToggleFocus",
+      "f1": "debugger::Rerun"
     }
   }
 ]

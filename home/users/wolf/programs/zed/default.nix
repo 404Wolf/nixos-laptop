@@ -87,9 +87,9 @@
       just
       scheme
       nu
-      perl
       jq
       make
+      perl
       codebook
       deno
       git-firefly
