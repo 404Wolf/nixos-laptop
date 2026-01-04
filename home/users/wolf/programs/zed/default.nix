@@ -97,6 +97,7 @@
       comment
       caddyfile
       nginx
+      zig
     ];
   };
 }
