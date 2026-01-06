@@ -23,6 +23,14 @@
     (inputs.nix-index-database.nixosModules.nix-index)
   ];
 
+  systemd.tmpfiles.rules = [
+    "d /mnt/r2 0755 root root -"
+    "d /mnt/r2/personal 0755 wolf users -"
+    "d /mnt/r2/backups 0755 wolf users -"
+    "d /mnt/r2/shares 0755 wolf users -"
+    "d /mnt/r2/static 0755 wolf users -"
+  ];
+
   programs.gnupg.agent.pinentryPackage = pkgs.pinentry-qt;
   services.gnome.gnome-keyring.enable = true;
   programs.seahorse.enable = true;

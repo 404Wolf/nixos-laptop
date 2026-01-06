@@ -33,6 +33,8 @@
     dig
     librepods
     binsider
+    just
+    trash-cli
 
     # Networking & File Management
     rclone

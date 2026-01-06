@@ -38,7 +38,7 @@
     command = "workbench.action.focusActivityBar";
   }
   {
-    key = "ctrl+shift+i";
+    key = "ctrl+shift+enter";
     command = "inlineChat.start";
     when = "editorFocus && inlineChatHasProvider && !editorReadonly";
   }

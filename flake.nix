@@ -141,7 +141,7 @@
                   inherit pkgs system;
                 }
                 // specialArgs;
-              home-manager.backupFileExtension = ".bak";
+              home-manager.backupFileExtension = "bak";
             }
             nixos-hardware.nixosModules.framework-13-7040-amd
           ];
