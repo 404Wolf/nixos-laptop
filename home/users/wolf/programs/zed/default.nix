@@ -56,7 +56,8 @@
           --run 'export OPENAI_API_KEY="$(cat ${osConfig.sops.secrets."api-keys/openai".path})"' \
           --run 'export GEMINI_API_KEY="$(cat ${osConfig.sops.secrets."api-keys/google".path})"' \
           --add-flags "--new" \
-          --add-flags "--wait"
+          --run 'if [ ! -t 1 ]; then EXTRA_FLAGS="--wait"; fi' \
+          --add-flags '$EXTRA_FLAGS'
       '';
     };
 
