@@ -160,7 +160,7 @@
           sops
           gitleaks
           alejandra
-          nixfmt-classic
+          nixfmt
         ];
       };
 

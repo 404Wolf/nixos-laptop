@@ -46,7 +46,7 @@
               lemminx
               just-lsp
               nushell
-              perl538Packages.PLS
+              # perl538Packages.PLS
               jq-lsp
               perlnavigator
             ]
