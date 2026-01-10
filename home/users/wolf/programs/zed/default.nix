@@ -41,7 +41,7 @@
               nodePackages.vscode-langservers-extracted
               taplo
               docker-compose-language-service
-              dockerfile-language-server-nodejs
+              dockerfile-language-server
               phpactor
               lemminx
               just-lsp

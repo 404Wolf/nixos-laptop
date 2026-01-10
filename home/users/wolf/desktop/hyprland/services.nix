@@ -1,9 +1,11 @@
 {
   pkgs,
   config,
+  lib,
   ...
 }: {
   systemd.user =
+    lib.recursiveUpdate
     {
       services.wallpaper-refresh = {
         Unit = {
@@ -123,7 +125,7 @@
         };
       };
     }
-    // {
+    {
       services = builtins.listToAttrs (
         map
         (app: {

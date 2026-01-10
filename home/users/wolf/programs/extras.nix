@@ -43,6 +43,7 @@
 
     # Development & Programming Tools
     gcc
+    hyperfine
     ast-grep
     cargo
     delve
