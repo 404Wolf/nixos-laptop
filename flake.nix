@@ -60,6 +60,7 @@
     ...
   } @ inputs: let
     system = "x86_64-linux";
+
     pkgs-options = {
       inherit system;
       config = {
@@ -74,6 +75,8 @@
         "electron-32.3.3"
       ];
     };
+
+    primary-user = "wolf";
 
     pkgs = import nixpkgs (
       pkgs-options
@@ -110,7 +113,7 @@
       home-manager.nixosModules.home-manager
       {
         home-manager = {
-          users.wolf = ./home/users/wolf;
+          users.wolf = ./home/users/${primary-user};
           sharedModules = [
             inputs.zed-extensions.homeManagerModules.default
           ];
@@ -125,7 +128,7 @@
       nixosConfigurations.default = nixpkgs.lib.nixosSystem rec {
         inherit system pkgs;
         specialArgs = {
-          inherit inputs system helpers;
+          inherit inputs system helpers primary-user;
           nix-colors = inputs.nix-colors;
         };
         modules =

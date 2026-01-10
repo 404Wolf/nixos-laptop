@@ -13,6 +13,10 @@
     "Markdown": [
       "qmd",
       "md"
+    ],
+    "Dockerfile": [
+      "Dockerfile*",
+      "Containerfile*"
     ]
   },
   "theme": "True Dark",

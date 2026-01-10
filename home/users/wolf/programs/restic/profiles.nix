@@ -28,7 +28,6 @@ in {
     prevent-sleep = true;
     initialize = true;
     command-output = "auto";
-    log = "${config.xdg.stateHome}/resticprofile.log";
   };
 
   profiles = {
@@ -38,6 +37,13 @@ in {
       backup = {
         exclude-caches = true;
       };
+      forget = {
+        keep-daily = 14;
+        keep-weekly = 9;
+        keep-monthly = "unlimited";
+        keep-within = "30d";
+        prune = true;
+      };
     };
 
     framework =
@@ -45,9 +51,7 @@ in {
       // {
         lock = "/tmp/resticprofile-framework.lock";
         "inherit" = "base";
-        run-after = [
-          "rm /tmp/resticprofile-framework.env"
-        ];
+        log = "${config.xdg.stateHome}/resticprofile-framework.log";
         backup = {
           source = [
             "/home/wolf"
@@ -60,7 +64,10 @@ in {
             "/**/.local/share/Steam/.*"
             "/home/wolf/Vault/**"
           ];
+          schedule = ["daily"];
         };
+        forget.schedule = ["weekly"];
+        check.schedule = ["weekly"];
       };
 
     vault =
@@ -68,6 +75,7 @@ in {
       // {
         lock = "/tmp/resticprofile-vault.lock";
         "inherit" = "base";
+        log = "${config.xdg.stateHome}/resticprofile-vault.log";
         backup = {
           source = [
             "/home/wolf/Vault"
@@ -77,7 +85,10 @@ in {
             "/**/.cache"
             "/**/node_modules"
           ];
+          schedule = ["daily"];
         };
+        forget.schedule = ["weekly"];
+        check.schedule = ["weekly"];
       };
   };
 }

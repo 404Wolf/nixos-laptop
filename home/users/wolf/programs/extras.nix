@@ -43,6 +43,7 @@
 
     # Development & Programming Tools
     gcc
+    ast-grep
     cargo
     delve
     gdb

@@ -20,6 +20,7 @@
     ./users.nix
     ./virt.nix
     ./programs.nix
+    ./services
     (inputs.nix-index-database.nixosModules.nix-index)
   ];
 

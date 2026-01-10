@@ -20,6 +20,7 @@
               nil
               vscode-js-debug
               gopls
+              yaml-language-server
               llvmPackages_20.clang-unwrapped
               rust-analyzer
               basedpyright
