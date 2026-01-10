@@ -32,7 +32,7 @@
   # Add the FIDO2 udev rules directly from Yubico's repository
   services.udev.extraRules = builtins.readFile (builtins.fetchurl {
     url = "https://raw.githubusercontent.com/Yubico/libfido2/main/udev/70-u2f.rules";
-    sha256 = "sha256:11ij3k9725plcav0am5x69bqjr68n5ss6qyk154isk4rxasxb127";
+    sha256 = "sha256:0cq1b9q5vn64lxv8q8jz81q48885rg51k1h3n2gn9qd2wbal6ldf";
   });
 
   # Create plugdev group

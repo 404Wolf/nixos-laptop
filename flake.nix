@@ -33,8 +33,6 @@
     dalleCLI.url = "github:404Wolf/DALLE-CLI";
     remarkable-connection-utility.url = "github:/404wolf/remarkable-connection-utility";
     cartographcf.url = "github:404Wolf/CartographCF";
-    dashToDock.url = "github:404wolf/HyprDash";
-    valfs.url = "github:404wolf/valfs";
     firefox-addons = {
       url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -90,8 +88,6 @@
               nixGpt = inputs.nixGpt.packages.${system}.default;
               rcu = inputs.remarkable-connection-utility.packages.${system}.default;
               cartographcf = inputs.cartographcf.packages.${system}.default;
-              dashToDock = inputs.dashToDock.packages.${system}.default;
-              valfs = inputs.valfs.packages.${system}.default;
               firefox-addons = inputs.firefox-addons.packages.${system};
               zed-editor = inputs.zed.packages.${system}.default;
               librepods = inputs.librepods.packages.${system}.default;
@@ -128,7 +124,12 @@
       nixosConfigurations.default = nixpkgs.lib.nixosSystem rec {
         inherit system pkgs;
         specialArgs = {
-          inherit inputs system helpers primary-user;
+          inherit
+            inputs
+            system
+            helpers
+            primary-user
+            ;
           nix-colors = inputs.nix-colors;
         };
         modules =

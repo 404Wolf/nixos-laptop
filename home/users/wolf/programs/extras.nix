@@ -67,7 +67,6 @@
     typst
     lazygit
     delta
-    valfs
     yubioath-flutter
     texliveFull
     pandoc

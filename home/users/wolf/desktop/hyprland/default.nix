@@ -66,7 +66,7 @@ in {
         allow_tearing = false;
         gaps_in = 1;
         gaps_out = 0;
-        no_border_on_floating = false;
+        # no_border_on_floating = false;
         border_size = 1;
         resize_on_border = true;
         extend_border_grab_area = 15;
