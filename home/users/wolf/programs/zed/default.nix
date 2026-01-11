@@ -2,7 +2,35 @@
   pkgs,
   osConfig,
   ...
-}: {
+}: let
+  mdxGrammar = pkgs.buildZedGrammar {
+    name = "mdx";
+    version = "0f2d4b204b231e5ebb7b94ff0259bee6c83ebc58";
+
+    src = pkgs.fetchFromGitHub {
+      owner = "srazzak";
+      repo = "tree-sitter-mdx";
+      rev = "0f2d4b204b231e5ebb7b94ff0259bee6c83ebc58";
+      hash = "sha256-KgWX69beW6obIwQ+jBHqr75cTSlH4PQwhXWHCIfZLEI=";
+    };
+  };
+
+  mdxExt = pkgs.buildZedRustExtension {
+    name = "mdx";
+    version = "fix-codeblocks";
+
+    src = pkgs.fetchFromGitHub {
+      owner = "404wolf";
+      repo = "zed-mdx";
+      rev = "fix-codeblocks";
+      hash = "sha256-eoST3IVJOj2Moc/R0uBQLbgqTtFPyOnMFIba8VxdrdM=";
+    };
+
+    cargoHash = "sha256-hea2GLQ04nBfmUEg1accjsWmZmMYllV3h8Kz3qlhZVY=";
+
+    grammars = [mdxGrammar];
+  };
+in {
   programs.zed-editor = {
     enable = true;
     package = pkgs.symlinkJoin {
@@ -46,7 +74,6 @@
               lemminx
               just-lsp
               nushell
-              # perl538Packages.PLS
               jq-lsp
               perlnavigator
             ]
@@ -71,6 +98,7 @@
   programs.zed-editor-extensions = {
     enable = true;
     packages = with pkgs.zed-extensions; [
+      mdxExt
       html
       toml
       basher
@@ -79,7 +107,6 @@
       latex
       typst
       nix
-      mdx
       docker-compose
       dockerfile
       php

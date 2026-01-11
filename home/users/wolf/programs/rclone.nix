@@ -19,9 +19,9 @@
         Type = "notify";
         ExecStartPre = pkgs.writeShellScript "rclone-mount-pre" ''
           mkdir -p ${mountPath} || true
+          umount -l ${mountPath} || true
         '';
         ExecStart = pkgs.writeShellScript "rclone-mount-start" ''
-          umount ${mountPath} || true
           ${pkgs.rclone}/bin/rclone mount \
             --cache-dir %C/rclone \
             --dir-cache-time 5m \
@@ -29,6 +29,7 @@
             --vfs-cache-mode full \
             ${remote}:${bucket} \
             ${mountPath}
+
         '';
         Restart = "on-failure";
         Environment = "PATH=/run/wrappers/bin";

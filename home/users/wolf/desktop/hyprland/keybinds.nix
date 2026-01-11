@@ -97,7 +97,7 @@ in
     bind=$MOD CONTROL, F, exec, app2unit -- ${pkgs.qutebrowser}/bin/qutebrowser --target window
 
     bind=$MOD, T, exec, app2unit -- ${pkgs.kitty}/bin/kitty
-    bind=$MOD SHIFT, T, exec, app2unit -- hyprctl dispatch -- exec "[float;center;size=50% 50%]" "app2unit kitty"
+    bind=$MOD SHIFT, T, exec, [float; center; size 50% 50%] app2unit -- kitty
     bind=$MOD, C, exec, app2unit -- ${pkgs.qalculate-qt}/bin/qalculate-qt
     bind=$MOD, M, exec, app2unit -- sh ${toggles.spotify}/bin/toggle-spotify.sh
   ''

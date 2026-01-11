@@ -37,6 +37,7 @@
       url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
     zed.url = "github:zed-industries/zed";
     zed-extensions = {
       url = "github:DuskSystems/nix-zed-extensions";
@@ -54,7 +55,6 @@
     flake-utils,
     home-manager,
     nixos-hardware,
-    librepods,
     ...
   } @ inputs: let
     system = "x86_64-linux";

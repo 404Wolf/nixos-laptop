@@ -83,7 +83,7 @@
     "enabled_in_text_threads": true
   },
   "features": {
-    "edit_prediction_provider": "zed"
+    "edit_prediction_provider": "copilot"
   },
   "format_on_save": "off",
   "formatter": "language_server",
