@@ -17,7 +17,7 @@
         rec {
           primary = {
             primary = true;
-            gpg.key = config.my.variables.gpg-key-sec-id;
+            gpg.key = config.my.variables.gpg-key;
             flavor = "fastmail.com";
             address = "wolfmermelstein@fastmail.com";
             aliases = ["wolf@404wolf.com"];
