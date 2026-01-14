@@ -7,7 +7,7 @@
   imports = [
     ./mounts.nix
     ./fprintd.nix
-    ./secure.nix
+    ./yubikey.nix
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 

@@ -1,5 +1,6 @@
 {
   pkgs,
+  config,
   osConfig,
   ...
 }: let
@@ -23,7 +24,7 @@
         '';
         ExecStart = pkgs.writeShellScript "rclone-mount-start" ''
           ${pkgs.rclone}/bin/rclone mount \
-            --cache-dir %C/rclone \
+            --cache-dir ${config.xdg.configHome}/rclone \
             --dir-cache-time 5m \
             --vfs-cache-max-size 10G \
             --vfs-cache-mode full \

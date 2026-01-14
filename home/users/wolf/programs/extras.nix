@@ -124,10 +124,7 @@
     google-chrome
     brave
     ungoogled-chromium
-    (discord.override {
-      withOpenASAR = true;
-      withVencord = true;
-    })
+    vesktop
     zulip
     zoom-us
     signal-desktop

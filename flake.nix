@@ -4,6 +4,7 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-dev.url = "github:nixos/nixpkgs";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.11";
 
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
@@ -43,6 +44,7 @@
       url = "github:DuskSystems/nix-zed-extensions";
     };
 
+    hyprland.url = "github:hyprwm/Hyprland";
     hyprland-workspace2d = {
       url = "github:404wolf/Hyprland-Workspace-2D";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -68,13 +70,12 @@
           "electron-32.3.3"
         ];
       };
-      permittedInsecurePackages = [
-        "electron-25.9.0"
-        "electron-32.3.3"
-      ];
     };
 
     primary-user = "wolf";
+
+    pkgs-stable = import inputs.nixpkgs-stable pkgs-options;
+    pkgs-dev = import inputs.nixpkgs-dev pkgs-options;
 
     pkgs = import nixpkgs (
       pkgs-options
@@ -93,6 +94,14 @@
               librepods = inputs.librepods.packages.${system}.default;
 
               hyprland-workspace2d = inputs.hyprland-workspace2d.packages.${system}.workspace2d;
+
+              hyprland = inputs.hyprland.packages.${system}.hyprland;
+              portalPackage = inputs.hyprland.packages.${system}.xdg-desktop-portal-hyprland;
+
+              hyprlock = pkgs-dev.hyprlock;
+              hypridle = pkgs-dev.hypridle;
+              hyprpaper = pkgs-dev.hyprpaper;
+              hyprpicker = pkgs-dev.hyprpicker;
             })
             inputs.nur.overlays.default
             inputs.nix-vscode-extensions.overlays.default

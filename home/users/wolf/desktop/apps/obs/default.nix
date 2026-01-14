@@ -1,7 +1,4 @@
-{
-  config,
-  osConfig,
-}: {
+{config}: {
   home.files."${config.xdg.configHome}/obs-studio" = {
     enable = true;
     source = ../programs/obs;

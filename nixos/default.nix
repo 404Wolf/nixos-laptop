@@ -14,6 +14,7 @@
     ./misc
     ./network.nix
     ./pam.nix
+    ./gpg.nix
     ./nix.nix
     ./printing.nix
     ./remotes.nix
@@ -35,6 +36,13 @@
   programs.gnupg.agent.pinentryPackage = pkgs.pinentry-qt;
   services.gnome.gnome-keyring.enable = true;
   programs.seahorse.enable = true;
+
+  services.openssh.enable = true;
+
+  programs.ssh = {
+    enableAskPassword = true;
+    askPassword = "QT_QPA_PLATFORM=\"wayland\" ${pkgs.kdePackages.ksshaskpass}";
+  };
 
   time.timeZone = "America/New_York";
 
@@ -82,10 +90,6 @@
     dconf.enable = true;
     zsh.enable = true;
     mtr.enable = true;
-    gnupg.agent = {
-      enable = true;
-      enableSSHSupport = true;
-    };
   };
 
   security.rtkit.enable = true;

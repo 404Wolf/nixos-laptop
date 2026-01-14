@@ -1,30 +1,30 @@
 {
   osConfig,
   config,
+  lib,
   ...
 }: {
-  programs.vdirsyncer.enable = true;
-
   accounts = {
     email = {
       maildirBasePath = "Mail";
       accounts =
         builtins.mapAttrs
-        (key: value: (value
-          // {
+        (
+          key: value: (lib.attrsets.recursiveUpdate value {
             thunderbird.enable = true;
-            neomutt.enable = true;
-            notmuch.neomutt.enable = true;
-            notmuch.enable = true;
-          })) rec {
+          })
+        )
+        rec {
           primary = {
             primary = true;
-            gpg.key = config.my.variables.primary-yubikey-gpg-id;
+            gpg.key = config.my.variables.gpg-key-sec-id;
             flavor = "fastmail.com";
             address = "wolfmermelstein@fastmail.com";
             aliases = ["wolf@404wolf.com"];
             realName = "Wolf Mermelstein";
-            passwordCommand = "cat ${osConfig.sops.secrets."accounts/wolfmermelstein_fastmail/app-password".path}";
+            passwordCommand = "cat ${
+              osConfig.sops.secrets."accounts/wolfmermelstein_fastmail/app-password".path
+            }";
             thunderbird.perIdentitySettings = id: {
               "mail.identity.id_${id}.useremail" = "wolf@404wolf.com";
             };
