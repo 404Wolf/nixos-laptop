@@ -128,7 +128,7 @@ in {
         disable_hyprland_logo = true;
         focus_on_activate = true;
       };
-      windowrulev2 = import ./rules.nix {};
+      windowrule = import ./rules.nix;
     };
     extraConfig =
       (import ./keybinds.nix {

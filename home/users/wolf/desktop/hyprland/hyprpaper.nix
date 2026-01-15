@@ -3,8 +3,10 @@
     enable = true;
 
     settings = {
-      preload = config.my.variables.wallpaper-path;
-      wallpaper = ",${config.my.variables.wallpaper-path}";
+      wallpaper = {
+        monitor = "";
+        path = config.my.variables.wallpaper-path;
+      };
     };
   };
 }
