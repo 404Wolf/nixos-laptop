@@ -1,4 +1,5 @@
 {
+  "load_direnv": "shell_hook",
   "project_panel": {
     "dock": "right"
   },

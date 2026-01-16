@@ -74,7 +74,7 @@
 
     primary-user = "wolf";
 
-    pkgs-stable = import inputs.nixpkgs-stable pkgs-options;
+    # pkgs-stable = import inputs.nixpkgs-stable pkgs-options;
     pkgs-dev = import inputs.nixpkgs-dev pkgs-options;
 
     pkgs = import nixpkgs (
