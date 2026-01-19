@@ -656,11 +656,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1727668558,
-        "narHash": "sha256-7fQYv/FqzyfK61xVbv8y2NC7/inoGQon/Fe+Mp2yZrg=",
+        "lastModified": 1768154552,
+        "narHash": "sha256-oTLuSHZSYyAD5RJABgg+XozKESO50GlDZqcXEGfW+ug=",
         "owner": "404wolf",
         "repo": "Hyprland-Workspace-2D",
-        "rev": "f0ecef3840b88aef58bb4f1981a24bc716562a8c",
+        "rev": "cafc3f3c03c8916573cfe58cbc40ae2ad80d4259",
         "type": "github"
       },
       "original": {

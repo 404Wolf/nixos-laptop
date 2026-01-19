@@ -5,13 +5,13 @@
 }: let
   mdxGrammar = pkgs.buildZedGrammar {
     name = "mdx";
-    version = "0f2d4b204b231e5ebb7b94ff0259bee6c83ebc58";
+    version = "fix-md-in-jsx";
 
     src = pkgs.fetchFromGitHub {
-      owner = "srazzak";
+      owner = "404wolf";
       repo = "tree-sitter-mdx";
-      rev = "0f2d4b204b231e5ebb7b94ff0259bee6c83ebc58";
-      hash = "sha256-KgWX69beW6obIwQ+jBHqr75cTSlH4PQwhXWHCIfZLEI=";
+      rev = "fix-md-in-jsx";
+      hash = "sha256-Q6gEKN7CZrKvUD/tZlBTKYor/rfKuPWBMSNZ9frVAjY=";
     };
   };
 
@@ -20,7 +20,7 @@
     version = "fix-codeblocks";
 
     src = pkgs.fetchFromGitHub {
-      owner = "404wolf";
+      owner = "srazzak";
       repo = "zed-mdx";
       rev = "fix-codeblocks";
       hash = "sha256-eoST3IVJOj2Moc/R0uBQLbgqTtFPyOnMFIba8VxdrdM=";
