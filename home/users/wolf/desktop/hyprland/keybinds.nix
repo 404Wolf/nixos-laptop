@@ -135,8 +135,8 @@ in
     bind=$MOD CONTROL_L, K, exec, ${workspace2d} up "" ""
   ''
   + ''
-    bind=$MOD ALT, J, exec, ${workspace2d} down "all" ""
-    bind=$MOD ALT, K, exec, ${workspace2d} up "all" ""
+    bind=$MOD ALT, J, exec, ${workspace2d} down "all" "" && hyprctl dispatch togglespecialworkspace
+    bind=$MOD ALT, K, exec, ${workspace2d} up "all" "" && hyprctl dispatch togglespecialworkspace
   ''
   +
   # Move things one workspace left/right

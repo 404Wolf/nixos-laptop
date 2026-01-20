@@ -30,7 +30,15 @@ in {
     command-output = "auto";
   };
 
-  profiles = {
+  profiles = let
+    junk-paths = [
+      "/**/.direnv"
+      "/**/.cache"
+      "/**/target"
+      "/**/node_modules"
+      "/**/.local/share/Steam/.*"
+    ];
+  in {
     base = {
       password-file = "/run/secrets/other/restic/password";
       verbose = 2;
@@ -56,14 +64,11 @@ in {
           source = [
             "/home/wolf"
           ];
-          exclude = [
-            "/**/.direnv"
-            "/**/.cache"
-            "/**/node_modules"
-            "/**/.local/share/Trash"
-            "/**/.local/share/Steam/.*"
-            "/home/wolf/Vault/**"
-          ];
+          exclude =
+            [
+              "/home/wolf/Vault/**"
+            ]
+            ++ junk-paths;
           schedule = ["daily"];
         };
         forget.schedule = ["weekly"];
@@ -80,11 +85,7 @@ in {
           source = [
             "/home/wolf/Vault"
           ];
-          exclude = [
-            "/**/.direnv"
-            "/**/.cache"
-            "/**/node_modules"
-          ];
+          exclude = junk-paths;
           schedule = ["daily"];
         };
         forget.schedule = ["weekly"];

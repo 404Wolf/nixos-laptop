@@ -3,6 +3,9 @@
   "project_panel": {
     "dock": "right"
   },
+  "session": {
+   "trust_all_worktrees": true
+  },
   "vim_mode": true,
   "vim": {
     "toggle_relative_line_numbers": true,

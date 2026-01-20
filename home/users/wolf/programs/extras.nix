@@ -50,7 +50,7 @@
     gdb
     pkg-config
     gnumake
-    nodejs_20
+    nodejs_24
     deno
     bun
     sd
