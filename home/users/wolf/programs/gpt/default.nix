@@ -4,9 +4,9 @@
   ...
 }: let
   models = [
-    "claude-3-opus-latest"
-    "claude-3-5-sonnet-latest"
-    "claude-3-7-sonnet-latest"
+    "claude-4-5-opus-latest"
+    "claude-4-5-sonnet-latest"
+    "claude-4-5-sonnet-latest"
     "claude-sonnet-4-20250514"
     "claude-opus-4-20250514"
     "gpt-4o"

@@ -78,11 +78,7 @@
     export OPENAI_API_KEY="$(cat ${osConfig.sops.secrets."api-keys/openai".path})"
     export GEMINI_API_KEY="$(cat ${osConfig.sops.secrets."api-keys/google".path})"
 
-    if [ -t 1 ]; then
-      exec ${pkgs.zed-editor}/bin/zed --new "$@"
-    else
-      exec ${pkgs.zed-editor}/bin/zed --new --wait "$@"
-    fi
+    exec ${pkgs.zed-editor}/bin/zed --new --wait "$@"
   '';
 in {
   programs.zed-editor = {
@@ -128,6 +124,7 @@ in {
       caddyfile
       nginx
       zig
+      svelte
     ];
   };
 }

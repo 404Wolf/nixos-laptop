@@ -42,3 +42,6 @@
   "match:title Untitled - Chromium float (size 85% 70%)"
   "match:title MainPicker pin"
 ]
+++ [
+  "match:title .*_centersmall$ float (size 50% 50%) center pin"
+]

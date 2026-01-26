@@ -100,6 +100,7 @@
     tldr
     wrappedNvim
     libreoffice-qt6-still
+    onlyoffice-desktopeditors
     zotero
     anki
     evince

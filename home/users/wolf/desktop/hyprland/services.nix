@@ -15,10 +15,8 @@
         Service = {
           Type = "oneshot";
           ExecStart = pkgs.writeShellScript "wallpaper-refresh" ''
-            options="${./photos}"
-            random_png=$(find "$options" -type f -name "*.png" | shuf -n 1)
-            cp -f "$random_png" ${config.my.variables.wallpaper-path}
-            hyprctl hyprpaper reload ,"${config.my.variables.wallpaper-path}"
+            ${pkgs.curl}/bin/curl -o ${config.my.variables.wallpaper-path} https://wolf--a1d1e2f6fa4811f0bcec42dde27851f2.web.val.run/?token=21868dafad44a1a5fef4728166d0668c
+            hyprctl hyprpaper wallpaper ,"${config.my.variables.wallpaper-path}"
           '';
         };
       };
@@ -30,7 +28,7 @@
         };
         Timer = {
           OnBootSec = "1min";
-          OnUnitActiveSec = "3h";
+          OnCalendar = "Sun *-*-* 00:00:00";
         };
         Install.WantedBy = ["timers.target"];
       };

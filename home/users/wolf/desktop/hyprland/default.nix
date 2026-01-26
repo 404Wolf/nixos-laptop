@@ -74,9 +74,13 @@ in {
         no_donation_nag = true;
         no_update_news = true;
       };
+      disable_splash_rendering = true;
       exec-once = [
         "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
       ];
+      cursor = {
+        no_hardware_cursors = true;
+      };
       general = {
         allow_tearing = false;
         gaps_in = 1;
