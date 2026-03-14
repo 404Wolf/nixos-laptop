@@ -4,6 +4,7 @@
 
     libraries = with pkgs; [
       glib # Low-level core library for GNOME projects
+      xcb-util-cursor
       openssl # Cryptography and SSL/TLS toolkit
       zlib # Compression library
       bzip2 # High-quality data compression program

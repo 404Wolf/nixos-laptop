@@ -23,6 +23,8 @@
         # Put the status line on the top
         set-option -g status-position top
 
+        set -g history-limit 1000000
+
         set -sg escape-time 0
         run-shell "${pkgs.powerline}/bin/powerline-daemon -q"
 

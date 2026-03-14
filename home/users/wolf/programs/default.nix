@@ -14,6 +14,7 @@
     ./zoxide.nix
     ./zed
     ./rclone.nix
+    ./codex.nix
   ];
 
   programs = {

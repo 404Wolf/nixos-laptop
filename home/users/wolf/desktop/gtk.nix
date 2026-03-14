@@ -1,11 +1,14 @@
 {
   config,
   pkgs,
+  pkgs-old,
   nix-colors,
   ...
-}: let
-  gtkThemeFromScheme = (nix-colors.lib-contrib {inherit pkgs;}).gtkThemeFromScheme;
-in {
+}:
+let
+  gtkThemeFromScheme = (nix-colors.lib-contrib { pkgs = pkgs-old; }).gtkThemeFromScheme;
+in
+{
   qt.platformTheme = "gtk2";
 
   gtk = {
@@ -13,7 +16,7 @@ in {
 
     theme = {
       name = "${config.colorScheme.slug}";
-      package = gtkThemeFromScheme {scheme = config.colorScheme;};
+      package = gtkThemeFromScheme { scheme = config.colorScheme; };
     };
 
     iconTheme = {

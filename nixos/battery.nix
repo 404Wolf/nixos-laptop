@@ -7,10 +7,10 @@
       HandleLidSwitch = "suspend-then-hibernate";
     };
   };
-  systemd.sleep.extraConfig = ''
-    HibernateDelaySec=30M
-    HibernateOnACPower=false
-  '';
+  # systemd.sleep.extraConfig = ''
+  #   HibernateDelaySec=30M
+  #   HibernateOnACPower=false
+  # '';
 
   # Disable kernel image protection to fix hibernation resume
   security.protectKernelImage = false;

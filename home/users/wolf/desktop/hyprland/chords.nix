@@ -43,6 +43,7 @@ in
     bind = "$MOD SHIFT, P";
     body = ''
       bind=, H, exec, systemctl hibernate
+      bind=, O, exec, hyprctl dispatch dpms toggle
     '';
   }
   + mkSubmap {

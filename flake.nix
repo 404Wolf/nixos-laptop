@@ -3,8 +3,8 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-old.url = "github:nixos/nixpkgs/nixos-23.11";
     nixpkgs-dev.url = "github:nixos/nixpkgs";
-    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.11";
 
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
@@ -24,7 +24,9 @@
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     sops-nix.url = "github:Mic92/sops-nix";
     flake-utils.url = "github:numtide/flake-utils";
+
     nix-colors.url = "github:misterio77/nix-colors";
+
     nur = {
       url = "github:nix-community/NUR";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -32,6 +34,10 @@
     nix-neovim.url = "github:404Wolf/nix-neovim";
     capture-utils.url = "github:404Wolf/Screen-Capture";
     dalleCLI.url = "github:404Wolf/DALLE-CLI";
+    sound-effects-cli = {
+      url = "github:404Wolf/sound-effects-cli";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     remarkable-connection-utility.url = "github:/404wolf/remarkable-connection-utility";
     cartographcf.url = "github:404Wolf/CartographCF";
     firefox-addons = {
@@ -51,84 +57,87 @@
     };
   };
 
-  outputs = {
-    self,
-    nixpkgs,
-    flake-utils,
-    home-manager,
-    nixos-hardware,
-    ...
-  } @ inputs: let
-    system = "x86_64-linux";
+  outputs =
+    {
+      self,
+      nixpkgs,
+      flake-utils,
+      home-manager,
+      nixos-hardware,
+      ...
+    }@inputs:
+    let
+      system = "x86_64-linux";
 
-    pkgs-options = {
-      inherit system;
-      config = {
-        allowUnfree = true;
-        permittedInsecurePackages = [
-          "electron-25.9.0"
-          "electron-32.3.3"
-        ];
-      };
-    };
-
-    primary-user = "wolf";
-
-    # pkgs-stable = import inputs.nixpkgs-stable pkgs-options;
-    pkgs-dev = import inputs.nixpkgs-dev pkgs-options;
-
-    pkgs = import nixpkgs (
-      pkgs-options
-      // {
-        overlays = (
-          [
-            (final: prev: {
-              wrappedNvim = inputs.nix-neovim.packages.${system}.default;
-              capture-utils = inputs.capture-utils.packages.${system}.default;
-              dalleCLI = inputs.dalleCLI.packages.${system}.default;
-              nixGpt = inputs.nixGpt.packages.${system}.default;
-              rcu = inputs.remarkable-connection-utility.packages.${system}.default;
-              cartographcf = inputs.cartographcf.packages.${system}.default;
-              firefox-addons = inputs.firefox-addons.packages.${system};
-              zed-editor = inputs.zed.packages.${system}.default;
-              librepods = inputs.librepods.packages.${system}.default;
-
-              hyprland-workspace2d = inputs.hyprland-workspace2d.packages.${system}.workspace2d;
-
-              hyprland = inputs.hyprland.packages.${system}.hyprland;
-              portalPackage = inputs.hyprland.packages.${system}.xdg-desktop-portal-hyprland;
-
-              hyprlock = pkgs-dev.hyprlock;
-              hypridle = pkgs-dev.hypridle;
-              hyprpaper = pkgs-dev.hyprpaper;
-              hyprpicker = pkgs-dev.hyprpicker;
-            })
-            inputs.nur.overlays.default
-            inputs.nix-vscode-extensions.overlays.default
-            inputs.zed-extensions.overlays.default
-          ]
-          ++ (import ./overlays.nix)
-        );
-      }
-    );
-
-    helpers = pkgs.callPackage ./utils.nix {};
-
-    baseModules = [
-      home-manager.nixosModules.home-manager
-      {
-        home-manager = {
-          users.wolf = ./home/users/${primary-user};
-          sharedModules = [
-            inputs.zed-extensions.homeManagerModules.default
+      pkgs-options = {
+        inherit system;
+        config = {
+          allowUnfree = true;
+          permittedInsecurePackages = [
+            "electron-25.9.0"
+            "electron-32.3.3"
           ];
         };
-      }
-      inputs.sops-nix.nixosModules.sops
-      ./nixos
-      ./sops.nix
-    ];
-  in
+      };
+
+      primary-user = "wolf";
+
+      pkgs-old = import inputs.nixpkgs-old pkgs-options;
+      pkgs-dev = import inputs.nixpkgs-dev pkgs-options;
+
+      pkgs = import nixpkgs (
+        pkgs-options
+        // {
+          overlays = (
+            [
+              (final: prev: {
+                wrappedNvim = inputs.nix-neovim.packages.${system}.default;
+                capture-utils = inputs.capture-utils.packages.${system}.default;
+                dalleCLI = inputs.dalleCLI.packages.${system}.default;
+                nixGpt = inputs.nixGpt.packages.${system}.default;
+                rcu = inputs.remarkable-connection-utility.packages.${system}.default;
+                cartographcf = inputs.cartographcf.packages.${system}.default;
+                firefox-addons = inputs.firefox-addons.packages.${system};
+                # zed-editor = inputs.zed.packages.${system}.default;
+                librepods = inputs.librepods.packages.${system}.default;
+                sound-effects-cli = inputs.sound-effects-cli.packages.${system}.default;
+
+                hyprland-workspace2d = inputs.hyprland-workspace2d.packages.${system}.workspace2d;
+
+                hyprland = inputs.hyprland.packages.${system}.hyprland;
+                portalPackage = inputs.hyprland.packages.${system}.xdg-desktop-portal-hyprland;
+
+                hyprlock = pkgs-dev.hyprlock;
+                hypridle = pkgs-dev.hypridle;
+                hyprpaper = pkgs-dev.hyprpaper;
+                hyprpicker = pkgs-dev.hyprpicker;
+              })
+              inputs.nur.overlays.default
+              inputs.nix-vscode-extensions.overlays.default
+              inputs.zed-extensions.overlays.default
+            ]
+            ++ (import ./overlays.nix)
+          );
+        }
+      );
+
+      helpers = pkgs.callPackage ./utils.nix { };
+
+      baseModules = [
+        home-manager.nixosModules.home-manager
+        {
+          home-manager = {
+            users.wolf = ./home/users/${primary-user};
+            sharedModules = [
+              inputs.zed-extensions.homeManagerModules.default
+            ];
+          };
+        }
+        inputs.sops-nix.nixosModules.sops
+        ./nixos
+        ./sops.nix
+      ];
+    in
     {
       nixosConfigurations.default = nixpkgs.lib.nixosSystem rec {
         inherit system pkgs;
@@ -141,23 +150,24 @@
             ;
           nix-colors = inputs.nix-colors;
         };
-        modules =
-          baseModules
-          ++ [
-            inputs.disko.nixosModules.disko
-            ./disko.nix
-            {
-              _module.args.disks = ["/dev/nvme0n1"];
-              nixpkgs.system = system;
-              home-manager.extraSpecialArgs =
-                {
-                  inherit pkgs system;
-                }
-                // specialArgs;
-              home-manager.backupFileExtension = "bak";
+        modules = baseModules ++ [
+          inputs.disko.nixosModules.disko
+          ./disko.nix
+          {
+            _module.args.disks = [ "/dev/nvme0n1" ];
+            nixpkgs.system = system;
+            home-manager.extraSpecialArgs = {
+              inherit
+                pkgs
+                pkgs-old
+                system
+                ;
             }
-            nixos-hardware.nixosModules.framework-13-7040-amd
-          ];
+            // specialArgs;
+            home-manager.backupFileExtension = "bak";
+          }
+          nixos-hardware.nixosModules.framework-13-7040-amd
+        ];
       };
     }
     // flake-utils.lib.eachDefaultSystem (system: {
@@ -174,14 +184,15 @@
         ];
       };
 
-      formatter = let
-        treefmtconfig = inputs.treefmt-nix.lib.evalModule pkgs {
-          projectRootFile = "flake.nix";
-          programs.alejandra.enable = true;
-          programs.shellcheck.enable = true;
-          settings.formatter.shellcheck.excludes = [".envrc"];
-        };
-      in
+      formatter =
+        let
+          treefmtconfig = inputs.treefmt-nix.lib.evalModule pkgs {
+            projectRootFile = "flake.nix";
+            programs.alejandra.enable = true;
+            programs.shellcheck.enable = true;
+            settings.formatter.shellcheck.excludes = [ ".envrc" ];
+          };
+        in
         treefmtconfig.config.build.wrapper;
 
       apps = {
@@ -192,6 +203,7 @@
             runtimeInputs = with pkgs; [
               git
               nix
+              nix-output-monitor
             ];
           };
         };

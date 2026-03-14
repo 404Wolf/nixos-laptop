@@ -15,7 +15,7 @@
         Service = {
           Type = "oneshot";
           ExecStart = pkgs.writeShellScript "wallpaper-refresh" ''
-            ${pkgs.curl}/bin/curl -o ${config.my.variables.wallpaper-path} https://wolf--a1d1e2f6fa4811f0bcec42dde27851f2.web.val.run/?token=21868dafad44a1a5fef4728166d0668c
+            ${pkgs.curl}/bin/curl -o ${config.my.variables.wallpaper-path} https://bing-image-of-day.val.run/
             hyprctl hyprpaper wallpaper ,"${config.my.variables.wallpaper-path}"
           '';
         };

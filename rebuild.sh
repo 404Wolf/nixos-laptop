@@ -3,7 +3,7 @@
 # Rebuild NixOS & switch
 echo "Rebuilding NixOS..."
 git add -A
-sudo nixos-rebuild switch --flake .#default --builders ""
+sudo -E sh -c 'nixos-rebuild switch --flake .#default'
 
 # Add all changes to git
 echo "Adding all changes to git..."

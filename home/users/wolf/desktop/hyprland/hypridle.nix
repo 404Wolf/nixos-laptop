@@ -28,9 +28,9 @@
         }
         {
           timeout = 300; # 5min
-          on-timeout = "if [ ! $(cat /sys/class/power_supply/ACAD/online) ]; then ${pkgs.brightnessctl}/bin/brightnessctl -d framework_laptop::kbd_backlight g > /tmp/brightness_framework_laptop::kbd_backlight &&             
+          on-timeout = "if [ ! $(cat /sys/class/power_supply/ACAD/online) ]; then ${pkgs.brightnessctl}/bin/brightnessctl -d framework_laptop::kbd_backlight g > /tmp/brightness_framework_laptop::kbd_backlight &&
  ${pkgs.brightnessctl}/bin/brightnessctl -d framework_laptop::kbd_backlight s 0%; fi";
-          on-resume = "if [ -f /tmp/brightness_framework_laptop::kbd_backlight ]; then ${pkgs.brightnessctl}/bin/brightnessctl -d framework_laptop::kbd_backlight s $(cat /tmp/brightness_framework_laptop::kbd_backlight) && r 
+          on-resume = "if [ -f /tmp/brightness_framework_laptop::kbd_backlight ]; then ${pkgs.brightnessctl}/bin/brightnessctl -d framework_laptop::kbd_backlight s $(cat /tmp/brightness_framework_laptop::kbd_backlight) && r
  -f /tmp/brightness_framework_laptop::kbd_backlight; fi";
         }
         {
@@ -45,7 +45,7 @@
         }
         {
           timeout = 600; # 10min
-          on-timeout = "hyprctl dispatch dpms off"; # turn off display
+          on-timeout = "if [ ! $(cat /sys/class/power_supply/ACAD/online) ]; then hyprctl dispatch dpms off; fi"; # turn off display
           on-resume = "hyprctl dispatch dpms on"; # turn on display when activity detected
         }
       ];

@@ -3,18 +3,6 @@
   osConfig,
   ...
 }: let
-  mdxGrammar = pkgs.buildZedGrammar {
-    name = "mdx";
-    version = "fix-md-in-jsx";
-
-    src = pkgs.fetchFromGitHub {
-      owner = "404wolf";
-      repo = "tree-sitter-mdx";
-      rev = "fix-md-in-jsx";
-      hash = "sha256-Q6gEKN7CZrKvUD/tZlBTKYor/rfKuPWBMSNZ9frVAjY=";
-    };
-  };
-
   mdxExt = pkgs.buildZedRustExtension {
     name = "mdx";
     version = "fix-codeblocks";
@@ -28,8 +16,58 @@
 
     cargoHash = "sha256-hea2GLQ04nBfmUEg1accjsWmZmMYllV3h8Kz3qlhZVY=";
 
-    grammars = [mdxGrammar];
+    grammars = [
+      (pkgs.buildZedGrammar {
+        name = "mdx";
+        version = "fix-md-in-jsx";
+
+        src = pkgs.fetchFromGitHub {
+          owner = "404wolf";
+          repo = "tree-sitter-mdx";
+          rev = "fix-md-in-jsx";
+          hash = "sha256-Q6gEKN7CZrKvUD/tZlBTKYor/rfKuPWBMSNZ9frVAjY=";
+        };
+      })
+    ];
   };
+
+  # quartoExt = pkgs.buildZedRustExtension {
+  #   name = "quarto";
+  #   version = "0.0.1";
+
+  #   src = pkgs.fetchFromGitHub {
+  #     owner = "ck37";
+  #     repo = "zed-quarto-extension";
+  #     rev = "main";
+  #     hash = "sha256-HQEF/O060HDvZbAyVEuWQfFqwIQWRsqhtPRPcnQWBMA=";
+  #   };
+
+  #   cargoHash = "sha256-+FSVhVtwPur4tQqOOBxA2H0UM1B3/OkUxxFcDP04AlQ=";
+
+  #   grammars =
+  #     let
+  #       quartoGrammarSrc = pkgs.fetchFromGitHub {
+  #         owner = "ck37";
+  #         repo = "tree-sitter-quarto";
+  #         rev = "main";
+  #         hash = "sha256-Yb9VJsjbTGa1h1n1dM9myuVSvniIVTJxLvx/CNwR9TQ=";
+  #       };
+  #     in
+  #     [
+  #       (pkgs.buildZedGrammar {
+  #         name = "inline";
+  #         version = "0.0.1";
+  #         grammarRoot = "grammars/inline";
+  #         src = quartoGrammarSrc;
+  #       })
+  #       (pkgs.buildZedGrammar {
+  #         name = "block";
+  #         version = "0.0.1";
+  #         grammarRoot = "grammars/block";
+  #         src = quartoGrammarSrc;
+  #       })
+  #     ];
+  # };
 
   zeditorWrapper = pkgs.writeShellScriptBin "zeditor" ''
     export PATH="$PATH:${
@@ -78,7 +116,7 @@
     export OPENAI_API_KEY="$(cat ${osConfig.sops.secrets."api-keys/openai".path})"
     export GEMINI_API_KEY="$(cat ${osConfig.sops.secrets."api-keys/google".path})"
 
-    exec ${pkgs.zed-editor}/bin/zed --new --wait "$@"
+    exec ${pkgs.zed-editor}/bin/zeditor --new --wait "$@"
   '';
 in {
   programs.zed-editor = {
@@ -96,6 +134,7 @@ in {
     enable = true;
     packages = with pkgs.zed-extensions; [
       mdxExt
+      # quartoExt
       html
       toml
       basher

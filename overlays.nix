@@ -1,9 +1,10 @@
 [
   (final: prev: {
+    sass = prev.dart-sass;
     kitty = prev.symlinkJoin {
       name = "kitty-wrapped";
-      paths = [prev.kitty];
-      buildInputs = [prev.makeWrapper];
+      paths = [ prev.kitty ];
+      buildInputs = [ prev.makeWrapper ];
       postBuild = ''
         wrapProgram $out/bin/kitty \
           --run 'export TMP_DIR=$(mktemp -d)' \

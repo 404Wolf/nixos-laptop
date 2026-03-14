@@ -4,7 +4,7 @@
     "dock": "right"
   },
   "session": {
-   "trust_all_worktrees": true
+    "trust_all_worktrees": true
   },
   "vim_mode": true,
   "vim": {
@@ -86,9 +86,6 @@
   "edit_predictions": {
     "enabled_in_text_threads": true
   },
-  "features": {
-    "edit_prediction_provider": "copilot"
-  },
   "format_on_save": "off",
   "formatter": "language_server",
   "jsx_tag_auto_close": {
@@ -131,6 +128,12 @@
           }
         }
       }
+    }
+  },
+  "theme_overrides": {
+    "True Dark": {
+      "editor.indent_guide": "#ffffff10",
+      "ghost_element.background": "#ffffff08"
     }
   }
 }

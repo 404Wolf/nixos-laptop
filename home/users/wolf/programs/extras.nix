@@ -4,6 +4,7 @@
     curl
     bat
     wget
+    uv
     tree
     dhcpcd
     util-linux
@@ -42,6 +43,7 @@
     magic-wormhole
 
     # Development & Programming Tools
+    claude-code
     gcc
     hyperfine
     ast-grep
