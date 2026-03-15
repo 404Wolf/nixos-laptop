@@ -5,6 +5,12 @@
       default = {};
       description = "Shared general variables";
     };
+
+    go-to-sleep = lib.mkOption {
+      type = lib.types.bool;
+      default = true;
+      description = "Whether the system should suspend on lid close";
+    };
   };
 
   config.my = {

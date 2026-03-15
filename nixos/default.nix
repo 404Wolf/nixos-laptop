@@ -14,7 +14,6 @@
     ./misc
     ./network.nix
     ./pam.nix
-    ./gpg.nix
     ./nix.nix
     ./printing.nix
     ./remotes.nix
@@ -33,7 +32,6 @@
     "d /mnt/r2/static 0755 wolf users -"
   ];
 
-  programs.gnupg.agent.pinentryPackage = pkgs.pinentry-qt;
   services.gnome.gnome-keyring.enable = true;
   programs.seahorse.enable = true;
 
@@ -51,6 +49,7 @@
       config.boot.kernelPackages.acpi_call
     ];
     kernelModules = ["acpi_call"];
+    binfmt.emulatedSystems = ["aarch64-linux"];
   };
 
   zramSwap = {

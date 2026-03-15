@@ -1,9 +1,70 @@
 { pkgs, ... }:
+let
+  claude-monitor = pkgs.python3Packages.buildPythonPackage {
+    pname = "claude-monitor";
+    version = "3.1.0";
+    pyproject = true;
+
+    src = pkgs.fetchPypi {
+      pname = "claude_monitor";
+      version = "3.1.0";
+      hash = "sha256-k5Hg78AeuWQ+RiI+b0mLjQPnxqTzfrugnJ81WgRT5/w=";
+    };
+
+    build-system = with pkgs.python3Packages; [ setuptools wheel ];
+
+    dependencies = with pkgs.python3Packages; [
+      numpy
+      pydantic
+      pydantic-settings
+      pyyaml
+      pytz
+      rich
+      tomli
+    ];
+
+    doCheck = false;
+  };
+
+  claude-output-monitor = pkgs.writeShellScriptBin "claude-output-monitor" ''
+    exec ${claude-monitor}/bin/claude-monitor --plan max20 "$@"
+  '';
+in
 {
+  home.packages = [ claude-output-monitor ];
+
   programs.claude-code = {
     enable = true;
 
+    mcpServers = {
+      nixos = {
+        command = "nix";
+        args = [ "run" "github:utensils/mcp-nixos" "--" ];
+      };
+      "cratesio-mcp" = {
+        type = "http";
+        url = "https://cratesio-mcp.fly.dev/";
+      };
+      "github-copilot" = {
+        type = "http";
+        url = "https://api.githubcopilot.com/mcp/";
+        headers = {
+          "X-MCP-Toolsets" = "default,projects";
+        };
+      };
+    };
+
     settings = {
+      model = "sonnet";
+
+      inputs = [
+        {
+          type = "promptString";
+          id = "github_mcp_pat";
+          description = "GitHub Personal Access Token";
+          password = true;
+        }
+      ];
       hooks = {
         Notification = [
           {

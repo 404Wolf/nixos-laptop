@@ -14,6 +14,21 @@ in
       tree-style-tab
     ]
     ++ [
+      (buildFirefoxXpiAddon {
+        pname = "dark-reader";
+        version = "4.9.123";
+        addonId = "addon@darkreader.org";
+        url = "https://addons.mozilla.org/firefox/downloads/file/4710145/darkreader-4.9.123.xpi";
+        sha256 = "sha256-mj5s2sU/ICV72BJkUywWr+2tAOsmI73tie0rMLHkAkM=";
+        meta = with pkgs.lib; {
+          homepage = "https://darkreader.org";
+          description = "Dark mode for every website";
+          license = licenses.mit;
+          platforms = platforms.all;
+        };
+      })
+    ]
+    ++ [
       (pkgs.stdenv.mkDerivation rec {
         name = "bypass-paywalls-custom";
         version = "1.0";
