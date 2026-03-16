@@ -14,5 +14,6 @@
     ]
     else [
       ./apps
+      ../darwin
     ];
 }

@@ -60,5 +60,10 @@
     };
   };
 
+  homebrew = {
+    enable = true;
+    casks = ["karabiner-elements"];
+  };
+
   services.tailscale.enable = true;
 }
