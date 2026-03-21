@@ -31,44 +31,6 @@
     ];
   };
 
-  # quartoExt = pkgs.buildZedRustExtension {
-  #   name = "quarto";
-  #   version = "0.0.1";
-
-  #   src = pkgs.fetchFromGitHub {
-  #     owner = "ck37";
-  #     repo = "zed-quarto-extension";
-  #     rev = "main";
-  #     hash = "sha256-HQEF/O060HDvZbAyVEuWQfFqwIQWRsqhtPRPcnQWBMA=";
-  #   };
-
-  #   cargoHash = "sha256-+FSVhVtwPur4tQqOOBxA2H0UM1B3/OkUxxFcDP04AlQ=";
-
-  #   grammars =
-  #     let
-  #       quartoGrammarSrc = pkgs.fetchFromGitHub {
-  #         owner = "ck37";
-  #         repo = "tree-sitter-quarto";
-  #         rev = "main";
-  #         hash = "sha256-Yb9VJsjbTGa1h1n1dM9myuVSvniIVTJxLvx/CNwR9TQ=";
-  #       };
-  #     in
-  #     [
-  #       (pkgs.buildZedGrammar {
-  #         name = "inline";
-  #         version = "0.0.1";
-  #         grammarRoot = "grammars/inline";
-  #         src = quartoGrammarSrc;
-  #       })
-  #       (pkgs.buildZedGrammar {
-  #         name = "block";
-  #         version = "0.0.1";
-  #         grammarRoot = "grammars/block";
-  #         src = quartoGrammarSrc;
-  #       })
-  #     ];
-  # };
-
   zeditorWrapper = pkgs.writeShellScriptBin "zeditor" ''
     export PATH="$PATH:${
       pkgs.lib.makeBinPath (
@@ -83,9 +45,9 @@
           llvmPackages_20.clang-unwrapped
           rust-analyzer
           basedpyright
+          ruby-lsp
           superhtml
           tinymist
-          nil
           nixd
           biome
           vtsls
@@ -95,12 +57,9 @@
           nodePackages.bash-language-server
           jdt-language-server
           texlab
-          tinymist
-          nil
           nodePackages.vscode-langservers-extracted
           taplo
-          docker-compose-language-service
-          dockerfile-language-server
+          dockerfile-language-server-nodejs
           phpactor
           lemminx
           just-lsp
@@ -134,7 +93,6 @@ in {
     enable = true;
     packages = with pkgs.zed-extensions; [
       mdxExt
-      # quartoExt
       html
       toml
       basher
@@ -164,6 +122,7 @@ in {
       nginx
       zig
       svelte
+      ty
     ];
   };
 }

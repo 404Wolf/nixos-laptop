@@ -53,6 +53,10 @@ in {
             fi
           fi
         }
+
+        clear_workspaces() {
+        hyprctl clients -j | jq -r '[.[] | select(.workspace.name | startswith("special:") | not)].[].address' | xargs -I {} hyprctl dispatch closewindow address:{}
+        }
       '';
   };
 

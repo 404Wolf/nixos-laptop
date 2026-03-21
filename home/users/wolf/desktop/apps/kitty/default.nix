@@ -8,7 +8,7 @@
     shellIntegration.enableZshIntegration = true;
     settings = {
       enable_audio_bell = false;
-      font_family = "FiraCode";
+      font_family = "FiraCode Nerd Font Mono";
       font_size = 12;
       enable_ligatures = "always";
 

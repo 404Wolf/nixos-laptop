@@ -73,8 +73,8 @@
     "model_parameters": [],
     "dock": "left",
     "default_model": {
-      "provider": "copilot_chat",
-      "model": "claude-sonnet-4"
+      "provider": "anthropic",
+      "model": "claude-sonnet-4-5"
     }
   },
   "auto_install_extensions": {
@@ -84,7 +84,8 @@
     "*": false
   },
   "edit_predictions": {
-    "enabled_in_text_threads": true
+    "enabled_in_text_threads": true,
+    "mode": "subtle"
   },
   "format_on_save": "off",
   "formatter": "language_server",

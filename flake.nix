@@ -55,6 +55,33 @@
       url = "github:404wolf/Hyprland-Workspace-2D";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # Mac modules
+    darwin = {
+      url = "github:LnL7/nix-darwin/master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    mac-app-util.url = "github:hraban/mac-app-util";
+
+    nix-homebrew = {
+      url = "github:zhaofengli-wip/nix-homebrew";
+    };
+
+    homebrew-bundle = {
+      url = "github:homebrew/homebrew-bundle";
+      flake = false;
+    };
+
+    homebrew-core = {
+      url = "github:homebrew/homebrew-core";
+      flake = false;
+    };
+
+    homebrew-cask = {
+      url = "github:homebrew/homebrew-cask";
+      flake = false;
+    };
   };
 
   outputs =
@@ -64,6 +91,11 @@
       flake-utils,
       home-manager,
       nixos-hardware,
+      darwin,
+      nix-homebrew,
+      homebrew-cask,
+      homebrew-core,
+      homebrew-bundle,
       ...
     }@inputs:
     let
@@ -94,11 +126,10 @@
                 wrappedNvim = inputs.nix-neovim.packages.${system}.default;
                 capture-utils = inputs.capture-utils.packages.${system}.default;
                 dalleCLI = inputs.dalleCLI.packages.${system}.default;
-                nixGpt = inputs.nixGpt.packages.${system}.default;
                 rcu = inputs.remarkable-connection-utility.packages.${system}.default;
                 cartographcf = inputs.cartographcf.packages.${system}.default;
                 firefox-addons = inputs.firefox-addons.packages.${system};
-                # zed-editor = inputs.zed.packages.${system}.default;
+                zed-editor = inputs.zed.packages.${system}.default;
                 librepods = inputs.librepods.packages.${system}.default;
                 sound-effects-cli = inputs.sound-effects-cli.packages.${system}.default;
 
@@ -156,17 +187,51 @@
           {
             _module.args.disks = [ "/dev/nvme0n1" ];
             nixpkgs.system = system;
-            home-manager.extraSpecialArgs = {
-              inherit
-                pkgs
-                pkgs-old
-                system
-                ;
-            }
-            // specialArgs;
+            home-manager.extraSpecialArgs =
+              {
+                inherit pkgs pkgs-old system;
+                machine = "framework";
+              }
+              // specialArgs;
             home-manager.backupFileExtension = "bak";
           }
           nixos-hardware.nixosModules.framework-13-7040-amd
+        ];
+      };
+
+      darwinConfigurations.default = darwin.lib.darwinSystem {
+        inherit system pkgs;
+        specialArgs = inputs;
+        modules = [
+          inputs.mac-app-util.darwinModules.default
+          {
+            home-manager = {
+              users.wolf = ./home/users/wolf/darwin;
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              sharedModules = [ inputs.mac-app-util.homeManagerModules.default ];
+              extraSpecialArgs = {
+                inherit inputs helpers;
+                machine = "mac";
+              };
+            };
+          }
+          home-manager.darwinModules.home-manager
+          nix-homebrew.darwinModules.nix-homebrew
+          {
+            nix-homebrew = {
+              enable = true;
+              user = "wolf";
+              taps = {
+                "homebrew/homebrew-core" = homebrew-core;
+                "homebrew/homebrew-cask" = homebrew-cask;
+                "homebrew/homebrew-bundle" = homebrew-bundle;
+              };
+              mutableTaps = false;
+              autoMigrate = true;
+            };
+          }
+          ./darwin.nix
         ];
       };
     }

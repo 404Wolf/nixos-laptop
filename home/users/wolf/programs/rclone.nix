@@ -1,4 +1,5 @@
 {
+  lib,
   pkgs,
   config,
   osConfig,
@@ -30,7 +31,6 @@
             --vfs-cache-mode full \
             ${remote}:${bucket} \
             ${mountPath}
-
         '';
         Restart = "on-failure";
         Environment = "PATH=/run/wrappers/bin";
