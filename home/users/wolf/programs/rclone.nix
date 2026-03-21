@@ -1,9 +1,15 @@
 {
+  lib,
   pkgs,
   config,
   osConfig,
   ...
 }: let
+  homeDir = config.home.homeDirectory;
+  escapedHome = lib.replaceStrings ["/"] ["-"] (lib.removePrefix "/" homeDir);
+  mountUnitName = bucket: "${escapedHome}-Mounts-R2-${bucket}";
+  mountPoint = bucket: "${homeDir}/Mounts/R2/${bucket}";
+
   r2Remote = {
     config = {
       type = "s3";
@@ -39,18 +45,18 @@ in {
         Unit = {
           Description = "Mount r2:${bucket} with rclone";
           Wants = ["network-online.target"];
-          BindsTo = ["mnt-R2-${bucket}.mount"];
+          BindsTo = ["${mountUnitName bucket}.mount"];
         };
 
         Service = {
           Type = "simple";
           ExecStart =
-            "${pkgs.rclone}/bin/rclone mount r2:${bucket} /mnt/R2/${bucket} "
+            "${pkgs.rclone}/bin/rclone mount r2:${bucket} ${mountPoint bucket} "
             + "--config=${config.xdg.configHome}/rclone/rclone.conf "
             + "--vfs-cache-mode=full "
             + "--vfs-cache-max-size=10G "
             + "--dir-cache-time=5m";
-          ExecStop = "${pkgs.fuse}/bin/fusermount -u /mnt/R2/${bucket}";
+          ExecStop = "${pkgs.fuse}/bin/fusermount -u ${mountPoint bucket}";
           Restart = "on-failure";
           RestartSec = "10s";
         };
@@ -65,14 +71,14 @@ in {
 
   systemd.user.mounts = builtins.listToAttrs (
     map (bucket: {
-      name = "mnt-R2-${bucket}";
+      name = mountUnitName bucket;
       value = {
         Unit.After = ["network-online.target"];
 
         Mount = {
           Type = "fuse";
           What = "rclone";
-          Where = "/mnt/R2/${bucket}";
+          Where = mountPoint bucket;
           Options = builtins.concatStringsSep "," [
             "rw"
             "nofail"
@@ -96,7 +102,7 @@ in {
 
   systemd.user.automounts = builtins.listToAttrs (
     map (bucket: {
-      name = "mnt-R2-${bucket}";
+      name = mountUnitName bucket;
       value = {
         Unit = {
           Description = "Automount for r2:${bucket}";
@@ -104,7 +110,7 @@ in {
         };
 
         Automount = {
-          Where = "/mnt/R2/${bucket}";
+          Where = mountPoint bucket;
           TimeoutIdleSec = "600";
         };
 

@@ -1,5 +1,7 @@
-{
+{lib, ...}: {
   system.checks.verifyNixPath = false;
+
+  environment.etc."synthetic.conf".enable = lib.mkForce false;
 
   users.users.wolfmermelstein = {
     name = "wolfmermelstein";
